@@ -13,4 +13,5 @@ if status is-interactive
     set fish_prompt_pwd_dir_length 0
 
     alias vim="nvim"
+    alias copy="xsel -bi"
 end
