@@ -12,5 +12,10 @@ if status is-interactive
     
     set fish_prompt_pwd_dir_length 0
 
-    alias vim="nvim"
+    abbr --add vim nvim
+
+    abbr --add gaa git add .
+    abbr --add gcm git commit -m
+    abbr --add gp git push
+    abbr --add gpo git push origin
 end
