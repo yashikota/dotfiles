@@ -23,4 +23,5 @@ if status is-interactive
     abbr --add gpu git push
     abbr --add gpo git push origin
     abbr --add gpl git pull
+    abbr --add gs git status
 end
