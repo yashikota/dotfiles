@@ -12,10 +12,13 @@ if status is-interactive
     
     set fish_prompt_pwd_dir_length 0
 
+    abbr --add t tmux
     abbr --add vim nvim
 
+    abbr --add ga git add
     abbr --add gaa git add .
     abbr --add gcm git commit -m
-    abbr --add gp git push
+    abbr --add gpu git push
     abbr --add gpo git push origin
+    abbr --add gpl git pull
 end
