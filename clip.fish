@@ -1,4 +1,4 @@
-function copy
+function clip
     if [ -n "$IS_WSL" ] || [ -n "$WSL_DISTRO_NAME" ]
         cat $argv[1] | clip.exe
     else if [ "$(uname)" = "Linux" ]
