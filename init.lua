@@ -9,3 +9,4 @@ opt.shiftwidth = 4
 
 opt.mouse = "a"
 
+opt.swapfile = false
