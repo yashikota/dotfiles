@@ -6,6 +6,11 @@ if status is-interactive
     export PATH="$DENO_INSTALL/bin:$PATH"
     export PATH="$HOME/.cargo/bin:$PATH"
     export PATH="$PATH:/usr/local/go/bin"
+
+    export GOPATH="$HOME/go"
+    export GOBIN="$GOPATH/bin"
+    export PATH=$PATH:$GOBIN"
+
     export LS_COLORS="di=01;36"
 
     source ~/.asdf/asdf.fish
