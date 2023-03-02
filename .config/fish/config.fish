@@ -22,7 +22,7 @@ if status is-interactive
     abbr --add cdp cd ..
 
     abbr --add t tmux
-    abbr --add vim nvim
+    abbr --add v nvim
 
     abbr --add ga git add
     abbr --add gaa git add .
