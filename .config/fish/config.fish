@@ -9,12 +9,12 @@ if status is-interactive
 
     export GOPATH="$HOME/go"
     export GOBIN="$GOPATH/bin"
-    export PATH=$PATH:$GOBIN"
+    export PATH="$PATH:$GOBIN"
 
     export LS_COLORS="di=01;36"
 
     source ~/.asdf/asdf.fish
-    
+
     set fish_prompt_pwd_dir_length 0
 
     abbr --add rmrf rm -rf
