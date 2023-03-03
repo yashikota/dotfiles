@@ -31,4 +31,7 @@ if status is-interactive
     abbr --add gpo git push origin
     abbr --add gpl git pull
     abbr --add gs git status
+    abbr --add gsw git switch
+    abbr --add swc git switch -c
+    abbr --add gr git restore
 end
