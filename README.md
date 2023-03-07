@@ -4,5 +4,5 @@
 
 - ubuntu22.04
 - fish
-- vim & vscode
+- neovim & vscode
 
