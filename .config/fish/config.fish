@@ -18,8 +18,8 @@ if status is-interactive
     set fish_prompt_pwd_dir_length 0
 
     abbr --add rmrf rm -rf
-
     abbr --add cdp cd ..
+    abbr --add cx chmod +x
 
     abbr --add t tmux
     abbr --add v nvim
