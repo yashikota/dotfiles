@@ -13,6 +13,7 @@ require("packer").startup(function()
     }
 end)
 
+-- nvim-treesitter
 require("nvim-treesitter.configs").setup {
   ensure_installed = "all",
   highlight = {
@@ -23,3 +24,14 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
+-- fern
+vim.g['fern#replace_netrw'] = 1
+vim.g['fern#drawer_width'] = 30
+vim.g['fern#renderer'] = 'nerdfont'
+vim.g['fern#default_hidden'] = 1
+
+vim.g.mapleader = ' '
+vim.api.nvim_set_keymap("n", "<Leader>e", ":Fern . -reveal=%<CR>", {noremap=true, silent=true})
+
+-- nightfox
+vim.cmd([[colorscheme duskfox]])
