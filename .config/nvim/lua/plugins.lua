@@ -27,13 +27,24 @@ require("packer").startup(function()
 
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
+    use({
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+        require("lsp_lines").setup()
+        end,
+    })
+    use "j-hui/fidget.nvim"
+    use {
+        "nvim-telescope/telescope.nvim", tag = "0.1.1",
+        requires = { {"nvim-lua/plenary.nvim"} }
+    }
 end)
 
 -- LSP
 require("mason").setup()
 require("mason-lspconfig").setup_handlers({ function(server)
   local opt = {
-    capabilities = require("cmp_nvim_lsp").update_capabilities(
+    capabilities = require("cmp_nvim_lsp").default_capabilities(
       vim.lsp.protocol.make_client_capabilities()
     )
   }
