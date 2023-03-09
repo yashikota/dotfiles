@@ -37,4 +37,5 @@ if status is-interactive
     abbr --add gsw git switch
     abbr --add gsc git switch -c
     abbr --add gr git restore
+    abbr --add gco git checkout
 end
