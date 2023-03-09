@@ -30,6 +30,9 @@ if status is-interactive
     abbr --add gpu git push
     abbr --add gpo git push origin
     abbr --add gpl git pull
+    abbr --add gb git branch
+    abbr --add gf git fetch
+    abbr --add gfp git fetch --prune
     abbr --add gs git status
     abbr --add gsw git switch
     abbr --add gsc git switch -c

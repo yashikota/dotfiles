@@ -41,3 +41,5 @@ vim.cmd([[colorscheme duskfox]])
 -- lualine
 require("lualine").setup()
 
+--gitsigns
+require("gitsigns").setup()
