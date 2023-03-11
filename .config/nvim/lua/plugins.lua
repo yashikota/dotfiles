@@ -12,6 +12,10 @@ require("packer").startup(function()
         end,
     }
     use {
+        requires = { "nvim-treesitter/nvim-treesitter" },
+        "Badhi/nvim-treesitter-cpp-tools"
+    }
+    use {
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true }
     }
