@@ -23,6 +23,7 @@ if status is-interactive
 
     abbr --add t tmux
     abbr --add v nvim
+    abbr --add m make
 
     abbr --add ga git add
     abbr --add gaa git add .
@@ -34,6 +35,7 @@ if status is-interactive
     abbr --add gf git fetch
     abbr --add gfp git fetch --prune
     abbr --add gs git status
+    abbr --add gd git diff
     abbr --add gsw git switch
     abbr --add gsc git switch -c
     abbr --add gr git restore
