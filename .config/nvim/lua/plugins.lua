@@ -124,7 +124,7 @@ vim.g.mapleader = " "
 vim.api.nvim_set_keymap("n", "<Leader>e", ":Fern . -reveal=%<CR>", {noremap=true, silent=true})
 
 -- nightfox
-vim.cmd([[colorscheme carbonfox]])
+vim.cmd([[colorscheme nightfox]])
 
 -- lualine
 require("lualine").setup()
