@@ -25,6 +25,8 @@ if status is-interactive
     abbr --add v nvim
     abbr --add m make
 
+    abbr --add nrd npm run dev
+
     abbr --add ga git add
     abbr --add gaa git add .
     abbr --add gcm git commit -m
