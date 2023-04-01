@@ -20,6 +20,8 @@ if status is-interactive
     abbr --add rr rm -rf
     abbr --add cdp cd ..
     abbr --add cx chmod +x
+    abbr --add c code .
+    abbr --add dot cd ~/dotfiles
 
     abbr --add t tmux
     abbr --add v nvim
