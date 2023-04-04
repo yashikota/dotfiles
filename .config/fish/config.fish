@@ -19,13 +19,13 @@ if status is-interactive
 
     abbr --add rr rm -rf
     abbr --add cdp cd ..
-    abbr --add cx chmod +x
-    abbr --add c code .
     abbr --add dot cd ~/dotfiles
+    abbr --add cx chmod +x
 
     abbr --add t tmux
     abbr --add v nvim
     abbr --add m make
+    abbr --add c code .
 
     abbr --add nrd npm run dev
 
@@ -44,4 +44,8 @@ if status is-interactive
     abbr --add gsc git switch -c
     abbr --add gr git restore
     abbr --add gco git checkout
+
+    abbr --add db docker build -t .
+    abbr --add dr docker run -it
+    abbr --add dc docker compose up -d
 end
