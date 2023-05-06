@@ -28,14 +28,15 @@ if status is-interactive
     abbr --add c code .
 
     abbr --add nrd npm run dev
+    abbr --add nrb npm run build
 
-    abbr --add ga git add
-    abbr --add gaa git add .
-    abbr --add gcm git commit -m
-    abbr --add gpu git push
+    abbr --add ga git add .
+    abbr --add gc git commit -m
     abbr --add gpo git push origin
+    abbr --add gpom git push origin master
     abbr --add gpl git pull
-    abbr --add gb git branch
+    abbr --add gplom git pull orign master
+    abbr --add gb git branch -a
     abbr --add gf git fetch
     abbr --add gfp git fetch --prune
     abbr --add gs git status
@@ -43,9 +44,10 @@ if status is-interactive
     abbr --add gsw git switch
     abbr --add gsc git switch -c
     abbr --add gr git restore
-    abbr --add gco git checkout
+    abbr --add gco git checkout .
 
     abbr --add db docker build -t .
     abbr --add dr docker run -it
-    abbr --add dc docker compose up -d
+    abbr --add dcu docker compose up -d
+    abbr --add dcd docker compose down --rmi all
 end
