@@ -7,6 +7,7 @@ if status is-interactive
     export PATH="$HOME/.cargo/bin:$PATH"
     export PATH="$PATH:/usr/local/go/bin"
     export PATH="$PATH:/mnt/c/Users/kota/AppData/Local/Programs/Microsoft VS Code/bin"
+    export LC_ALL="en_US.utf8"
 
     export GOPATH="$HOME/go"
     export GOBIN="$GOPATH/bin"
