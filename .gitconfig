@@ -3,3 +3,7 @@
         email = 52403688+yashikota@users.noreply.github.com
 [core]
         editor = vim
+[fetch]
+        prune = true
+[init]
+	defaultBranch = master
