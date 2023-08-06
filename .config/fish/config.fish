@@ -15,6 +15,7 @@ if status is-interactive
 
     export LS_COLORS="di=01;36"
 
+    starship init fish | source
     source ~/.asdf/asdf.fish
 
     set fish_prompt_pwd_dir_length 0
