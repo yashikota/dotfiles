@@ -8,18 +8,20 @@ if status is-interactive
     export PATH="$PATH:/usr/local/go/bin"
     export PATH="$PATH:/mnt/c/Users/kota/AppData/Local/Programs/Microsoft VS Code/bin"
     export LC_ALL="en_US.utf8"
+    export LS_COLORS="di=01;36"
 
+    # go
     export GOPATH="$HOME/go"
     export GOBIN="$GOPATH/bin"
     export PATH="$PATH:$GOBIN"
 
-    export LS_COLORS="di=01;36"
-
+    # starship
     starship init fish | source
-    source ~/.asdf/asdf.fish
 
+    # fish
     set fish_prompt_pwd_dir_length 0
 
+    # shortcut commands
     abbr --add rr rm -rf
     abbr --add cdp cd ..
     abbr --add dot cd ~/dotfiles
