@@ -36,6 +36,9 @@ if status is-interactive
     abbr --add nrd npm run dev
     abbr --add nrb npm run build
 
+    abbr --add cr cargo run
+    abbr --add ct cargo test
+
     abbr --add ga git add .
     abbr --add gc git commit -m
     abbr --add gpu git push
