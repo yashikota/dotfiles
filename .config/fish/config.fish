@@ -23,6 +23,11 @@ if status is-interactive
     # starship
     starship init fish | source
 
+    # rtx
+    rtx activate fish | source
+    rtx hook-env -s fish | source
+    rtx complete -s fish | source
+
     # shortcut commands
     # misc
     abbr --add rr rm -rf
