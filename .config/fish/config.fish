@@ -1,16 +1,21 @@
 if status is-interactive
-    export VOLTA_HOME="$HOME/.volta"
-    export PATH="$VOLTA_HOME/bin:$PATH"
-    export PATH="/home/kota/.local/bin:$PATH"
-    export DENO_INSTALL="/home/kota/.deno"
-    export PATH="$DENO_INSTALL/bin:$PATH"
-    export PATH="$HOME/.cargo/bin:$PATH"
-    export PATH="$PATH:/usr/local/go/bin"
-    export PATH="$PATH:/mnt/c/Users/kota/AppData/Local/Programs/Microsoft VS Code/bin"
+    # terminal
     export LC_ALL="en_US.utf8"
     export LS_COLORS="di=01;36"
 
+    # fish
+    set fish_prompt_pwd_dir_length 0
+
+    # deno
+    export PATH="/home/kota/.local/bin:$PATH"
+    export DENO_INSTALL="/home/kota/.deno"
+    export PATH="$DENO_INSTALL/bin:$PATH"
+
+    # rust
+    export PATH="$HOME/.cargo/bin:$PATH"
+
     # go
+    export PATH="$PATH:/usr/local/go/bin"
     export GOPATH="$HOME/go"
     export GOBIN="$GOPATH/bin"
     export PATH="$PATH:$GOBIN"
@@ -18,27 +23,29 @@ if status is-interactive
     # starship
     starship init fish | source
 
-    # fish
-    set fish_prompt_pwd_dir_length 0
-
     # shortcut commands
+    # misc
     abbr --add rr rm -rf
     abbr --add cdp cd ..
     abbr --add dot cd ~/dotfiles
     abbr --add cx chmod +x
 
+    # apps
     abbr --add t tmux
     abbr --add n nvim
     abbr --add v nvim
     abbr --add m make
     abbr --add c code .
 
+    # npm
     abbr --add nrd npm run dev
     abbr --add nrb npm run build
 
+    # cargo
     abbr --add cr cargo run
     abbr --add ct cargo test
 
+    # git
     abbr --add ga git add .
     abbr --add gc git commit -m
     abbr --add gpu git push
@@ -52,6 +59,7 @@ if status is-interactive
     abbr --add gr git restore
     abbr --add gco git checkout
 
+    # docker
     abbr --add db docker build -t .
     abbr --add dr docker run -it
     abbr --add dcu docker compose up -d
