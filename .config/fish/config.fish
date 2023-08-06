@@ -6,6 +6,37 @@ if status is-interactive
     # fish
     set fish_prompt_pwd_dir_length 0
 
+    set fish_color_normal         brwhite
+    set fish_color_autosuggestion brblack
+    set fish_color_cancel         brred
+    set fish_color_command        brcyan
+    set fish_color_comment        brblack
+    set fish_color_cwd            brcyan
+    set fish_color_end            brwhite
+    set fish_color_error          brred
+    set fish_color_escape         brcyan
+    set fish_color_host           brgreen
+    set fish_color_host_remote    bryellow
+    set fish_color_match          brcyan --underline
+    set fish_color_operator       brpurple
+    set fish_color_param          brgreen
+    set fish_color_quote          bryellow
+    set fish_color_redirection    brpurple
+    set fish_color_search_match   --background=brblack
+    set fish_color_selection      --background=brblack
+    set fish_color_user           brblue
+
+    # pager
+    set fish_pager_color_progress              brblack --italics
+    set fish_pager_color_secondary_background  # null
+    set fish_pager_color_secondary_completion  brblack
+    set fish_pager_color_secondary_description brblack
+    set fish_pager_color_secondary_prefix      brblack
+    set fish_pager_color_selected_background   --background=brblack
+    set fish_pager_color_selected_completion   bryellow
+    set fish_pager_color_selected_description  bryellow
+    set fish_pager_color_selected_prefix       bryellow
+
     # deno
     export PATH="/home/kota/.local/bin:$PATH"
     export DENO_INSTALL="/home/kota/.deno"
