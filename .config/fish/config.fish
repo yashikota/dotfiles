@@ -1,4 +1,7 @@
 if status is-interactive
+    # move to /home/dev
+    cd $HOME/dev
+
     # terminal
     export LC_ALL="en_US.utf8"
     export LS_COLORS="di=01;36"
