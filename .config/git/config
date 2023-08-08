@@ -1,9 +1,16 @@
 [user]
-        name = kota
-        email = 52403688+yashikota@users.noreply.github.com
+    name = kota
+    email = 52403688+yashikota@users.noreply.github.com
+    signingkey = D42D27014E83D1B137E7442E7F1D96F6F833F02F
 [core]
-        editor = vim
+    editor = vim
 [fetch]
-        prune = true
+    prune = true
 [init]
-	defaultBranch = master
+    defaultBranch = master
+[gpg]
+    program = gpg
+[commit]
+    gpgsign = true
+[tag]
+    gpgsign = true
