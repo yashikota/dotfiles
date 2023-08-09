@@ -63,9 +63,10 @@ function clone_dotfiles() {
 # link dotfiles
 function link_dotfiles() {
     cd dotfiles
-    mkdir ~/.config
+    if [ ! -d ~/.config ]; then
+        mkdir ~/.config
+    fi
 
-    # cloneしたdotfilesには.configというディレクトリがあるので、そこの中身を~/.configにシンボリックリンクを貼る
     for f in .config/*; do
         ln -svfn $(pwd)/$f ~/.config/
     done
