@@ -13,6 +13,7 @@ function install_dependencies() {
     type -p tmux >/dev/null && echo -e "\e[36mtmux is already installed\e[m" || sudo apt-get install --no-install-recommends -y tmux
     type -p build-essential >/dev/null && echo -e "\e[36mbuild-essential is already installed\e[m" || sudo apt-get install --no-install-recommends -y build-essential
     type -p pkg-config >/dev/null && echo -e "\e[36mpkg-config is already installed\e[m" || sudo apt-get install --no-install-recommends -y pkg-config
+    type -p libssl-dev >/dev/null && echo -e "\e[36mlibssl-dev is already installed\e[m" || sudo apt-get install --no-install-recommends -y libssl-dev
 }
 
 # install rust
