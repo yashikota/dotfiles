@@ -5,6 +5,7 @@ if status is-interactive
 
     # fish
     set fish_prompt_pwd_dir_length 0
+    set GPG_TTY (tty)
 
     set fish_color_normal         brwhite
     set fish_color_autosuggestion brblack
