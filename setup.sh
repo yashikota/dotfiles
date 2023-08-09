@@ -18,11 +18,13 @@ function install_dependencies() {
 
 # install rust
 function install_rust() {
+    type -p rustup >/dev/null && echo "rust is already installed" && return
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 # install go
 function install_go() {
+    type -p go >/dev/null && echo "go is already installed" && return
     sudo add-apt-repository -y ppa:longsleep/golang-backports
     sudo apt-get update
     sudo apt-get install --no-install-recommends -y golang
@@ -30,6 +32,7 @@ function install_go() {
 
 # install github cli
 function install_github_cli() {
+    type -p gh >/dev/null && echo "gh is already installed" && return
     type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
     curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
     && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
@@ -40,16 +43,21 @@ function install_github_cli() {
 
 # install starship
 function install_starship() {
+    type -p starship >/dev/null && echo "starship is already installed" && return
     curl -fsSL https://starship.rs/install.sh | bash
 }
 
 # install rtx
 function install_rtx() {
+    type -p rtx >/dev/null && echo "rtx is already installed" && return
     cargo install rtx-cli
 }
 
 # clone dotfiles
 function clone_dotfiles() {
+    if [ -d dotfiles ]; then
+        rm -rf dotfiles
+    fi
     git clone git@github.com:yashikota/dotfiles.git
 }
 
