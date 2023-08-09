@@ -3,7 +3,7 @@
 ## setup
 
 ```sh
-bash -c "$(wget -qO- https://raw.githubusercontent.com/yashikota/dotfiles/master/setup.sh)"
+ wget --no-cookies --no-cache -qO- https://raw.githubusercontent.com/yashikota/dotfiles/master/setup.sh
 ```
 
 ## env
