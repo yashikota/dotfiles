@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -ue # exit on error or undefined variable
+cd $HOME # move to home directory
 
 # install dependencies
 function install_dependencies() {
