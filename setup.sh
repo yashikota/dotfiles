@@ -42,7 +42,7 @@ function install_github_cli() {
 # install starship
 function install_starship() {
     type -p starship >/dev/null && echo -e "\e[36mstarship is already installed\e[m" && return
-    curl -fsSL https://starship.rs/install.sh | bash
+    curl -fsSL https://starship.rs/install.sh | sh
 }
 
 # install rtx
