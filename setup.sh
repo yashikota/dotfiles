@@ -57,7 +57,7 @@ function clone_dotfiles() {
     if [ -d dotfiles ]; then
         rm -rf dotfiles
     fi
-    git clone git@github.com:yashikota/dotfiles.git
+    git clone https://github.com/yashikota/dotfiles.git
 }
 
 # link dotfiles
