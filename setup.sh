@@ -86,3 +86,6 @@ install_rtx
 clone_dotfiles
 link_dotfiles
 change_default_shell
+
+# Done
+echo -e "\e[34mDone\e[m"
