@@ -10,6 +10,7 @@ function install_dependencies() {
     type -p git >/dev/null && echo -e "\e[36mgit is already installed\e[m" || sudo apt-get install --no-install-recommends -y git
     type -p fish >/dev/null && echo -e "\e[36mfish is already installed\e[m" || sudo apt-get install --no-install-recommends -y fish
     type -p zip >/dev/null && echo -e "\e[36mzip is already installed\e[m" || sudo apt-get install --no-install-recommends -y zip
+    type -p unzip >/dev/null && echo -e "\e[36munzip is already installed\e[m" || sudo apt-get install --no-install-recommends -y unzip
     type -p neovim >/dev/null && echo -e "\e[36mneovim is already installed\e[m" || sudo apt-get install --no-install-recommends -y neovim
     type -p tmux >/dev/null && echo -e "\e[36mtmux is already installed\e[m" || sudo apt-get install --no-install-recommends -y tmux
     type -p build-essential >/dev/null && echo -e "\e[36mbuild-essential is already installed\e[m" || sudo apt-get install --no-install-recommends -y build-essential
