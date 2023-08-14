@@ -3,7 +3,9 @@
 ## setup
 
 ```sh
-bash -c "$(wget -qO- https://raw.githubusercontent.com/yashikota/dotfiles/master/setup.sh)"
+git clone git@github.com:yashikota/dotfiles.git
+cd dotfiles
+sh install.sh
 ```
 
 ## env
