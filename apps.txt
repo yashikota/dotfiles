@@ -1,0 +1,10 @@
+curl
+git
+fish
+zip
+unzip
+neovim
+tmux
+build-essential
+pkg-config
+libssl-dev
