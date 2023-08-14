@@ -5,7 +5,13 @@
 ```sh
 git clone git@github.com:yashikota/dotfiles.git
 cd dotfiles
-sh install.sh
+sh setup.sh
+```
+
+## link
+
+```sh
+sh link.sh
 ```
 
 ## env
