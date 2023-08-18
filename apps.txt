@@ -8,3 +8,6 @@ tmux
 build-essential
 pkg-config
 libssl-dev
+make
+cmake
+
