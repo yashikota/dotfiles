@@ -101,4 +101,5 @@ if status is-interactive
     abbr --add dr docker run -it
     abbr --add dcu docker compose up -d
     abbr --add dcd docker compose down --rmi all
+    abbr --add dce docker compose exec
 end
