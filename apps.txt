@@ -10,4 +10,5 @@ pkg-config
 libssl-dev
 make
 cmake
+ffmpeg
 
