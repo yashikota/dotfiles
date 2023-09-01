@@ -11,4 +11,5 @@ libssl-dev
 make
 cmake
 ffmpeg
+xdg-utils
 
