@@ -12,4 +12,5 @@ make
 cmake
 ffmpeg
 xdg-utils
+clang
 
