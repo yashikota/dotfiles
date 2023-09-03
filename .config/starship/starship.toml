@@ -4,5 +4,15 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
+# 10 milliseconds timeout
+scan_timeout = 10
+
+[character]
+success_symbol = "[▶](bold green)"
+error_symbol = "[▶](bold red)"
+
+[directory]
+style = "bold yellow"
+
 [git_branch]
 style = "bold #ff6fff"

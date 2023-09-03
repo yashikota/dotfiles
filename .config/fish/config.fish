@@ -1,23 +1,23 @@
 if status is-interactive
     # terminal
     export LC_ALL="en_US.utf8"
-    export LS_COLORS="di=01;36"
+    set -g fish_greeting ""
+
+    # directory colors
+    export LS_COLORS="no=01;32:fi=01;97:di=01;36:ex=01;31:ln=01;35"
 
     # fish
     set fish_prompt_pwd_dir_length 0
     set -gx GPG_TTY (tty)
 
     set fish_color_normal         brwhite
-    set fish_color_autosuggestion brblack
+    set fish_color_autosuggestion brgrey
     set fish_color_cancel         brred
     set fish_color_command        brcyan
-    set fish_color_comment        brblack
-    set fish_color_cwd            brcyan
-    set fish_color_end            brwhite
+    set fish_color_comment        brgrey
+    set fish_color_end            brpurple
     set fish_color_error          brred
-    set fish_color_escape         brcyan
-    set fish_color_host           brgreen
-    set fish_color_host_remote    bryellow
+    set fish_color_escape         bryellow
     set fish_color_match          brcyan --underline
     set fish_color_operator       brpurple
     set fish_color_param          brgreen
@@ -25,18 +25,6 @@ if status is-interactive
     set fish_color_redirection    brpurple
     set fish_color_search_match   --background=brblack
     set fish_color_selection      --background=brblack
-    set fish_color_user           brblue
-
-    # pager
-    set fish_pager_color_progress              brblack --italics
-    set fish_pager_color_secondary_background  # null
-    set fish_pager_color_secondary_completion  brblack
-    set fish_pager_color_secondary_description brblack
-    set fish_pager_color_secondary_prefix      brblack
-    set fish_pager_color_selected_background   --background=brblack
-    set fish_pager_color_selected_completion   bryellow
-    set fish_pager_color_selected_description  bryellow
-    set fish_pager_color_selected_prefix       bryellow
 
     # deno
     export PATH="/home/kota/.local/bin:$PATH"
@@ -54,6 +42,7 @@ if status is-interactive
 
     # starship
     starship init fish | source
+    export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
     # rtx
     rtx activate fish | source
