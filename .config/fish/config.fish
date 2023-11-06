@@ -55,6 +55,7 @@ if status is-interactive
     abbr --add cdp cd ..
     abbr --add dot cd ~/dotfiles
     abbr --add cx chmod +x
+    abbr --add inst sudo apt install -y
 
     # apps
     abbr --add t tmux
@@ -92,3 +93,7 @@ if status is-interactive
     abbr --add dcd docker compose down --rmi all
     abbr --add dce docker compose exec
 end
+
+set -gx WASMTIME_HOME "$HOME/.wasmtime"
+
+string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
