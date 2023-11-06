@@ -44,6 +44,9 @@ if status is-interactive
     export JAVA_HOME="/usr/local/jdk-21"
     export PATH="$JAVA_HOME/bin:$PATH"
 
+    # gradle
+    export PATH="$PATH:/opt/gradle/bin"
+
     # starship
     starship init fish | source
     export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
