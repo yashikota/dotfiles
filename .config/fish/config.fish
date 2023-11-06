@@ -40,6 +40,10 @@ if status is-interactive
     export GOBIN="$GOPATH/bin"
     export PATH="$PATH:$GOBIN"
 
+    # java
+    export JAVA_HOME="/usr/local/jdk-21"
+    export PATH="$JAVA_HOME/bin:$PATH"
+
     # starship
     starship init fish | source
     export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
