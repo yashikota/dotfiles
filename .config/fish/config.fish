@@ -31,6 +31,9 @@ if status is-interactive
     export DENO_INSTALL="/home/kota/.deno"
     export PATH="$DENO_INSTALL/bin:$PATH"
 
+    # bun
+    export PATH="$PATH:$HOME/.bun/bin"
+
     # rust
     export PATH="$HOME/.cargo/bin:$PATH"
 
