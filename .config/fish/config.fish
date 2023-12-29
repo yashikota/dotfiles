@@ -74,9 +74,11 @@ if status is-interactive
     abbr --add m make
     abbr --add c code .
 
-    # npm
-    abbr --add nrd npm run dev
-    abbr --add nrb npm run build
+    # bun
+    abbr --add brd bun run dev
+    abbr --add brb bun run build
+    abbr --add brl bun run lint
+    abbr --add brf bun run format
 
     # cargo
     abbr --add cr cargo run
