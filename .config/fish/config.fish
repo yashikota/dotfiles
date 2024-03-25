@@ -54,10 +54,11 @@ if status is-interactive
     starship init fish | source
     export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
-    # rtx
-    rtx activate fish | source
-    rtx hook-env -s fish | source
-    rtx complete -s fish | source
+    # mise
+    ~/.local/bin/mise activate fish | source
+
+    # wasmtime
+    string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
 
     # shortcut commands
     # misc
@@ -107,5 +108,3 @@ if status is-interactive
 end
 
 set -gx WASMTIME_HOME "$HOME/.wasmtime"
-
-string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
