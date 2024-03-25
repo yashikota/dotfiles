@@ -1,6 +1,7 @@
 curl
 git
 fish
+zsh
 zip
 unzip
 neovim
@@ -11,6 +12,6 @@ libssl-dev
 make
 cmake
 ffmpeg
+imagemagick
 xdg-utils
 clang
-
