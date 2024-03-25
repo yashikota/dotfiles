@@ -40,6 +40,11 @@ function install_dependencies() {
     done
 }
 
+# generate EN_US.UTF-8 locale
+function generate_locale() {
+    sudo locale-gen en_US.UTF-8
+}
+
 # install rust
 function install_rust() {
     type -p rustup >/dev/null && { set_color cyan; echo "rustup is already installed"; set_color reset; } && return
@@ -90,6 +95,7 @@ function change_default_shell() {
 
 # main
 add_repository
+generate_locale
 install_dependencies
 install_rust
 install_go

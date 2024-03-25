@@ -16,3 +16,4 @@ imagemagick
 xdg-utils
 clang
 wslu
+locales

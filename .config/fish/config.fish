@@ -1,6 +1,7 @@
 if status is-interactive
     # terminal
     export LC_ALL="en_US.utf8"
+    export LANG="en_US.utf8"
     set -g fish_greeting ""
 
     # directory colors
