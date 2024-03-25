@@ -5,7 +5,7 @@
 ```sh
 git clone git@github.com:yashikota/dotfiles.git
 cd dotfiles
-sh setup.sh
+bash setup.sh
 ```
 
 ## link
