@@ -108,10 +108,13 @@ if status is-interactive
     abbr --add dce docker compose exec
 
     # terraform
+    abbr --add tf terraform
     abbr --add tfi terraform init
     abbr --add tfp terraform plan
     abbr --add tfa terraform apply
     abbr --add tff terraform fmt
+    abbr --add tfo terraform output
+    abbr --add tfd terraform destroy
 end
 
 set -gx WASMTIME_HOME "$HOME/.wasmtime"
