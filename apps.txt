@@ -14,6 +14,6 @@ cmake
 ffmpeg
 imagemagick
 xdg-utils
-clang
-wslu
 locales
+libopencv-dev
+golang-go
