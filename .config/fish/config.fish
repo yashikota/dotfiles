@@ -58,9 +58,6 @@ if status is-interactive
     # mise
     ~/.local/bin/mise activate fish | source
 
-    # wasmtime
-    string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
-
     # shortcut commands
     # misc
     abbr --add rr rm -rf
@@ -68,6 +65,9 @@ if status is-interactive
     abbr --add dot cd ~/dotfiles
     abbr --add cx chmod +x
     abbr --add inst sudo apt install -y
+
+    # gcc
+    abbr --add gcc gcc-14 -fanalyzer
 
     # apps
     abbr --add t tmux
@@ -115,6 +115,8 @@ if status is-interactive
     abbr --add tff terraform fmt
     abbr --add tfo terraform output
     abbr --add tfd terraform destroy
-end
 
-set -gx WASMTIME_HOME "$HOME/.wasmtime"
+    # wasmtime
+    set -gx WASMTIME_HOME "$HOME/.wasmtime"
+    string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
+end
