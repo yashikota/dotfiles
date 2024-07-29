@@ -16,3 +16,6 @@ style = "bold yellow"
 
 [git_branch]
 style = "bold #ff6fff"
+
+[gcloud]
+disabled = true
