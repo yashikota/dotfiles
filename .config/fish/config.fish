@@ -136,4 +136,10 @@ if status is-interactive
     abbr --add tff terraform fmt
     abbr --add tfo terraform output
     abbr --add tfd terraform destroy
+
+    # uv
+    abbr --add uva uvx ruff check --fix \&\& uvx ruff format \&\& uvx isort .
+    abbr --add uvc uvx ruff check --fix
+    abbr --add uvf uvx ruff format
+    abbr --add uvi uvx isort .
 end
