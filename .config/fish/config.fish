@@ -124,7 +124,7 @@ if status is-interactive
     # docker
     abbr --add db docker build -t .
     abbr --add dr docker run -it
-    abbr --add dcu docker compose up -d --build
+    abbr --add dcu docker compose up --build
     abbr --add dcd docker compose down --rmi all
     abbr --add dce docker compose exec
 
