@@ -27,6 +27,9 @@ if status is-interactive
     set fish_color_search_match   --background=brblack
     set fish_color_selection      --background=brblack
 
+    ### ================ ###
+    ### environment vars ###
+    ### ================ ###
     # deno
     export PATH="/home/kota/.local/bin:$PATH"
     export DENO_INSTALL="/home/kota/.deno"
@@ -58,12 +61,29 @@ if status is-interactive
     # mise
     ~/.local/bin/mise activate fish | source
 
-    # shortcut commands
-    # misc
+    # wasmtime
+    set -gx WASMTIME_HOME "$HOME/.wasmtime"
+    string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
+
+    # rubyenv
+    status --is-interactive; and source (rbenv init -|psub)
+
+    # pnpm
+    set -gx PNPM_HOME "/home/kota/.local/share/pnpm"
+    if not string match -q -- $PNPM_HOME $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
+    end
+
+    # verible
+    set -Ux PATH $PATH /usr/local/bin/verible/bin
+    set -g PATH /usr/local/bin/verible/bin $PATH
+
+    ### ================= ###
+    ### shortcut commands ###
+    ### ================= ###
+    abbr --add l eza -la --icons --git --time-style relative
     abbr --add rr rm -rf
     abbr --add cdp cd ..
-    abbr --add dot cd ~/dotfiles
-    abbr --add cx chmod +x
     abbr --add inst sudo apt install -y
 
     # gcc
@@ -90,9 +110,10 @@ if status is-interactive
     abbr --add ga git add .
     abbr --add gc git commit -m
     abbr --add gpu git push
+    abbr --add gpuo git push -u origin main
     abbr --add gpl git pull
     abbr --add gb git branch -a
-    abbr --add gf git fetch
+    abbr --add gf git fetch --prune
     abbr --add gs git status
     abbr --add gd git diff
     abbr --add gsw git switch
@@ -103,7 +124,7 @@ if status is-interactive
     # docker
     abbr --add db docker build -t .
     abbr --add dr docker run -it
-    abbr --add dcu docker compose up -d
+    abbr --add dcu docker compose up -d --build
     abbr --add dcd docker compose down --rmi all
     abbr --add dce docker compose exec
 
@@ -115,8 +136,4 @@ if status is-interactive
     abbr --add tff terraform fmt
     abbr --add tfo terraform output
     abbr --add tfd terraform destroy
-
-    # wasmtime
-    set -gx WASMTIME_HOME "$HOME/.wasmtime"
-    string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
 end
