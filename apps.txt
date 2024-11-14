@@ -18,3 +18,4 @@ locales
 libopencv-dev
 golang-go
 eza
+rbenv
