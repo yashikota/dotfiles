@@ -17,3 +17,4 @@ xdg-utils
 locales
 libopencv-dev
 golang-go
+eza
