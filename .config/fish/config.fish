@@ -66,7 +66,7 @@ if status is-interactive
     string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
 
     # rubyenv
-    status --is-interactive; and source (rbenv init -|psub)
+    # status --is-interactive; and source (rbenv init -|psub)
 
     # pnpm
     set -gx PNPM_HOME "/home/kota/.local/share/pnpm"
