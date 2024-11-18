@@ -18,4 +18,7 @@ style = "bold yellow"
 style = "bold #ff6fff"
 
 [gcloud]
-disabled = true
+format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+[gcloud.region_aliases]
+us-central1 = "uc1"
+asia-northeast1 = "an1"
