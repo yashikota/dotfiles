@@ -83,7 +83,7 @@ if status is-interactive
     ### ================= ###
     abbr --add l eza -la --icons --git --time-style relative
     abbr --add rr rm -rf
-    abbr --add cdp cd ..
+    abbr -a -- - cd -
     abbr --add inst sudo apt install -y
 
     # gcc
