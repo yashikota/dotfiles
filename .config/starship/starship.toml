@@ -15,10 +15,18 @@ error_symbol = "[▶](bold red)"
 style = "bold yellow"
 
 [git_branch]
+format ="[$symbol$branch(:$remote_branch)]($style) "
 style = "bold #ff6fff"
 
+[aws]
+format = "[$symbol($profile)\\($region\\)]($style) "
+symbol = '☁️'
+[aws.region_aliases]
+ap-northeast-1 = "an1"
+
 [gcloud]
-format = 'on [$symbol$project]($style) '
+format = "on [$symbol$project(\\($region\\))]($style) "
+symbol = '☁️'
 [gcloud.region_aliases]
 us-central1 = "uc1"
 asia-northeast1 = "an1"
