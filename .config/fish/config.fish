@@ -81,7 +81,7 @@ if status is-interactive
     ### ================= ###
     ### shortcut commands ###
     ### ================= ###
-    abbr --add l eza -la --icons --git --time-style relative
+    alias l='eza -la --icons --git --time-style relative'
     abbr --add rr rm -rf
     abbr -a -- - cd -
     abbr --add inst sudo apt install -y
