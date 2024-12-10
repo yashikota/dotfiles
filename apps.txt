@@ -19,3 +19,4 @@ libopencv-dev
 golang-go
 eza
 rbenv
+bat

@@ -82,6 +82,7 @@ if status is-interactive
     ### shortcut commands ###
     ### ================= ###
     alias l='eza -la --icons --git --time-style relative'
+    alias bat='batcat'
     abbr --add rr rm -rf
     abbr -a -- - cd -
     abbr --add inst sudo apt install -y

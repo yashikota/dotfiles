@@ -9,4 +9,4 @@ for f in .config/*; do
 done
 
 # done
-echo "\033[0;32mDone!\033[0m\n"
+echo -ne "\033[0;36mDone!\033[0m\n"

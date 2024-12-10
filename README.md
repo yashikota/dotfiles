@@ -13,7 +13,7 @@
     ```
 
 3. Clone repository
-    
+
     ```sh
     gh repo clone yashikota/dotfiles
     cd dotfiles
@@ -24,7 +24,7 @@
 ## link
 
 ```sh
-sh link.sh
+bash link.sh
 ```
 
 ## env
