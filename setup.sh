@@ -45,6 +45,19 @@ function install_mise() {
     curl https://mise.run | sh
 }
 
+# install docker
+function install_docker() {
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update -y
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    set_color yellow; echo "docker is installed"; set_color reset
+}
+
 # change default shell
 function change_default_shell() {
     sudo chsh -s $(which fish)
@@ -55,6 +68,7 @@ generate_locale
 install_dependencies
 install_starship
 install_mise
+install_docker
 change_default_shell
 
 # Done
