@@ -17,12 +17,17 @@ function set_color() {
     esac
 }
 
+function check_already_installed() {
+    local app=$1
+    type -p $app >/dev/null && { set_color cyan; echo "$app is already installed"; set_color reset; } && return
+}
+
 # install dependencies
 function install_dependencies() {
     sudo apt update -qq
     cat "$HOME/dotfiles/apps.txt" | while read line
     do
-        type -p $line >/dev/null && { set_color cyan; echo "$line is already installed"; set_color reset; } && continue
+        check_already_installed $line
         sudo apt install -qq -y $line
         set_color yellow; echo "$line is installed"; set_color reset
     done
@@ -35,18 +40,19 @@ function generate_locale() {
 
 # install starship
 function install_starship() {
-    type -p starship >/dev/null && { set_color cyan; echo "starship is already installed"; set_color reset; } && return
+    check_already_installed starship
     curl -fsSL https://starship.rs/install.sh | sh
 }
 
 # install mise
 function install_mise() {
-    type -p mise >/dev/null && { set_color cyan; echo "mise is already installed"; set_color reset; } && return
+    check_already_installed mise
     curl https://mise.run | sh
 }
 
 # install docker
 function install_docker() {
+    check_already_installed docker
     sudo install -m 0755 -d /etc/apt/keyrings
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -56,6 +62,24 @@ function install_docker() {
     sudo apt-get update -y
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     set_color yellow; echo "docker is installed"; set_color reset
+}
+
+# install rust
+function install_rust() {
+    check_already_installed rustup
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+}
+
+# install zoxide
+function install_zoxide() {
+    check_already_installed zoxide
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+}
+
+# install rust apps
+function install_rust_apps() {
+    check_already_installed delta
+    cargo install git-delta trashy
 }
 
 # change default shell
@@ -69,6 +93,9 @@ install_dependencies
 install_starship
 install_mise
 install_docker
+install_rust
+install_zoxide
+install_rust_apps
 change_default_shell
 
 # Done

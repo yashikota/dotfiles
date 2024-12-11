@@ -19,6 +19,6 @@ locales
 libopencv-dev
 golang-go
 eza
-rbenv
 bat
 xsel
+duf

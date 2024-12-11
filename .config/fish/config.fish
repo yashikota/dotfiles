@@ -78,13 +78,18 @@ if status is-interactive
     set -Ux PATH $PATH /usr/local/bin/verible/bin
     set -g PATH /usr/local/bin/verible/bin $PATH
 
+    # zoxide
+    zoxide init fish | source
+
     ### ================= ###
     ### shortcut commands ###
     ### ================= ###
     alias l='eza -la --icons --git --time-style relative'
     alias bat='batcat'
-    abbr --add rr rm -rf
-    abbr -a -- - cd -
+    alias rm='trash'
+
+    abbr --add rml rm list
+    abbr --add rmr rm restore
     abbr --add inst sudo apt install -y
 
     # gcc

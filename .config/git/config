@@ -4,6 +4,7 @@
     signingkey = D42D27014E83D1B137E7442E7F1D96F6F833F02F
 [core]
     editor = vim
+    pager = delta
 [fetch]
     prune = true
 [init]
@@ -16,3 +17,10 @@
     gpgsign = true
 [tag]
     gpgsign = true
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+[merge]
+    conflictstyle = zdiff3
