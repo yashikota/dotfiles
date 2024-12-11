@@ -22,3 +22,4 @@ eza
 bat
 xsel
 duf
+fzf
