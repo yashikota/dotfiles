@@ -21,3 +21,4 @@ golang-go
 eza
 rbenv
 bat
+xsel
