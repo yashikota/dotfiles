@@ -27,7 +27,7 @@ function install_dependencies() {
     sudo apt update -qq
     cat "$HOME/dotfiles/apps.txt" | while read line
     do
-        check_already_installed $line
+        type -p $line >/dev/null && { set_color cyan; echo "$line is already installed"; set_color reset; } && continue
         sudo apt install -qq -y $line
         set_color yellow; echo "$line is installed"; set_color reset
     done
