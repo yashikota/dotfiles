@@ -19,7 +19,11 @@ function set_color() {
 
 function check_already_installed() {
     local app=$1
-    type -p $app >/dev/null && { set_color cyan; echo "$app is already installed"; set_color reset; } && return
+    if type -p $app >/dev/null; then
+        set_color cyan; echo "$app is already installed"; set_color reset
+        return 0
+    fi
+    return 1
 }
 
 # install dependencies
@@ -40,19 +44,19 @@ function generate_locale() {
 
 # install starship
 function install_starship() {
-    check_already_installed starship
-    curl -fsSL https://starship.rs/install.sh | sh
+    check_already_installed starship && return
+    curl -fsSL https://starship.rs/install.sh | sh -s -- -y
 }
 
 # install mise
 function install_mise() {
-    check_already_installed mise
+    check_already_installed mise && return
     curl https://mise.run | sh
 }
 
 # install docker
 function install_docker() {
-    check_already_installed docker
+    check_already_installed docker && return
     sudo install -m 0755 -d /etc/apt/keyrings
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -66,20 +70,20 @@ function install_docker() {
 
 # install rust
 function install_rust() {
-    check_already_installed rustup
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    check_already_installed rustup && return
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --quiet
 }
 
 # install zoxide
 function install_zoxide() {
-    check_already_installed zoxide
+    check_already_installed zoxide && return
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
 # install rust apps
 function install_rust_apps() {
-    check_already_installed delta
-    cargo install git-delta trashy
+    check_already_installed delta && return
+    cargo install --quiet git-delta trashy
 }
 
 # change default shell
