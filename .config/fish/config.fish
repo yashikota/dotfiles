@@ -86,16 +86,18 @@ if status is-interactive
     ### ================= ###
     alias l='eza -la --icons --git --time-style relative'
     alias bat='batcat'
-    alias r='gtrash'
 
-    abbr --add rml rm list
-    abbr --add rmr rm restore
-    abbr --add inst sudo apt install -y
+    # gtrash
+    abbr --add rp gtrash put
+    abbr --add rs gtrash summary
+    abbr --add rf gtrash find
+    abbr --add rr gtrash restore
 
     # gcc
-    abbr --add gcc gcc-14 -fanalyzer
+    alias gcc='gcc-14 -fanalyzer'
 
     # apps
+    abbr --add inst sudo apt install -y
     abbr --add t tmux
     abbr --add n nvim
     abbr --add v nvim
