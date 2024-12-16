@@ -86,7 +86,7 @@ if status is-interactive
     ### ================= ###
     alias l='eza -la --icons --git --time-style relative'
     alias bat='batcat'
-    alias rm='trash'
+    alias r='gtrash'
 
     abbr --add rml rm list
     abbr --add rmr rm restore
