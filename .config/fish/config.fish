@@ -103,6 +103,8 @@ if status is-interactive
     abbr --add v nvim
     abbr --add m make
     abbr --add c code .
+    abbr --add k kubectl
+    abbr --add mk microk8s kubectl
 
     # bun
     abbr --add brd bun run dev
