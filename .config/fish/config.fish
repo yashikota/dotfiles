@@ -88,10 +88,10 @@ if status is-interactive
     alias bat='batcat'
 
     # gtrash
-    abbr --add rp gtrash put
-    abbr --add rs gtrash summary
-    abbr --add rf gtrash find
-    abbr --add rr gtrash restore
+    abbr --add rm gtrash put
+
+    # rm
+    abbr --add rr rm -rf
 
     # gcc
     alias gcc='gcc-14 -fanalyzer'
