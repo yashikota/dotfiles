@@ -17,15 +17,14 @@
     ```sh
     gh repo clone yashikota/dotfiles
     cd dotfiles
-    bash setup.sh
-    bash link.sh
     ```
 
-## link
+4. Setup
 
-```sh
-bash link.sh
-```
+   ```sh
+   bash setup.sh
+   bash link.sh
+   ```
 
 ## env
 
