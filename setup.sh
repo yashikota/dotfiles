@@ -97,6 +97,11 @@ function change_default_shell() {
     sudo chsh -s $(which fish)
 }
 
+# disable login message
+function disable_login_message() {
+    touch ~/.hushlogin
+}
+
 # main
 generate_locale
 install_dependencies
@@ -108,6 +113,7 @@ install_zoxide
 install_go_apps
 install_rust_apps
 change_default_shell
+disable_login_message
 
 # Done
 { set_color cyan; echo "Done!"; set_color reset; }
