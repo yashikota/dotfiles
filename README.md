@@ -31,4 +31,3 @@ bash link.sh
 
 - Ubuntu 24.04
 - fish
-- Neovim
