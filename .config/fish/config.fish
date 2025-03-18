@@ -61,6 +61,11 @@ if status is-interactive
     # mise
     ~/.local/bin/mise activate fish | source
 
+    # aqua
+    set -gx AQUA_ROOT_DIR "$XDG_DATA_HOME/aquaproj-aqua"
+    test -n "$XDG_DATA_HOME"; or set -gx AQUA_ROOT_DIR "$HOME/.local/share/aquaproj-aqua"
+    set -gx PATH "$AQUA_ROOT_DIR/bin" $PATH
+
     # wasmtime
     set -gx WASMTIME_HOME "$HOME/.wasmtime"
     string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
