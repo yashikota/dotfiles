@@ -51,9 +51,6 @@ if status is-interactive
     export JAVA_HOME="/usr/local/jdk-21"
     export PATH="$JAVA_HOME/bin:$PATH"
 
-    # gradle
-    export PATH="$PATH:/opt/gradle/bin"
-
     # starship
     starship init fish | source
     export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
@@ -70,9 +67,6 @@ if status is-interactive
     # wasmtime
     set -gx WASMTIME_HOME "$HOME/.wasmtime"
     string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
-
-    # rubyenv
-    # status --is-interactive; and source (rbenv init -|psub)
 
     # pnpm
     set -gx PNPM_HOME "/home/kota/.local/share/pnpm"
