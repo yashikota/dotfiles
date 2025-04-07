@@ -97,6 +97,7 @@ if status is-interactive
     alias gcc='gcc-14 -fanalyzer'
 
     # apps
+    abbr --add - cd -
     abbr --add inst sudo apt install -y
     abbr --add t tmux
     abbr --add n nvim
