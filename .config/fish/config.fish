@@ -110,6 +110,7 @@ if status is-interactive
     abbr --add m make
     abbr --add c code .
     abbr --add ci code-insiders .
+    abbr --add cu cursor .
     abbr --add k kubectl
     abbr --add mk microk8s kubectl
 
