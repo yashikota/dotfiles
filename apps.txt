@@ -17,7 +17,7 @@ imagemagick
 xdg-utils
 locales
 libopencv-dev
-golang-go
+golang
 eza
 bat
 xsel
