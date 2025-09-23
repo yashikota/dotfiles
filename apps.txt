@@ -18,7 +18,6 @@ xdg-utils
 locales
 libopencv-dev
 golang
-eza
 bat
 xsel
 duf
