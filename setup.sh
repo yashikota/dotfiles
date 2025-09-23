@@ -80,12 +80,6 @@ function install_zoxide() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
-# install go apps
-function install_go_apps() {
-    check_already_installed gtrash && return
-    go install github.com/umlx5h/gtrash@latest
-}
-
 # install rust apps
 function install_rust_apps() {
     check_already_installed delta && return
@@ -110,7 +104,6 @@ install_mise
 install_docker
 install_rust
 install_zoxide
-install_go_apps
 install_rust_apps
 change_default_shell
 disable_login_message
