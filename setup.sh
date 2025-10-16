@@ -54,6 +54,13 @@ function install_mise() {
     curl https://mise.run | sh
 }
 
+# install tailscale
+function install_tailscale() {
+    check_already_installed tailscale && return
+    curl -fsSL https://tailscale.com/install.sh | sh
+    sudo tailscale up
+}
+
 # install docker
 function install_docker() {
     check_already_installed docker && return
