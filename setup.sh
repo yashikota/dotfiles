@@ -29,7 +29,7 @@ function check_already_installed() {
 # install dependencies
 function install_dependencies() {
     sudo apt update -qq
-    cat "$HOME/dotfiles/apps.txt" | while read line
+    cat "$(dirname "$0")/apps.txt" | while read line
     do
         type -p $line >/dev/null && { set_color cyan; echo "$line is already installed"; set_color reset; } && continue
         sudo apt install -qq -y $line
