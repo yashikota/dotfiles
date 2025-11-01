@@ -5,7 +5,9 @@ fi
 
 # link
 for f in .config/*; do
-    ln -svfn $(pwd)/$f ~/.config/
+    target="$HOME/.config/$(basename "$f")"
+    [ -e "$target" ] && rm -rf "$target"
+    ln -svfn "$(pwd)/$f" "$target"
 done
 
 # done

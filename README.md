@@ -26,6 +26,12 @@
    bash link.sh
    ```
 
+5. Change Shell
+
+    ```sh
+    chsh -s /usr/bin/fish
+    ```
+
 ## env
 
 - Ubuntu 24.04
