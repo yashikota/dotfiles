@@ -70,7 +70,6 @@ function install_docker() {
     check_already_installed docker && return
     # Add Docker's official GPG key:
     sudo apt-get update
-    sudo apt-get install ca-certificates curl
     sudo install -m 0755 -d /etc/apt/keyrings
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -97,9 +96,10 @@ function install_zoxide() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
-# change default shell
-function change_default_shell() {
-    sudo chsh -s $(which fish)
+# install other apps
+function install_other_apps() {
+    cargo install bottom --locked
+    cargo install git-delta --locked
 }
 
 # disable login message
@@ -115,7 +115,7 @@ install_mise
 install_docker
 install_rust
 install_zoxide
-change_default_shell
+install_other_apps
 disable_login_message
 
 # Done
