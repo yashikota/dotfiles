@@ -7,26 +7,20 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd $HOME
 
-# set colors
-YELLOW='\033[0;33m'
-CYAN='\033[0;36m'
-RESET='\033[0m'
-
-function set_color() {
-    local color=$1
-    case "$color" in
-        yellow) echo -ne "${YELLOW}" ;;
-        cyan) echo -ne "${CYAN}" ;;
-        *) echo -ne "${RESET}" ;;
-    esac
-}
+# Color variables
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+RESET=$(tput sgr0)
 
 function check_already_installed() {
     local app=$1
     if type -p $app >/dev/null; then
-        set_color cyan; echo "$app is already installed"; set_color reset
+        echo "${CYAN}$app installation skipped${RESET}"
         return 0
     fi
+    echo "${MAGENTA}$app not found, proceeding with installation...${RESET}"
     return 1
 }
 
@@ -35,9 +29,9 @@ function install_dependencies() {
     sudo apt update -qq
     cat "${SCRIPT_DIR}/apps.txt" | while read line
     do
-        type -p $line >/dev/null && { set_color cyan; echo "$line is already installed"; set_color reset; } && continue
+        type -p $line >/dev/null && { echo "${CYAN}$line is already installed${RESET}"; } && continue
         sudo apt install -qq -y $line
-        set_color yellow; echo "$line is installed"; set_color reset
+        echo "${YELLOW}$line installed.${RESET}"
     done
 }
 
@@ -121,4 +115,4 @@ install_other_apps
 disable_login_message
 
 # Done
-{ set_color cyan; echo "Done!"; set_color reset; }
+echo "${GREEN}Done!${RESET}"
