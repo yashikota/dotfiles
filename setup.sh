@@ -101,6 +101,7 @@ function install_other_apps() {
     cargo install bottom --locked
     cargo install git-delta --locked
     curl -fsSL https://gomi.dev/install | bash
+    mv $HOME/bin/gomi /usr/local/bin/gomi
 }
 
 # disable login message
