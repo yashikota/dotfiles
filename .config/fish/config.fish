@@ -74,10 +74,6 @@ if status is-interactive
     set -gx PATH "$PNPM_HOME" $PATH
     end
 
-    # verible
-    set -Ux PATH $PATH /usr/local/bin/verible/bin
-    set -g PATH /usr/local/bin/verible/bin $PATH
-
     # zoxide
     zoxide init fish | source
 
@@ -87,8 +83,8 @@ if status is-interactive
     alias l='eza -la --icons --git --time-style relative'
     alias bat='batcat'
 
-    # gtrash
-    abbr --add rm gtrash put
+    # gomi
+    abbr --add rm gomi
 
     # rm
     abbr --add rr rm -rf
@@ -99,25 +95,9 @@ if status is-interactive
     # apps
     abbr --add - cd -
     abbr --add inst sudo apt install -y
-    abbr --add t tmux
-    abbr --add n nvim
-    abbr --add v nvim
     abbr --add m make
     abbr --add c code .
-    abbr --add ci code-insiders .
     abbr --add cu cursor .
-    abbr --add k kubectl
-    abbr --add mk microk8s kubectl
-
-    # bun
-    abbr --add brd bun run dev
-    abbr --add brb bun run build
-    abbr --add brl bun run lint
-    abbr --add brf bun run format
-
-    # cargo
-    abbr --add cr cargo run
-    abbr --add ct cargo test
 
     # git
     abbr --add ga git add .
@@ -130,29 +110,7 @@ if status is-interactive
     abbr --add gs git status
     abbr --add gd git diff
     abbr --add gsw git switch
-    abbr --add gsc git switch -c
-    abbr --add gr git restore
-    abbr --add gco git checkout
 
     # docker
-    abbr --add db docker build -t .
-    abbr --add dr docker run -it
     abbr --add dcu docker compose up --build
-    abbr --add dcd docker compose down --rmi all
-    abbr --add dce docker compose exec
-
-    # terraform
-    abbr --add tf terraform
-    abbr --add tfi terraform init
-    abbr --add tfp terraform plan
-    abbr --add tfa terraform apply
-    abbr --add tff terraform fmt
-    abbr --add tfo terraform output
-    abbr --add tfd terraform destroy
-
-    # uv
-    abbr --add uva uvx ruff check --fix \&\& uvx ruff format \&\& uvx isort .
-    abbr --add uvc uvx ruff check --fix
-    abbr --add uvf uvx ruff format
-    abbr --add uvi uvx isort .
 end
