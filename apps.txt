@@ -2,7 +2,6 @@ curl
 ca-certificates
 git
 fish
-zsh
 zip
 unzip
 neovim

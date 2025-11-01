@@ -1,6 +1,10 @@
 #!/bin/bash
 
 set -ue # exit on error or undefined variable
+
+# Get the directory where the script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 cd $HOME
 
 # set colors
@@ -29,7 +33,7 @@ function check_already_installed() {
 # install dependencies
 function install_dependencies() {
     sudo apt update -qq
-    cat "$(dirname "$0")/apps.txt" | while read line
+    cat "${SCRIPT_DIR}/apps.txt" | while read line
     do
         type -p $line >/dev/null && { set_color cyan; echo "$line is already installed"; set_color reset; } && continue
         sudo apt install -qq -y $line
@@ -92,12 +96,6 @@ function install_zoxide() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
-# install rust apps
-function install_rust_apps() {
-    check_already_installed delta && return
-    cargo install --quiet git-delta
-}
-
 # change default shell
 function change_default_shell() {
     sudo chsh -s $(which fish)
@@ -116,7 +114,6 @@ install_mise
 install_docker
 install_rust
 install_zoxide
-install_rust_apps
 change_default_shell
 disable_login_message
 
