@@ -88,6 +88,7 @@ function install_docker() {
 function install_rust() {
     check_already_installed rustup && return
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --quiet
+    . "$HOME/.cargo/env"
 }
 
 # install zoxide
