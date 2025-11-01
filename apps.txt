@@ -18,6 +18,7 @@ locales
 libopencv-dev
 golang
 bat
+eza
 xsel
 duf
 fzf
