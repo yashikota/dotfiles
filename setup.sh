@@ -71,17 +71,11 @@ function install_docker() {
     sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-    . /etc/os-release
-    if [ -z "${UBUNTU_CODENAME:-}" ]; then
-        echo "ERROR: UBUNTU_CODENAME not found. This script requires Ubuntu codename (e.g., noble) on Mint."
-        echo "       Check /etc/os-release. Aborting to avoid using Mint codename (${VERSION_CODENAME:-unknown})."
-        return 1
-    fi
-    SUITE="$UBUNTU_CODENAME"
-
     # Add the repository to Apt sources:
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu ${SUITE} stable" \
-    | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "${UBUNTU_CODENAME}") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt-get update
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 }
