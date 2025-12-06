@@ -90,6 +90,12 @@ function install_zoxide() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
+# install lazygit
+function install_lazygit() {
+    check_already_installed lazygit && return
+    go install github.com/jesseduffield/lazygit@latest
+}
+
 # install other apps
 function install_other_apps() {
     cargo install bottom --locked
@@ -111,6 +117,7 @@ install_mise
 install_docker
 install_rust
 install_zoxide
+install_lazygit
 install_other_apps
 disable_login_message
 
