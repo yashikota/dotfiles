@@ -1,10 +1,12 @@
 # dotfiles
 
-## setup
+## Setup
+
+### Linux (Ubuntu/Debian)
 
 1. Install GitHub CLI
 
-    See <https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt>  
+    See <https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt>
 
 2. Login
 
@@ -22,7 +24,7 @@
 4. Setup
 
    ```sh
-   bash setup.sh
+   bash linux/setup.sh
    bash link.sh
    ```
 
@@ -32,7 +34,35 @@
     chsh -s /usr/bin/fish
     ```
 
-## env
+### macOS
 
-- Ubuntu 24.04
-- fish
+1. Install GitHub CLI
+
+    ```sh
+    brew install gh
+    ```
+
+2. Login
+
+    ```sh
+    gh auth login
+    ```
+
+3. Clone repository
+
+    ```sh
+    gh repo clone yashikota/dotfiles
+    cd dotfiles
+    ```
+
+4. Setup
+
+   ```sh
+   bash mac/setup.sh
+   bash link.sh
+   ```
+
+5. Change Shell
+
+    ```sh
+    chsh -s /opt/homebrew/bin/fish
