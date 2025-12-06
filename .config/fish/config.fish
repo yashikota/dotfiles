@@ -111,6 +111,9 @@ if status is-interactive
     abbr --add gs git status
     abbr --add gd git diff HEAD
 
+    # gh
+    abbr --add ghb gh browse
+
     # docker
     abbr --add dcu docker compose up --build
 end
