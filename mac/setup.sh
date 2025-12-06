@@ -52,16 +52,6 @@ function install_mise() {
     curl https://mise.run | sh
 }
 
-# install docker desktop
-function install_docker() {
-    if [ -d "/Applications/Docker.app" ]; then
-        echo "${CYAN}Docker Desktop installation skipped${RESET}"
-        return
-    fi
-    echo "${MAGENTA}Docker Desktop not found, proceeding with installation...${RESET}"
-    brew install --cask docker
-}
-
 # install rust
 function install_rust() {
     check_already_installed rustup && return
@@ -91,7 +81,6 @@ install_homebrew
 install_dependencies
 install_starship
 install_mise
-install_docker
 install_rust
 install_zoxide
 install_other_apps
