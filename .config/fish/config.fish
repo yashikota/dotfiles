@@ -110,6 +110,7 @@ if status is-interactive
     abbr --add gb git branch -a
     abbr --add gs git status
     abbr --add gd git diff HEAD
+    abbr --add gr git reset --hard HEAD~
 
     # gh
     abbr --add ghb gh browse
