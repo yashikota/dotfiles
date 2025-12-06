@@ -103,7 +103,7 @@ if status is-interactive
 
     # git
     abbr --add ga git add -A
-    abbr --add gc git commit -m
+    abbr --add gc --set-cursor 'git commit -m "%"'
     abbr --add gp git push
     abbr --add gpo git push -u origin main
     abbr --add gpl git pull
