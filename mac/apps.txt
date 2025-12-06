@@ -15,4 +15,3 @@ eza
 duf
 fzf
 libsixel
-

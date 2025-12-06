@@ -83,11 +83,13 @@ if status is-interactive
     alias l='eza -la --icons --git --time-style relative'
     alias bat='batcat'
 
-    # gomi
-    abbr --add rm gomi
-
-    # rm
-    abbr --add rr rm -rf
+    # trash (gomi on Linux, trash on macOS)
+    switch (uname)
+        case Darwin
+            alias rm='trash'
+        case '*'
+            alias rm='gomi'
+    end
 
     # gcc
     alias gcc='gcc-14 -fanalyzer'
@@ -100,16 +102,14 @@ if status is-interactive
     abbr --add cu cursor .
 
     # git
-    abbr --add ga git add .
+    abbr --add ga git add -A
     abbr --add gc git commit -m
-    abbr --add gpu git push
-    abbr --add gpuo git push -u origin main
+    abbr --add gp git push
+    abbr --add gpo git push -u origin main
     abbr --add gpl git pull
     abbr --add gb git branch -a
-    abbr --add gf git fetch --prune
     abbr --add gs git status
-    abbr --add gd git diff
-    abbr --add gsw git switch
+    abbr --add gd git diff HEAD
 
     # docker
     abbr --add dcu docker compose up --build
