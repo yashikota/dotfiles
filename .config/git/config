@@ -1,5 +1,5 @@
 [user]
-    name = kota
+    name = yashikota
     email = 52403688+yashikota@users.noreply.github.com
     signingKey = ~/.ssh/id_ed25519.pub
 [core]

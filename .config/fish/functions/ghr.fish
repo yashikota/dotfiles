@@ -15,5 +15,5 @@ function ghr
     set -l current_directory (basename $PWD)
     set -l source_directory (git rev-parse --show-toplevel)
 
-    gh repo create $organization/$current_directory  $visibility --source $source_directory --remote=upstream
+    gh repo create $organization/$current_directory $visibility --source $source_directory --remote=origin
 end
