@@ -3,6 +3,7 @@ if status is-interactive
     export LC_ALL="en_US.utf8"
     export LANG="en_US.utf8"
     set -g fish_greeting ""
+    export XDG_CONFIG_HOME="$HOME/.config"
 
     # directory colors
     export LS_COLORS="no=01;32:fi=01;97:di=01;36:ex=01;31:ln=01;35"
