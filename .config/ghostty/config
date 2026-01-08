@@ -1,0 +1,21 @@
+shell-integration = fish
+
+font-size = 14
+font-family = UDEVGothic35NF-Regular
+font-family-bold = UDEVGothic35NF-Bold
+font-family-italic = UDEVGothic35NF-Italic
+font-family-bold-italic = UDEVGothic35NF-BoldItalic
+font-feature = -dlig
+
+window-title-font-family = UDEVGothic35NF-Regular
+window-theme = dark
+window-decoration = client
+theme = Midnight In Mojave
+
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = clipboard
+
+quit-after-last-window-closed = true
+auto-update = check
+auto-update-channel = stable
