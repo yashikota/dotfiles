@@ -78,6 +78,9 @@ if status is-interactive
     # zoxide
     zoxide init fish | source
 
+    # zellij
+    eval (zellij setup --generate-auto-start fish | string collect)
+
     ### ================= ###
     ### shortcut commands ###
     ### ================= ###
