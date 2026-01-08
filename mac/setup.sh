@@ -69,6 +69,7 @@ function install_zoxide() {
 function install_other_apps() {
     cargo install bottom --locked
     cargo install git-delta --locked
+    cargo install zellij --locked
 }
 
 # disable login message

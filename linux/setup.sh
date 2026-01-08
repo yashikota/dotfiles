@@ -100,6 +100,7 @@ function install_lazygit() {
 function install_other_apps() {
     cargo install bottom --locked
     cargo install git-delta --locked
+    cargo install zellij --locked
     curl -fsSL https://gomi.dev/install | bash
     sudo mv $HOME/bin/gomi /usr/local/bin/gomi
 }
