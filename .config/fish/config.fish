@@ -85,6 +85,7 @@ if status is-interactive
     ### shortcut commands ###
     ### ================= ###
     alias l='eza -la --icons --git --time-style relative'
+    alias tree='eza --tree --icons --color=always --git --time-style relative'
     alias bat='batcat'
 
     # trash (gomi on Linux, trash on macOS)
