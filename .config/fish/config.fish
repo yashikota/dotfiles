@@ -86,7 +86,6 @@ if status is-interactive
     ### ================= ###
     alias l='eza -la --icons --git --time-style relative'
     alias tree='eza --tree --icons --color=always --git --time-style relative'
-    alias bat='batcat'
 
     # trash (gomi on Linux, trash on macOS)
     switch (uname)
@@ -123,3 +122,4 @@ if status is-interactive
     # docker
     abbr --add dcu docker compose up --build
 end
+set -x PATH $HOME/.tfenv/bin $PATH
