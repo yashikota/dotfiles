@@ -1,12 +1,10 @@
-require "plugins"
-
 local opt = vim.opt
 local keymap = vim.keymap
 
 -- helpの日本語化
 opt.helplang = "ja,en"
 
--- 検索時の大文字小文字
+-- 検索時の大文字小文字処理
 opt.ignorecase = true
 opt.smartcase = true
 
@@ -48,7 +46,4 @@ opt.swapfile = false
 vim.api.nvim_exec([[
   autocmd FileType * setlocal formatoptions-=cro
 ]], false)
-
--- jjでEscする
-keymap.set('i','jj','<Esc>')
 
