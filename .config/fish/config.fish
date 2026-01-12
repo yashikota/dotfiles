@@ -80,7 +80,7 @@ if status is-interactive
     zoxide init fish | source
 
     # zellij
-    eval (zellij setup --generate-auto-start fish | string collect)
+    set -q SSH_CONNECTION; or eval (zellij setup --generate-auto-start fish | string collect)
 
     ### ================= ###
     ### shortcut commands ###
