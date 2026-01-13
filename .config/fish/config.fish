@@ -105,6 +105,7 @@ if status is-interactive
     abbr --add m make
     abbr --add c code .
     abbr --add cu cursor .
+    abbr --add k kubectl
 
     # git
     abbr --add ga git add -A
