@@ -9,11 +9,23 @@ function M.setup(config)
         { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
         -- Shift+↓: 次のプロンプトへ
         { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
-        -- Cmd+W: ペインを閉じる
+        -- Cmd+W: ペインを閉じる（常に確認）
         {
             key = "w",
             mods = "CMD",
-            action = act.CloseCurrentPane({ confirm = false }),
+            action = wezterm.action_callback(function(window, pane)
+                window:perform_action(
+                    act.PromptInputLine({
+                        description = "Close this pane? (Enter/y to close, n to cancel)",
+                        action = wezterm.action_callback(function(window, pane, line)
+                            if line == "" or line == "y" or line == "Y" then
+                                window:perform_action(act.CloseCurrentPane({ confirm = false }), pane)
+                            end
+                        end),
+                    }),
+                    pane
+                )
+            end),
         },
         -- Cmd+P: 横にペイン分割
         {
