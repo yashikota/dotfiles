@@ -180,6 +180,7 @@ _setup_abbr() {
     abbr -S -q -- gs='git status'
     abbr -S -q -- gd='git diff HEAD'
     abbr -S -q -- gr='git reset --hard HEAD~'
+    abbr -S -q -- gsub='git submodule update --init --recursive'
 
     # gh
     abbr -S -q -- ghb='gh browse'
