@@ -75,8 +75,13 @@ _setup_syntax_highlighting() {
     ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
 }
 
-# Completion
+# zsh-autosuggestions color
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
+
+# 補完
 autoload -Uz compinit && compinit
+# 部分一致
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[-_]=* r:|=*' 'l:|=* r:|=*'
 
 # ==================== #
 #   Tool Initializers  #
@@ -84,6 +89,22 @@ autoload -Uz compinit && compinit
 # starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
+
+# WezTerm Shell Integration (OSC 133 - Semantic Zones)
+if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
+    _wezterm_osc133_precmd() {
+        # プロンプト開始マーカー (A)
+        printf '\e]133;A\e\\'
+        # Starship が設定した PROMPT の末尾に Input 開始マーカー (B) を追加
+        PROMPT="${PROMPT}"$'\e]133;B\e\\'
+    }
+    _wezterm_osc133_preexec() {
+        # コマンド実行開始マーカー (C)
+        printf '\e]133;C\e\\'
+    }
+    precmd_functions+=(_wezterm_osc133_precmd)
+    preexec_functions+=(_wezterm_osc133_preexec)
+fi
 
 # mise
 eval "$(mise activate zsh)"
@@ -117,7 +138,7 @@ _setup_abbr() {
     abbr -S -q -- inst='sudo apt install -y'
     abbr -S -q -- m='make'
     abbr -S -q -- c='code .'
-    abbr -S -q -- cu='cursor .'
+    abbr -S -q -- cur='cursor .'
     abbr -S -q -- k='kubectl'
 
     # git
