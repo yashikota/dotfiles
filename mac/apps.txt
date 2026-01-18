@@ -16,3 +16,5 @@ duf
 fzf
 lazygit
 libsixel
+sheldon
+gibo

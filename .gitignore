@@ -1,1 +1,10 @@
+# zsh
+.zsh_history
+.zcompdump*
+.zsh_sessions/
+
+# zsh-abbr
+zsh-abbr/
+
+# fish
 fish_variables

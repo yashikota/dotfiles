@@ -28,10 +28,17 @@
    bash link.sh
    ```
 
-5. Change Shell
+
+5. Set ZDOTDIR
 
     ```sh
-    chsh -s /usr/bin/fish
+    echo 'ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zshenv
+    ```
+
+6. Change Shell
+
+    ```sh
+    chsh -s /usr/bin/zsh
     ```
 
 ### macOS
@@ -62,7 +69,15 @@
    bash link.sh
    ```
 
-5. Change Shell
+
+5. Set ZDOTDIR
 
     ```sh
-    chsh -s /opt/homebrew/bin/fish
+    echo 'ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zshenv
+    ```
+
+6. Change Shell
+
+    ```sh
+    chsh -s /bin/zsh
+    ```

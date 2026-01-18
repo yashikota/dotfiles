@@ -1,6 +1,7 @@
 curl
 ca-certificates
 git
+zsh
 fish
 zip
 unzip
