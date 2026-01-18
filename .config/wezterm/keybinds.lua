@@ -5,6 +5,10 @@ local M = {}
 
 function M.setup(config)
     config.keys = {
+        -- Shift+↑: 前のプロンプトへ
+        { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
+        -- Shift+↓: 次のプロンプトへ
+        { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
         -- Cmd+W: ペインを閉じる
         {
             key = "w",
