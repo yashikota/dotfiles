@@ -103,6 +103,7 @@ function install_other_apps() {
     cargo install git-delta --locked
     cargo install zellij --locked
     cargo install sheldon --locked
+    cargo install shpool --locked
     go install github.com/simonwhitaker/gibo@latest
     curl -fsSL https://gomi.dev/install | bash
     sudo mv $HOME/bin/gomi /usr/local/bin/gomi

@@ -18,3 +18,4 @@ lazygit
 libsixel
 sheldon
 gibo
+cargo-binstall
