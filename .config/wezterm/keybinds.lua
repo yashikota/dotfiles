@@ -4,9 +4,6 @@ local act = wezterm.action
 local M = {}
 
 function M.setup(config)
-    -- Leader key: Cmd+z (タイムアウト1秒)
-    config.leader = { key = "z", mods = "CMD", timeout_milliseconds = 1000 }
-
     config.keys = {
         -- Cmd+W: ペインを閉じる
         {
@@ -38,10 +35,10 @@ function M.setup(config)
             mods = "CMD",
             action = act.SendString("\x1bf"),
         },
-        -- Leader + c: 直前のコマンドと出力をコピー
+        -- Cmd+Shift+c: 直前のコマンドと出力をコピー
         {
             key = "c",
-            mods = "LEADER",
+            mods = "CMD|SHIFT",
             action = wezterm.action_callback(function(window, pane)
                 -- コピーモードに入る
                 window:perform_action(act.ActivateCopyMode, pane)
@@ -65,21 +62,14 @@ function M.setup(config)
                 -- スクロールを戻してコピーモードを終了
                 window:perform_action(act.ScrollToBottom, pane)
                 window:perform_action(act.CopyMode("Close"), pane)
-
-                -- ステータスバーに一時的なステータスを表示
-                window:set_right_status("📋 Copied!")
-                -- 3秒後にクリア
-                wezterm.time.call_after(3, function()
-                    window:set_right_status("")
-                end)
             end),
         },
-        -- Leader + r: 画面内検索
+        -- Cmd+f: 画面内検索
         {
-            key = "r",
-            mods = "LEADER",
+            key = "f",
+            mods = "CMD",
             action = act.Search({ CaseInSensitiveString = "" }),
-        },
+        }
     }
 end
 
