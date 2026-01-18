@@ -77,7 +77,19 @@ function M.setup(config)
             key = "f",
             mods = "CMD",
             action = act.Search({ CaseInSensitiveString = "" }),
-        }
+        },
+        -- Cmd+z: アンドゥ
+        {
+            key = "z",
+            mods = "CMD",
+            action = act.SendString("\x1f"),
+        },
+        -- Cmd+y: リドゥ
+        {
+            key = "y",
+            mods = "CMD",
+            action = act.SendString("\x18\x1f"),
+        },
     }
 end
 
