@@ -1,11 +1,19 @@
-# ファイルの内容をクリップボードにコピー
-# Usage: clip <file>
+# クリップボードにコピー（ファイルまたは標準入力）
+# Usage: clip [file] or echo "text" | clip
+# Example: clip file.txt / echo "hello" | clip
 clip() {
+    local input
+    if [[ $# -eq 0 ]]; then
+        input=$(cat)
+    else
+        input=$(cat "$1")
+    fi
+
     if [[ -n "$IS_WSL" || -n "$WSL_DISTRO_NAME" ]]; then
-        cat "$1" | clip.exe
+        echo -n "$input" | clip.exe
     elif [[ "$(uname)" = "Linux" ]]; then
-        cat "$1" | xsel -bi
+        echo -n "$input" | xsel -bi
     elif [[ "$(uname)" = "Darwin" ]]; then
-        cat "$1" | pbcopy
+        echo -n "$input" | pbcopy
     fi
 }
