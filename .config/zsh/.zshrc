@@ -90,8 +90,19 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[-_]=* 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 
+# OSC 2 - タブタイトルにgit root名を設定
+# OSC 7 - 作業ディレクトリをターミナルに通知
+function __osc2_7_cwd() {
+    printf '\033]7;file://%s%s\033\\' "${HOST}" "${PWD}"
+    local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+    local title=${${git_root:t}:-${PWD:t}}
+    printf '\033]2;%s\033\\' "$title"
+}
+chpwd_functions+=(__osc2_7_cwd)
+__osc2_7_cwd  # 初回実行
+
+# OSC 133 - プロンプトをターミナルに通知
 # https://gitlab.freedesktop.org/Per_Bothner/specifications/-/blob/master/proposals/prompts-data/shell-integration.zsh
-# Shell Integration (OSC 133)
 _prompt_executing=""
 function __prompt_precmd() {
     local ret="$?"
