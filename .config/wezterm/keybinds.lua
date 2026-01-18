@@ -50,6 +50,10 @@ function M.setup(config)
                 -- 直前のInputゾーン（最後のコマンド）に移動
                 window:perform_action(act.CopyMode({ MoveBackwardZoneOfType = "Input" }), pane)
 
+                -- 1行上に移動してstarshipプロンプト行を含める
+                window:perform_action(act.CopyMode("MoveUp"), pane)
+                window:perform_action(act.CopyMode("MoveToStartOfLine"), pane)
+
                 -- セル選択モードを開始
                 window:perform_action(act.CopyMode({ SetSelectionMode = "Cell" }), pane)
 
