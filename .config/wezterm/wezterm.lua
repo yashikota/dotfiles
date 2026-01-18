@@ -7,6 +7,7 @@ require("keybinds").setup(config)
 
 -- Shell
 config.default_prog = { "/bin/zsh", "-l" }
+config.default_cwd = wezterm.home_dir .. "/prj"
 
 -- Font
 config.font_size = 14
