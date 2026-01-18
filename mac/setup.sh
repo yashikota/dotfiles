@@ -33,12 +33,9 @@ function install_homebrew() {
 
 # install dependencies
 function install_dependencies() {
-    cat "${SCRIPT_DIR}/apps.txt" | while read line
-    do
-        brew list $line &>/dev/null && { echo "${CYAN}$line is already installed${RESET}"; } && continue
-        brew install $line
-        echo "${YELLOW}$line installed.${RESET}"
-    done
+    echo "${MAGENTA}Installing dependencies from Brewfile...${RESET}"
+    brew bundle --file="${SCRIPT_DIR}/Brewfile"
+    echo "${YELLOW}Brewfile dependencies installed.${RESET}"
 }
 
 # install starship
@@ -51,13 +48,6 @@ function install_starship() {
 function install_mise() {
     check_already_installed mise && return
     curl https://mise.run | sh
-}
-
-# install rust
-function install_rust() {
-    check_already_installed rustup && return
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --quiet
-    . "$HOME/.cargo/env"
 }
 
 # install zoxide
@@ -73,20 +63,13 @@ function install_other_apps() {
     cargo install zellij --locked
 }
 
-# disable login message
-function disable_login_message() {
-    touch ~/.hushlogin
-}
-
 # main
 install_homebrew
 install_dependencies
 install_starship
 install_mise
-install_rust
 install_zoxide
 install_other_apps
-disable_login_message
 
 # Done
 echo "${GREEN}Done!${RESET}"
