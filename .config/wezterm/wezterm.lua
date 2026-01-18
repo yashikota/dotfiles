@@ -71,6 +71,32 @@ config.show_new_tab_button_in_tab_bar = false
 -- Clipboard
 config.selection_word_boundary = " \t\n{}[]()\"'`,;:"
 
+-- Hyperlink Rules
+config.hyperlink_rules = {
+    -- AWS ARN を最優先でマッチ
+    {
+        regex = [[arn:aws[a-z0-9-]*:[a-z0-9-]*:[a-z0-9-]*:[0-9]*:[a-zA-Z0-9_./:@=-]+]],
+        format = "https://console.aws.amazon.com/go/view?arn=$0",
+    },
+}
+
+-- デフォルトルール（URL、メールアドレス）を追加
+for _, rule in ipairs(wezterm.default_hyperlink_rules()) do
+    table.insert(config.hyperlink_rules, rule)
+end
+
+-- ファイルパスをクリック可能に
+table.insert(config.hyperlink_rules, {
+    regex = "\\b(/[\\w.-]+)+\\b",
+    format = "file://$0",
+})
+
+-- GitHub issue/PR参照（例: owner/repo#123）
+table.insert(config.hyperlink_rules, {
+    regex = [[\b([A-Za-z0-9_-]+/[A-Za-z0-9_-]+)#(\d+)\b]],
+    format = "https://github.com/$1/issues/$2",
+})
+
 -- Behavior
 config.quit_when_all_windows_are_closed = true
 config.check_for_updates = true
