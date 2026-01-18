@@ -58,11 +58,10 @@ config.window_background_gradient = {
   colors = { "#000000" },
 }
 
--- Pane
 -- 非アクティブなペインを暗くする
 config.inactive_pane_hsb = {
-    saturation = 0.8,
-    brightness = 0.6,
+    saturation = 0.7,
+    brightness = 0.5,
 }
 -- アクティブなペインのボーダー色
 config.colors.split = "#aacf53"
