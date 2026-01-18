@@ -74,6 +74,12 @@ function M.setup(config)
                 end)
             end),
         },
+        -- Leader + r: 画面内検索
+        {
+            key = "r",
+            mods = "LEADER",
+            action = act.Search({ CaseInSensitiveString = "" }),
+        },
     }
 end
 
