@@ -12,7 +12,7 @@ function M.setup()
 
         -- 未読出力があるかチェック（常に出力があるプロセスは除外）
         local has_unseen_output = false
-        local ignore_processes = { "claude" }
+        local ignore_processes = { "claude", "lazygit" }
         for _, pane in ipairs(tab.panes) do
             if pane.has_unseen_output then
                 local process = pane.foreground_process_name or ""
