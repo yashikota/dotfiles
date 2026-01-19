@@ -169,6 +169,7 @@ _setup_abbr() {
     abbr -S -q -- c='code .'
     abbr -S -q -- cur='cursor .'
     abbr -S -q -- k='kubectl'
+    abbr -S -q -- lg='lazygit'
 
     # git
     abbr -S -q -- ga='git add -A'
@@ -178,6 +179,7 @@ _setup_abbr() {
     abbr -S -q -- gpl='git pull'
     abbr -S -q -- gb='git branch -a'
     abbr -S -q -- gs='git status'
+    abbr -S -q -- gsw='git switch'
     abbr -S -q -- gd='git diff HEAD'
     abbr -S -q -- gr='git reset --hard HEAD~'
     abbr -S -q -- gsub='git submodule update --init --recursive'
