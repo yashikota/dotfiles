@@ -102,6 +102,12 @@ function M.setup(config)
             mods = "CMD",
             action = act.SendString("\x18\x1f"),
         },
+        -- Shift+Enter: 改行を送信
+        {
+            key = "Enter",
+            mods = "SHIFT",
+            action = wezterm.action.SendString("\n")
+        },
     }
 end
 
