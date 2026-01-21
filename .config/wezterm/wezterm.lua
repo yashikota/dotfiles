@@ -63,9 +63,8 @@ config.inactive_pane_hsb = {
     saturation = 0.7,
     brightness = 0.5,
 }
--- アクティブなペインのボーダー色
-config.colors.split = "#aacf53"
 
+config.colors.split = "#aacf53"
 config.show_new_tab_button_in_tab_bar = false
 
 -- Clipboard
@@ -73,7 +72,7 @@ config.selection_word_boundary = " \t\n{}[]()\"'`,;:"
 
 -- Hyperlink Rules
 config.hyperlink_rules = {
-    -- AWS ARN を最優先でマッチ
+    -- AWS ARN
     {
         regex = [[arn:aws[a-z0-9-]*:[a-z0-9-]*:[a-z0-9-]*:[0-9]*:[a-zA-Z0-9_./:@=-]+]],
         format = "https://console.aws.amazon.com/go/view?arn=$0",
@@ -85,10 +84,10 @@ for _, rule in ipairs(wezterm.default_hyperlink_rules()) do
     table.insert(config.hyperlink_rules, rule)
 end
 
--- ファイルパスをクリック可能に
+-- ファイルパスをVS Codeで開けるように
 table.insert(config.hyperlink_rules, {
-    regex = "\\b(/[\\w.-]+)+\\b",
-    format = "file://$0",
+    regex = [[([\w/][\w/\.-]*\.\w+)(:\d+)?(:\d+)?]],
+    format = "vscode://file$PWD/$1$2$3",
 })
 
 -- GitHub issue/PR参照（例: owner/repo#123）
@@ -101,5 +100,19 @@ table.insert(config.hyperlink_rules, {
 config.quit_when_all_windows_are_closed = true
 config.check_for_updates = true
 config.window_close_confirmation = "AlwaysPrompt"
+
+-- open-uri イベントハンドラー
+-- $PWD を実際のカレントディレクトリに置換して VS Code で開く
+wezterm.on("open-uri", function(window, pane, uri)
+    local start = uri:find("$PWD", 1, true)
+    if start then
+        local cwd_uri = pane:get_current_working_dir()
+        if cwd_uri and cwd_uri.file_path then
+            uri = uri:gsub("$PWD", cwd_uri.file_path)
+            wezterm.open_with(uri)
+            return false
+        end
+    end
+end)
 
 return config
