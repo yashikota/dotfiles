@@ -74,12 +74,12 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 eval "$(sheldon source)"
 
 # zsh-syntax-highlighting colors
-zsh-defer _setup_syntax_highlighting
 _setup_syntax_highlighting() {
     ZSH_HIGHLIGHT_STYLES[command]='fg=cyan,bold'
     ZSH_HIGHLIGHT_STYLES[builtin]='fg=cyan,bold'
     ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
 }
+zsh-defer _setup_syntax_highlighting
 
 # zsh-autosuggestions color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
@@ -159,38 +159,37 @@ alias gcc='gcc-14 -fanalyzer'
 # ==================== #
 #    Abbreviations     #
 # ==================== #
-# (loaded after zsh-abbr plugin is initialized)
-zsh-defer _setup_abbr
 _setup_abbr() {
     # apps
-    abbr -S -q -- -='cd -'
-    abbr -S -q -- inst='sudo apt install -y'
-    abbr -S -q -- m='make'
-    abbr -S -q -- c='code .'
-    abbr -S -q -- cur='cursor .'
-    abbr -S -q -- k='kubectl'
-    abbr -S -q -- lg='lazygit'
+    abbr add -S --quieter -- -='cd -'
+    abbr add -S --quieter inst='sudo apt install -y'
+    abbr add -S --quieter m='make'
+    abbr add -S --quieter c='code .'
+    abbr add -S --quieter cur='cursor .'
+    abbr add -S --quieter k='kubectl'
+    abbr add -S --quieter lg='lazygit'
 
     # git
-    abbr -S -q -- ga='git add -A'
-    abbr -S -q -- gc='git commit -m "%"'
-    abbr -S -q -- gp='git push'
-    abbr -S -q -- gpo='git push -u origin main'
-    abbr -S -q -- gpl='git pull'
-    abbr -S -q -- gb='git branch -a'
-    abbr -S -q -- gs='git status'
-    abbr -S -q -- gsw='git switch'
-    abbr -S -q -- gd='git diff HEAD'
-    abbr -S -q -- gr='git reset --hard HEAD~'
-    abbr -S -q -- gsub='git submodule update --init --recursive'
+    abbr add -S --quieter ga='git add -A'
+    abbr add -S --quieter gc='git commit -m "%"'
+    abbr add -S --quieter gp='git push'
+    abbr add -S --quieter gpo='git push -u origin main'
+    abbr add -S --quieter gpl='git pull'
+    abbr add -S --quieter gb='git branch -a'
+    abbr add -S --quieter gs='git status'
+    abbr add -S --quieter gsw='git switch'
+    abbr add -S --quieter gd='git diff HEAD'
+    abbr add -S --quieter gr='git reset --hard HEAD~'
+    abbr add -S --quieter gsub='git submodule update --init --recursive'
 
     # gh
-    abbr -S -q -- ghb='gh browse'
-    abbr -S -q -- clone='gh repo clone'
+    abbr add -S --quieter ghb='gh browse'
+    abbr add -S --quieter clone='gh repo clone'
 
     # docker
-    abbr -S -q -- dcu='docker compose up --build'
+    abbr add -S --quieter dcu='docker compose up --build'
 }
+_setup_abbr
 
 # ==================== #
 #      Functions       #
