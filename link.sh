@@ -20,5 +20,12 @@ for f in .config/*; do
     ln -svfn "$(pwd)/$f" "$target"
 done
 
+# link .claude
+if [ -d ".claude" ]; then
+    target="$HOME/.claude"
+    [ -e "$target" ] && rm -rf "$target"
+    ln -svfn "$(pwd)/.claude" "$target"
+fi
+
 # Done
 echo "${GREEN}Done!${RESET}"

@@ -8,3 +8,8 @@ zsh-abbr/
 
 # fish
 fish_variables
+
+# claude
+.claude/*
+!.claude/settings.json
+!.claude/status-line.sh

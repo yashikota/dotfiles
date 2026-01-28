@@ -1,0 +1,66 @@
+{
+  "awsAuthRefresh": "aws sso login --profile claude",
+  "env": {
+    "ENABLE_TOOL_SEARCH": "true",
+    "CLAUDE_CODE_USE_BEDROCK": "true",
+    "AWS_REGION": "ap-northeast-1",
+    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-5-20251101-v1:0",
+    "AWS_PROFILE": "claude"
+  },
+  "includeCoAuthoredBy": false,
+  "language": "コッテこての関西弁",
+  "alwaysThinkingEnabled": true,
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(cd:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(wc:*)",
+      "Bash(which:*)",
+      "Bash(grep:*)",
+      "Bash(curl:*)",
+      "Bash(rg:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm:*)",
+      "Bash(bun:*)",
+      "Bash(go:*)",
+      "Bash(make:*)",
+      "Bash(tree:*)",
+      "Bash(gh:*)",
+      "Bash(task:*)",
+      "Bash(aqua:*)",
+      "Bash(git:*)",
+      "Bash(docker:*)",
+      "Bash(tee:*)",
+      "WebFetch(domain:*)",
+      "mcp__server__*"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push --force:*)"
+    ],
+    "ask": []
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/status-line.sh"
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "linear@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
+  }
+}
