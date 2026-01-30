@@ -198,3 +198,8 @@ _setup_abbr
 for f in "$ZDOTDIR"/functions/*.zsh; do
     source "$f"
 done
+
+# ==================== #
+#    Local Settings    #
+# ==================== #
+[[ -f "$ZDOTDIR/.zshrc.local" ]] && source "$ZDOTDIR/.zshrc.local"
