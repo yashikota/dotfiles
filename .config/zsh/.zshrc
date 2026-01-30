@@ -32,6 +32,10 @@ setopt SHARE_HISTORY
 # local bin
 export PATH="$HOME/.local/bin:$PATH"
 
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+
 # deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -178,6 +182,7 @@ _setup_abbr() {
     abbr add -S --quieter gb='git branch -a'
     abbr add -S --quieter gs='git status'
     abbr add -S --quieter gsw='git switch'
+    abbr add -S --quieter gsm='git default'
     abbr add -S --quieter gd='git diff HEAD'
     abbr add -S --quieter gr='git reset --hard HEAD~'
     abbr add -S --quieter gsub='git submodule update --init --recursive'

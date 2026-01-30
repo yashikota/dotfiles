@@ -29,3 +29,5 @@
     log = delta
     reflog = delta
     show = delta
+[alias]
+    default = !git switch -q $(basename $(git symbolic-ref refs/remotes/origin/HEAD))
