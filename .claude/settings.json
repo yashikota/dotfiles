@@ -9,6 +9,7 @@
   },
   "includeCoAuthoredBy": false,
   "language": "コッテこての関西弁",
+  "plansDirectory": "./plans",
   "alwaysThinkingEnabled": true,
   "permissions": {
     "allow": [
