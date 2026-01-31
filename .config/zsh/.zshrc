@@ -2,11 +2,6 @@
 #  Basic Configuration #
 # ==================== #
 
-# SSH接続時にshpoolでセッション保持
-if [[ "$(uname)" == "Linux" ]] && [[ -n "$SSH_TTY" ]] && [[ -z "$SHPOOL_SESSION_NAME" ]]; then
-    exec shpool attach main
-fi
-
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
