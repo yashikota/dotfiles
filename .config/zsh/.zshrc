@@ -136,6 +136,9 @@ eval "$(mise activate zsh)"
 # zoxide
 eval "$(zoxide init zsh)"
 
+# git-wt
+eval "$(git wt --init zsh)"
+
 # ==================== #
 #       Aliases        #
 # ==================== #
