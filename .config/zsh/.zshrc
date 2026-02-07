@@ -166,6 +166,7 @@ _setup_abbr() {
     abbr add -S --quieter cur='cursor .'
     abbr add -S --quieter k='kubectl'
     abbr add -S --quieter lg='lazygit'
+    abbr add -S --quieter tf='terraform'
 
     # git
     abbr add -S --quieter ga='git add -A'
