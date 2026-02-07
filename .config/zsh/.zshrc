@@ -4,7 +4,6 @@
 
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
-export TERM="xterm-256color"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export GPG_TTY=$(tty)
@@ -16,8 +15,8 @@ export LS_COLORS="no=01;32:fi=01;97:di=01;36:ex=01;31:ln=01;35"
 
 # History (XDG compliant)
 HISTFILE="$ZDOTDIR/.zsh_history"
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 
