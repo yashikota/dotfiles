@@ -5,6 +5,12 @@ ghr() {
     local organization="$1"
     local visibility="$2"
 
+    if [[ -z "$organization" ]]; then
+        echo "Usage: ghr <organization> [public|private]"
+        echo "Example: ghr myorg public"
+        return 1
+    fi
+
     if ! git rev-parse --is-inside-work-tree &>/dev/null; then
         git init
     fi
