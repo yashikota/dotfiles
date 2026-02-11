@@ -120,7 +120,7 @@ if status is-interactive
 
     # gh
     abbr --add ghb gh browse
-    abbr --add clone gh repo clone
+    abbr --add clone 'gh repo clone $(koeda)'
 
     # docker
     abbr --add dcu docker compose up --build

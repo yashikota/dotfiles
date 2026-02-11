@@ -183,7 +183,7 @@ _setup_abbr() {
 
     # gh
     abbr add -S --quieter ghb='gh browse'
-    abbr add -S --quieter clone='gh repo clone'
+    abbr add -S --quieter clone='gh repo clone $(koeda)'
 
     # docker
     abbr add -S --quieter dcu='docker compose up --build'
