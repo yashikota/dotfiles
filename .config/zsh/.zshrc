@@ -180,6 +180,7 @@ _setup_abbr() {
     abbr add -S --quieter gd='git diff HEAD'
     abbr add -S --quieter gr='git reset --hard HEAD~'
     abbr add -S --quieter gsub='git submodule update --init --recursive'
+    abbr add -S --quieter glog='git log --oneline --graph --decorate --all'
 
     # gh
     abbr add -S --quieter ghb='gh browse'
