@@ -4,8 +4,7 @@
     "ENABLE_TOOL_SEARCH": "true",
     "CLAUDE_CODE_USE_BEDROCK": "true",
     "AWS_REGION": "ap-northeast-1",
-    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-6-v1",
-    "CLAUDE_CODE_EFFORT_LEVEL": "medium",
+    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-5-20251101-v1:0",
     "AWS_PROFILE": "claude"
   },
   "includeCoAuthoredBy": false,
