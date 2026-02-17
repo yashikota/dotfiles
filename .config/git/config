@@ -30,4 +30,4 @@
     reflog = delta
     show = delta
 [alias]
-    default = !git switch -q $(basename $(git symbolic-ref refs/remotes/origin/HEAD))
+    default = "!f(){ b=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's#^origin/##'); if [ -z \"$b\" ]; then b=$(git remote show origin 2>/dev/null | sed -n 's/.*HEAD branch: //p' | head -n1); fi; if [ -z \"$b\" ]; then for c in main master; do if git show-ref --verify --quiet \"refs/heads/$c\" || git show-ref --verify --quiet \"refs/remotes/origin/$c\"; then b=$c; break; fi; done; fi; [ -n \"$b\" ] || { echo \"Could not determine default branch\" >&2; exit 1; }; git switch -q \"$b\"; }; f"
