@@ -130,15 +130,9 @@ preexec_functions+=(__prompt_preexec)
 precmd_functions+=(__prompt_precmd)
 
 # mise
-mise () {
-  set -o pipefail
-
-  command mise activate zsh | {
-    eval "$(cat)"
-    unset -f mise
-    command mise "$@"
-  } || return $?
-}
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+fi
 
 # zoxide
 eval "$(zoxide init zsh)"
