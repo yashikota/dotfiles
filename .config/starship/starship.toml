@@ -14,6 +14,14 @@ error_symbol = "[▶](bold red)"
 [directory]
 style = "bold yellow"
 
+[status]
+disabled = false
+format = "[$status]($style) "
+success_symbol = "0"
+success_style = "bold green"
+style = "bold red"
+pipestatus = true
+
 [git_branch]
 format ="[$symbol$branch(:$remote_branch)]($style) "
 style = "bold #ff6fff"
