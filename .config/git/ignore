@@ -1,4 +1,22 @@
-**/.claude/settings.local.json
+## OS
 **/.DS_Store
+**/Thumbs.db
+
+## Editors / IDEs
+**/.idea/
+**/.vscode/
+**/*.swp
+**/*.swo
+**/*~
+
+## Environment / local overrides
+**/.env
+**/.env.*
 **/.zshrc.local
+**/.claude/settings.local.json
+
+## Runtime / temp
+**/.direnv/
+**/.cache/
+**/tmp/
 **/plans

@@ -7,6 +7,7 @@ export LANG="en_US.UTF-8"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export GPG_TTY=$(tty)
+OS_NAME="$(uname -s)"
 setopt AUTO_CD
 ABBR_SET_EXPANSION_CURSOR=1
 
@@ -37,14 +38,18 @@ export PATH="$HOME/.bun/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # go
-export PATH="/usr/local/go/bin:$PATH"
+if [[ "$OS_NAME" == "Linux" ]]; then
+    export PATH="/usr/local/go/bin:$PATH"
+fi
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
 
 # java
-export JAVA_HOME="/usr/local/jdk-21"
-export PATH="$JAVA_HOME/bin:$PATH"
+if [[ "$OS_NAME" == "Linux" ]]; then
+    export JAVA_HOME="/usr/local/jdk-21"
+    export PATH="$JAVA_HOME/bin:$PATH"
+fi
 
 # aqua
 export AQUA_ROOT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua"
@@ -152,8 +157,9 @@ case "$(uname)" in
     Darwin) alias gomi='trash' ;;
 esac
 
-# gcc
-alias gcc='gcc-14 -fanalyzer'
+if [[ "$OS_NAME" == "Linux" ]]; then
+    alias gcc='gcc-14 -fanalyzer'
+fi
 
 # ==================== #
 #    Abbreviations     #
@@ -161,7 +167,9 @@ alias gcc='gcc-14 -fanalyzer'
 _setup_abbr() {
     # apps
     abbr add -S --quieter -- -='cd -'
-    abbr add -S --quieter inst='sudo apt install -y'
+    if [[ "$OS_NAME" == "Linux" ]]; then
+        abbr add -S --quieter inst='sudo apt install -y'
+    fi
     abbr add -S --quieter m='make'
     abbr add -S --quieter c='code .'
     abbr add -S --quieter cur='cursor .'

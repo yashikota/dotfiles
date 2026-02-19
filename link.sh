@@ -1,6 +1,9 @@
 # exit on error or undefined variable
 set -ue
 
+DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
+BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
+
 # Color variables
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
@@ -8,24 +11,39 @@ MAGENTA=$(tput setaf 5)
 CYAN=$(tput setaf 6)
 RESET=$(tput sgr0)
 
-# if not exist, create directory
-if [ ! -d ~/.config ]; then
-  mkdir ~/.config
-fi
+mkdir -p "$HOME/.config"
+mkdir -p "$BACKUP_DIR"
+
+backup_target() {
+    local target="$1"
+    local name="$2"
+
+    [ ! -e "$target" ] && return 0
+    # Skip if already linked to this repo.
+    if [ -L "$target" ] && [ "$(readlink "$target")" = "$DOTFILES_DIR/$name" ]; then
+        return 0
+    fi
+    mkdir -p "$BACKUP_DIR/$(dirname "$name")"
+    mv "$target" "$BACKUP_DIR/$name"
+    echo "${YELLOW}Backed up $target -> $BACKUP_DIR/$name${RESET}"
+}
 
 # link
-for f in .config/*; do
-    target="$HOME/.config/$(basename "$f")"
-    [ -e "$target" ] && rm -rf "$target"
-    ln -svfn "$(pwd)/$f" "$target"
+for f in "$DOTFILES_DIR"/.config/*; do
+    name="$(basename "$f")"
+    target="$HOME/.config/$name"
+    backup_target "$target" ".config/$name"
+    mkdir -p "$(dirname "$target")"
+    ln -svfn "$f" "$target"
 done
 
 # link .claude
-if [ -d ".claude" ]; then
+if [ -d "$DOTFILES_DIR/.claude" ]; then
     target="$HOME/.claude"
-    [ -e "$target" ] && rm -rf "$target"
-    ln -svfn "$(pwd)/.claude" "$target"
+    backup_target "$target" ".claude"
+    ln -svfn "$DOTFILES_DIR/.claude" "$target"
 fi
 
 # Done
 echo "${GREEN}Done!${RESET}"
+echo "${CYAN}Backup directory: $BACKUP_DIR${RESET}"
