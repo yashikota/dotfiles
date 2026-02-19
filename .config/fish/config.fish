@@ -5,6 +5,7 @@ if status is-interactive
     set -g fish_greeting ""
     set -Ux TERM xterm-256color
     export XDG_CONFIG_HOME="$HOME/.config"
+    export XDG_DATA_HOME="$HOME/.local/share"
 
     # directory colors
     export LS_COLORS="no=01;32:fi=01;97:di=01;36:ex=01;31:ln=01;35"
@@ -33,8 +34,8 @@ if status is-interactive
     ### environment vars ###
     ### ================ ###
     # deno
-    export PATH="/home/kota/.local/bin:$PATH"
-    export DENO_INSTALL="/home/kota/.deno"
+    export PATH="$HOME/.local/bin:$PATH"
+    export DENO_INSTALL="$HOME/.deno"
     export PATH="$DENO_INSTALL/bin:$PATH"
 
     # bun
@@ -44,14 +45,18 @@ if status is-interactive
     export PATH="$HOME/.cargo/bin:$PATH"
 
     # go
-    export PATH="$PATH:/usr/local/go/bin"
+    if test (uname) = Linux
+        export PATH="/usr/local/go/bin:$PATH"
+    end
     export GOPATH="$HOME/go"
     export GOBIN="$GOPATH/bin"
     export PATH="$PATH:$GOBIN"
 
     # java
-    export JAVA_HOME="/usr/local/jdk-21"
-    export PATH="$JAVA_HOME/bin:$PATH"
+    if test (uname) = Linux
+        export JAVA_HOME="/usr/local/jdk-21"
+        export PATH="$JAVA_HOME/bin:$PATH"
+    end
 
     # starship
     starship init fish | source
@@ -71,7 +76,7 @@ if status is-interactive
     string match -r ".wasmtime" "$PATH" > /dev/null; or set -gx PATH "$WASMTIME_HOME/bin" $PATH
 
     # pnpm
-    set -gx PNPM_HOME "/home/kota/.local/share/pnpm"
+    set -gx PNPM_HOME "$HOME/.local/share/pnpm"
     if not string match -q -- $PNPM_HOME $PATH
     set -gx PATH "$PNPM_HOME" $PATH
     end
@@ -97,11 +102,15 @@ if status is-interactive
     end
 
     # gcc
-    alias gcc='gcc-14 -fanalyzer'
+    if test (uname) = Linux
+        alias gcc='gcc-14 -fanalyzer'
+    end
 
     # apps
     abbr --add - cd -
-    abbr --add inst sudo apt install -y
+    if test (uname) = Linux
+        abbr --add inst sudo apt install -y
+    end
     abbr --add m make
     abbr --add c code .
     abbr --add cu cursor .

@@ -25,15 +25,20 @@ function check_already_installed() {
     return 1
 }
 
+function package_installed() {
+    local pkg="$1"
+    dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "install ok installed"
+}
+
 # install dependencies
 function install_dependencies() {
     sudo apt update -qq
-    cat "${SCRIPT_DIR}/apps.txt" | while read line
-    do
-        type -p $line >/dev/null && { echo "${CYAN}$line is already installed${RESET}"; } && continue
-        sudo apt install -qq -y $line
+    while IFS= read -r line; do
+        [ -z "$line" ] && continue
+        package_installed "$line" && { echo "${CYAN}$line is already installed${RESET}"; continue; }
+        sudo apt install -qq -y "$line"
         echo "${YELLOW}$line installed.${RESET}"
-    done
+    done < "${SCRIPT_DIR}/apps.txt"
 }
 
 # generate EN_US.UTF-8 locale

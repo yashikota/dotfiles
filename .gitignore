@@ -7,7 +7,9 @@
 zsh-abbr/
 
 # fish
-fish_variables
+.config/zsh/.zsh_history
+.config/zsh/.zcompdump*
+.config/fish/fish_variables
 
 # claude
 .claude/*
