@@ -7,9 +7,6 @@
 zsh-abbr/
 
 # fish
-fish_variables
-
-# dotfiles local/runtime state
 .config/zsh/.zsh_history
 .config/zsh/.zcompdump*
 .config/fish/fish_variables

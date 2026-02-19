@@ -38,8 +38,7 @@ function install_dependencies() {
         package_installed "$line" && { echo "${CYAN}$line is already installed${RESET}"; continue; }
         sudo apt install -qq -y "$line"
         echo "${YELLOW}$line installed.${RESET}"
-    done
-    < "${SCRIPT_DIR}/apps.txt"
+    done < "${SCRIPT_DIR}/apps.txt"
 }
 
 # generate EN_US.UTF-8 locale
