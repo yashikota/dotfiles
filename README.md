@@ -32,7 +32,7 @@
 5. Set ZDOTDIR
 
     ```sh
-    echo 'ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zshenv
+    ln -s ~/.config/zsh/.zshenv ~/.zshenv
     ```
 
 6. Change Shell
@@ -73,7 +73,7 @@
 5. Set ZDOTDIR
 
     ```sh
-    echo 'ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zshenv
+    ln -s ~/.config/zsh/.zshenv ~/.zshenv
     ```
 
 6. Change Shell

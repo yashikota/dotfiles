@@ -44,6 +44,13 @@ if [ -d "$DOTFILES_DIR/.claude" ]; then
     ln -svfn "$DOTFILES_DIR/.claude" "$target"
 fi
 
+# link ~/.zshenv to keep ZDOTDIR user-local
+if [ -f "$DOTFILES_DIR/.config/zsh/.zshenv" ]; then
+    target="$HOME/.zshenv"
+    backup_target "$target" ".zshenv"
+    ln -svfn "$DOTFILES_DIR/.config/zsh/.zshenv" "$target"
+fi
+
 # Done
 echo "${GREEN}Done!${RESET}"
 echo "${CYAN}Backup directory: $BACKUP_DIR${RESET}"

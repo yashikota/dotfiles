@@ -16,10 +16,10 @@ bash mac/setup.sh && bash link.sh
 bash linux/setup.sh && bash link.sh
 
 # Set ZDOTDIR (required after setup)
-echo 'ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zshenv
+ln -s ~/.config/zsh/.zshenv ~/.zshenv
 ```
 
-`link.sh` symlinks everything under `.config/` into `$HOME/.config/` and `.claude/` into `$HOME/.claude/`. It removes existing targets before creating symlinks.
+`link.sh` symlinks everything under `.config/` into `$HOME/.config/`, `.claude/` into `$HOME/.claude/`, and `~/.zshenv` from `.config/zsh/.zshenv` if present. It backs up existing targets before creating symlinks.
 
 ## Architecture
 
@@ -28,7 +28,7 @@ All configuration lives under `.config/` following XDG conventions. Platform-spe
 ### Shell (Zsh)
 
 - Entry point: `.config/zsh/.zshrc`
-- ZDOTDIR must be set to `$HOME/.config/zsh` via `/etc/zshenv`
+- ZDOTDIR is set in `.config/zsh/.zshenv` and linked to `~/.zshenv`
 - Plugin management: sheldon (`.config/sheldon/plugins.toml`) with `zsh-defer` for deferred loading
 - Prompt: starship (`.config/starship/starship.toml`)
 - Custom functions: `.config/zsh/functions/*.zsh` — each file is auto-sourced from `.zshrc`
