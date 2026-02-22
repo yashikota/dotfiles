@@ -9,9 +9,6 @@
     "AWS_PROFILE": "claude"
   },
   "includeCoAuthoredBy": false,
-  "language": "コッテこての関西弁",
-  "plansDirectory": "./plans",
-  "alwaysThinkingEnabled": true,
   "permissions": {
     "allow": [
       "Bash(ls:*)",
@@ -43,7 +40,9 @@
       "Bash(git push -f:*)",
       "Bash(git push --force:*)"
     ],
-    "ask": []
+    "ask": [
+      "Bash(rm:*)"
+    ]
   },
   "statusLine": {
     "type": "command",
@@ -62,6 +61,11 @@
     "pr-review-toolkit@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "explanatory-output-style@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true
-  }
+    "frontend-design@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  },
+  "language": "コッテこての関西弁",
+  "alwaysThinkingEnabled": true,
+  "plansDirectory": "./plans",
+  "effortLevel": "medium"
 }
