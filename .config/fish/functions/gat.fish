@@ -7,5 +7,15 @@ function gat
     set cols (tput cols)
     set width_px (math "$cols * 10")
 
-    img2sixel -w "$width_px"px $argv
+    if command -v magick >/dev/null 2>&1
+        for img in $argv
+            magick "$img" -auto-orient - | img2sixel -w "$width_px"px -
+        end
+    else if command -v convert >/dev/null 2>&1
+        for img in $argv
+            convert "$img" -auto-orient - | img2sixel -w "$width_px"px -
+        end
+    else
+        img2sixel -w "$width_px"px $argv
+    end
 end
