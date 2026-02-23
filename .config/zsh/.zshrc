@@ -10,6 +10,8 @@ export GPG_TTY=$(tty)
 OS_NAME="$(uname -s)"
 setopt AUTO_CD
 ABBR_SET_EXPANSION_CURSOR=1
+export VISUAL="${VISUAL:-vim}"
+export EDITOR="${EDITOR:-$VISUAL}"
 
 # Directory colors
 export LS_COLORS="no=01;32:fi=01;97:di=01;36:ex=01;31:ln=01;35"
@@ -87,6 +89,11 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
 autoload -Uz compinit && compinit
 # 部分一致
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[-_]=* r:|=*' 'l:|=* r:|=*'
+
+# edit-command-line: 編集中コマンドを外部エディタで開く (Ctrl+o)
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^o' edit-command-line
 
 # ==================== #
 #   Tool Initializers  #
