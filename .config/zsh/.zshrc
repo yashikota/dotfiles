@@ -95,6 +95,32 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^o' edit-command-line
 
+# bracketed-paste: コマンド先頭の "$ " を取り除く
+_strip_paste_prompt_dollar() {
+    emulate -L zsh
+    local -a pasted_lines
+    local -a stripped_lines
+    local line
+    local trimmed
+
+    pasted_lines=("${(@f)PASTED}")
+    for line in "${pasted_lines[@]}"; do
+        trimmed="${line#"${line%%[![:space:]]*}"}"
+        if [[ "$trimmed" == '$ '* ]]; then
+            stripped_lines+=("${trimmed#\$ }")
+        elif [[ "$trimmed" == '$' ]]; then
+            stripped_lines+=("")
+        elif [[ "$trimmed" == \$* ]]; then
+            stripped_lines+=("${trimmed#\$}")
+        else
+            stripped_lines+=("$line")
+        fi
+    done
+    PASTED="${(j:\n:)stripped_lines}"
+}
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+zstyle ':bracketed-paste-magic' paste-init _strip_paste_prompt_dollar
 # ==================== #
 #   Tool Initializers  #
 # ==================== #
