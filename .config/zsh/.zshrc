@@ -103,7 +103,6 @@ _strip_paste_prompt_dollar() {
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 zstyle ':bracketed-paste-magic' paste-init _strip_paste_prompt_dollar
-
 # ==================== #
 #   Tool Initializers  #
 # ==================== #
