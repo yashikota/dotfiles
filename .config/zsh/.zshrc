@@ -102,16 +102,16 @@ _strip_paste_prompt_dollar() {
     local -a stripped_lines
     local line
     local trimmed
+    local indent
 
     pasted_lines=("${(@f)PASTED}")
     for line in "${pasted_lines[@]}"; do
-        trimmed="${line#"${line%%[![:space:]]*}"}"
+        indent="${line%%[![:space:]]*}"
+        trimmed="${line#$indent}"
         if [[ "$trimmed" == '$ '* ]]; then
-            stripped_lines+=("${trimmed#\$ }")
+            stripped_lines+=("${indent}${trimmed#\$ }")
         elif [[ "$trimmed" == '$' ]]; then
-            stripped_lines+=("")
-        elif [[ "$trimmed" == \$* ]]; then
-            stripped_lines+=("${trimmed#\$}")
+            stripped_lines+=("${indent}")
         else
             stripped_lines+=("$line")
         fi
