@@ -20,3 +20,6 @@
 **/.cache/
 **/tmp/
 **/plans
+
+## Misc
+**/.playwright-cli/
