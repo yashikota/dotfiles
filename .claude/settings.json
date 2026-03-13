@@ -10,7 +10,6 @@
   },
   "includeCoAuthoredBy": false,
   "permissions": {
-    "defaultMode": "bypassPermissions",
     "allow": [
       "Bash(ls:*)",
       "Bash(cd:*)",
@@ -43,7 +42,9 @@
     ],
     "ask": [
       "Bash(rm:*)"
-    ]
+    ],
+    "defaultMode": "bypassPermissions",
+    "skipDangerousModePermissionPrompt": true
   },
   "statusLine": {
     "type": "command",
