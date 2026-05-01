@@ -69,6 +69,9 @@ export PATH="$PNPM_HOME:$PATH"
 # tfenv
 export PATH="$HOME/.tfenv/bin:$PATH"
 
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
+
 # ==================== #
 #       Plugins        #
 # ==================== #
@@ -116,7 +119,7 @@ _strip_paste_prompt_dollar() {
             stripped_lines+=("$line")
         fi
     done
-    PASTED="${(j:\n:)stripped_lines}"
+    PASTED="${(F)stripped_lines}"
 }
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
