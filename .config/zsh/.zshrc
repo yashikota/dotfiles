@@ -85,7 +85,9 @@ _setup_syntax_highlighting() {
     ZSH_HIGHLIGHT_STYLES[builtin]='fg=cyan,bold'
     ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
 }
-zsh-defer _setup_syntax_highlighting
+if (( $+functions[zsh-defer] )); then
+    zsh-defer _setup_syntax_highlighting
+fi
 
 # zsh-autosuggestions color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=250'
@@ -243,7 +245,9 @@ _setup_abbr() {
     # docker
     abbr add -S --quieter dcu='docker compose up --build'
 }
-_setup_abbr
+if (( $+functions[abbr] )); then
+    _setup_abbr
+fi
 
 # ==================== #
 #      Functions       #
