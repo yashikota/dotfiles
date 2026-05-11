@@ -6,7 +6,7 @@ set -Eeuo pipefail
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-cd $HOME
+cd "$HOME"
 
 # Color variables
 GREEN=$(tput setaf 2)
@@ -17,7 +17,7 @@ RESET=$(tput sgr0)
 
 function check_already_installed() {
     local app=$1
-    if type -p $app >/dev/null; then
+    if type -p "$app" >/dev/null; then
         echo "${CYAN}$app installation skipped${RESET}"
         return 0
     fi
@@ -56,11 +56,19 @@ function install_zoxide() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 }
 
+# install a cargo binary if it's not already on PATH
+function cargo_install_if_missing() {
+    local bin="$1"
+    local crate="${2:-$1}"
+    check_already_installed "$bin" && return
+    cargo install "$crate" --locked
+}
+
 # install other apps
 function install_other_apps() {
-    cargo install bottom --locked
-    cargo install git-delta --locked
-    cargo install zellij --locked
+    cargo_install_if_missing btm bottom
+    cargo_install_if_missing delta git-delta
+    cargo_install_if_missing zellij
 }
 
 # main

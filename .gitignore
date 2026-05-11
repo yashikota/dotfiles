@@ -2,14 +2,12 @@
 .zsh_history
 .zcompdump*
 .zsh_sessions/
+.config/zsh/.zshrc.local
 
 # zsh-abbr
 zsh-abbr/
 
 # fish
-.config/zsh/.zsh_history
-.config/zsh/.zcompdump*
-.config/zsh/.zshrc.local
 .config/fish/fish_variables
 
 # claude

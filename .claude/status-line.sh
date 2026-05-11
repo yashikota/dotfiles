@@ -57,10 +57,10 @@ if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         staged_stats=$(git diff --numstat --cached 2>/dev/null | awk '{added+=$1; removed+=$2} END {print added+0, removed+0}')
         unstaged_stats=$(git diff --numstat 2>/dev/null | awk '{added+=$1; removed+=$2} END {print added+0, removed+0}')
 
-        staged_added=$(echo $staged_stats | cut -d' ' -f1)
-        staged_removed=$(echo $staged_stats | cut -d' ' -f2)
-        unstaged_added=$(echo $unstaged_stats | cut -d' ' -f1)
-        unstaged_removed=$(echo $unstaged_stats | cut -d' ' -f2)
+        staged_added=$(echo "$staged_stats" | cut -d' ' -f1)
+        staged_removed=$(echo "$staged_stats" | cut -d' ' -f2)
+        unstaged_added=$(echo "$unstaged_stats" | cut -d' ' -f1)
+        unstaged_removed=$(echo "$unstaged_stats" | cut -d' ' -f2)
 
         # Count lines in untracked files (files starting with ??)
         untracked_lines=$(echo "$status_output" | grep '^??' | cut -c4- | xargs -I {} sh -c 'test -f "{}" && wc -l < "{}" || echo 0' 2>/dev/null | awk '{sum+=$1} END {print sum+0}')

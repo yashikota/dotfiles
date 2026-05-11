@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # exit on error or undefined variable
 set -ue
 
@@ -7,7 +8,6 @@ BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 # Color variables
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
-MAGENTA=$(tput setaf 5)
 CYAN=$(tput setaf 6)
 RESET=$(tput sgr0)
 

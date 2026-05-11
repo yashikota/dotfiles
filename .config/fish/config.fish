@@ -3,7 +3,7 @@ if status is-interactive
     export LC_ALL="en_US.utf8"
     export LANG="en_US.utf8"
     set -g fish_greeting ""
-    set -Ux TERM xterm-256color
+    set -gx TERM xterm-256color
     export XDG_CONFIG_HOME="$HOME/.config"
     export XDG_DATA_HOME="$HOME/.local/share"
 
@@ -115,17 +115,23 @@ if status is-interactive
     abbr --add c code .
     abbr --add cu cursor .
     abbr --add k kubectl
+    abbr --add lg lazygit
+    abbr --add tf terraform
 
     # git
     abbr --add ga git add -A
     abbr --add gc --set-cursor 'git commit -m "%"'
     abbr --add gp git push
-    abbr --add gpo git push -u origin main
+    abbr --add gpo git push -u origin HEAD
     abbr --add gpl git pull
     abbr --add gb git branch -a
     abbr --add gs git status
+    abbr --add gsw git switch
+    abbr --add gsm git default
     abbr --add gd git diff HEAD
     abbr --add gr git reset --hard HEAD~
+    abbr --add gsub git submodule update --init --recursive
+    abbr --add glog git log --oneline --graph --decorate --all
 
     # gh
     abbr --add ghb gh browse
