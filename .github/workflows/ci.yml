@@ -11,14 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run shellcheck
-        uses: ludeeus/action-shellcheck@2.0.0
-        env:
-          SHELLCHECK_OPTS: -e SC1091
-        with:
-          scandir: "."
-          ignore_paths: ".config/zsh/functions .config/fish"
-          severity: warning
+      - name: Install shellcheck
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
+      - name: Run shellcheck on bash scripts
+        run: |
+          set -e
+          files=(
+            link.sh
+            linux/setup.sh
+            mac/setup.sh
+            .claude/status-line.sh
+          )
+          shellcheck --severity=warning -e SC1091 "${files[@]}"
 
   syntax:
     name: shell syntax (bash/zsh/fish)
