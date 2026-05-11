@@ -58,6 +58,12 @@ function install_mise() {
     curl https://mise.run | sh
 }
 
+# install tailscale
+function install_tailscale() {
+    check_already_installed tailscale && return
+    curl -fsSL https://tailscale.com/install.sh | sh
+}
+
 # install docker
 function install_docker() {
     check_already_installed docker && return
@@ -129,6 +135,7 @@ generate_locale
 install_dependencies
 install_starship
 install_mise
+install_tailscale
 install_docker
 install_rust
 install_zoxide
