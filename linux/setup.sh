@@ -6,7 +6,7 @@ set -Eeuo pipefail
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-cd $HOME
+cd "$HOME"
 
 # Color variables
 GREEN=$(tput setaf 2)
@@ -17,7 +17,7 @@ RESET=$(tput sgr0)
 
 function check_already_installed() {
     local app=$1
-    if type -p $app >/dev/null; then
+    if type -p "$app" >/dev/null; then
         echo "${CYAN}$app installation skipped${RESET}"
         return 0
     fi
@@ -62,7 +62,6 @@ function install_mise() {
 function install_tailscale() {
     check_already_installed tailscale && return
     curl -fsSL https://tailscale.com/install.sh | sh
-    sudo tailscale up
 }
 
 # install docker
@@ -102,16 +101,28 @@ function install_lazygit() {
     go install github.com/jesseduffield/lazygit@latest
 }
 
+# install a cargo binary if it's not already on PATH
+function cargo_install_if_missing() {
+    local bin="$1"
+    local crate="${2:-$1}"
+    check_already_installed "$bin" && return
+    cargo install "$crate" --locked
+}
+
 # install other apps
 function install_other_apps() {
-    cargo install bottom --locked
-    cargo install git-delta --locked
-    cargo install zellij --locked
-    cargo install sheldon --locked
-    cargo install shpool --locked
-    go install github.com/simonwhitaker/gibo@latest
-    curl -fsSL https://gomi.dev/install | bash
-    sudo mv $HOME/bin/gomi /usr/local/bin/gomi
+    cargo_install_if_missing btm bottom
+    cargo_install_if_missing delta git-delta
+    cargo_install_if_missing zellij
+    cargo_install_if_missing sheldon
+    cargo_install_if_missing shpool
+    if ! check_already_installed gibo; then
+        go install github.com/simonwhitaker/gibo@latest
+    fi
+    if ! check_already_installed gomi; then
+        curl -fsSL https://gomi.dev/install | bash
+        sudo mv "$HOME/bin/gomi" /usr/local/bin/gomi
+    fi
 }
 
 # disable login message
@@ -124,6 +135,7 @@ generate_locale
 install_dependencies
 install_starship
 install_mise
+install_tailscale
 install_docker
 install_rust
 install_zoxide

@@ -70,12 +70,14 @@ export PATH="$PNPM_HOME:$PATH"
 export PATH="$HOME/.tfenv/bin:$PATH"
 
 # Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+[[ -f "$HOME/.vite-plus/env" ]] && . "$HOME/.vite-plus/env"
 
 # ==================== #
 #       Plugins        #
 # ==================== #
-eval "$(sheldon source)"
+if command -v sheldon >/dev/null 2>&1; then
+    eval "$(sheldon source)"
+fi
 
 # zsh-syntax-highlighting colors
 _setup_syntax_highlighting() {
@@ -129,7 +131,9 @@ zstyle ':bracketed-paste-magic' paste-init _strip_paste_prompt_dollar
 # ==================== #
 # starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-eval "$(starship init zsh)"
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi
 
 # OSC 2 - タブタイトルにgit root名を設定
 # OSC 7 - 作業ディレクトリをターミナルに通知
@@ -176,10 +180,14 @@ if command -v mise >/dev/null 2>&1; then
 fi
 
 # zoxide
-eval "$(zoxide init zsh)"
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init zsh)"
+fi
 
 # git-wt
-eval "$(git wt --init zsh)"
+if git wt --help >/dev/null 2>&1; then
+    eval "$(git wt --init zsh)"
+fi
 
 # ==================== #
 #       Aliases        #
@@ -217,7 +225,7 @@ _setup_abbr() {
     abbr add -S --quieter ga='git add -A'
     abbr add -S --quieter gc='git commit -m "%"'
     abbr add -S --quieter gp='git push'
-    abbr add -S --quieter gpo='git push -u origin main'
+    abbr add -S --quieter gpo='git push -u origin HEAD'
     abbr add -S --quieter gpl='git pull'
     abbr add -S --quieter gb='git branch -a'
     abbr add -S --quieter gs='git status'

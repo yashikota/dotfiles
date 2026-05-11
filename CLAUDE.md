@@ -46,8 +46,8 @@ All configuration lives under `.config/` following XDG conventions. Platform-spe
 | Tmux | `.config/tmux/tmux.conf` |
 | EZA | `.config/eza/theme.yml` |
 | Fish (alt shell) | `.config/fish/config.fish` |
-| Mise (runtimes) | `.config/mise/config.toml` |
-| Aqua (tools) | `.config/aquaproj-aqua/aqua.yaml` |
+
+Runtime/tool managers (`mise`, `aqua`) are installed by the platform setup scripts and have their PATH/env exports configured in `.zshrc` / `config.fish`. Per-tool configs (`~/.config/mise/config.toml`, `~/.config/aquaproj-aqua/aqua.yaml`) are managed outside this repo.
 
 ### Conventions
 
