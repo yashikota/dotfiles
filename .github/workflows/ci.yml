@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install shellcheck
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
+      - name: Run shellcheck on bash scripts
+        run: |
+          set -e
+          files=(
+            link.sh
+            linux/setup.sh
+            mac/setup.sh
+            .claude/status-line.sh
+          )
+          shellcheck --severity=warning -e SC1091 "${files[@]}"
+
+  syntax:
+    name: shell syntax (bash/zsh/fish)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install shells
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq zsh fish
+      - name: bash -n on shell scripts
+        run: |
+          set -e
+          for f in link.sh linux/setup.sh mac/setup.sh .claude/status-line.sh; do
+            echo "checking $f"
+            bash -n "$f"
+          done
+      - name: zsh -n on zsh configs
+        run: |
+          set -e
+          zsh -n .config/zsh/.zshrc
+          zsh -n .config/zsh/.zshenv
+          for f in .config/zsh/functions/*.zsh; do
+            echo "checking $f"
+            zsh -n "$f"
+          done
+      - name: fish -n on fish configs
+        run: |
+          set -e
+          fish -n .config/fish/config.fish
+          for f in .config/fish/functions/*.fish .config/fish/completions/*.fish .config/fish/conf.d/*.fish; do
+            [ -e "$f" ] || continue
+            echo "checking $f"
+            fish -n "$f"
+          done
