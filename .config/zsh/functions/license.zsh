@@ -1,9 +1,16 @@
 # LICENSE 生成
 # Usage: license
 license() {
+    local git_root
+    git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [[ -z "$git_root" ]]; then
+        echo "Error: not inside a git repository" >&2
+        return 1
+    fi
+
     local year=$(date +%Y)
 
-    cat <<EOF > LICENSE
+    cat <<EOF > "${git_root}/LICENSE"
 MIT License
 
 Copyright (c) ${year} kota
