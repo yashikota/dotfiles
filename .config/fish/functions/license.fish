@@ -1,19 +1,16 @@
-# LICENSE 生成
-# Usage: license
-license() {
-    local git_root
-    git_root=$(git rev-parse --show-toplevel 2>/dev/null)
-    if [[ -z "$git_root" ]]; then
+function license
+    set -l git_root (git rev-parse --show-toplevel 2>/dev/null)
+    if test -z "$git_root"
         echo "Error: not inside a git repository" >&2
         return 1
-    fi
+    end
 
-    local year=$(date +%Y)
+    set -l year (date +%Y)
 
-    cat <<EOF > "${git_root}/LICENSE"
+    cat >"$git_root/LICENSE" <<EOF
 MIT License
 
-Copyright (c) ${year} kota
+Copyright (c) $year kota
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,4 +30,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 EOF
-}
+end
