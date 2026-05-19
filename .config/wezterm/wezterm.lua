@@ -84,12 +84,6 @@ for _, rule in ipairs(wezterm.default_hyperlink_rules()) do
     table.insert(config.hyperlink_rules, rule)
 end
 
--- ファイルパスをVS Codeで開けるように
-table.insert(config.hyperlink_rules, {
-    regex = [[([\w/][\w/\.-]*\.\w+)(:\d+)?(:\d+)?]],
-    format = "vscode://file$PWD/$1$2$3",
-})
-
 -- GitHub issue/PR参照（例: owner/repo#123）
 table.insert(config.hyperlink_rules, {
     regex = [[\b([A-Za-z0-9_-]+/[A-Za-z0-9_-]+)#(\d+)\b]],
@@ -100,19 +94,5 @@ table.insert(config.hyperlink_rules, {
 config.quit_when_all_windows_are_closed = true
 config.check_for_updates = true
 config.window_close_confirmation = "AlwaysPrompt"
-
--- open-uri イベントハンドラー
--- $PWD を実際のカレントディレクトリに置換して VS Code で開く
-wezterm.on("open-uri", function(window, pane, uri)
-    local start = uri:find("$PWD", 1, true)
-    if start then
-        local cwd_uri = pane:get_current_working_dir()
-        if cwd_uri and cwd_uri.file_path then
-            uri = uri:gsub("$PWD", cwd_uri.file_path)
-            wezterm.open_with(uri)
-            return false
-        end
-    end
-end)
 
 return config
