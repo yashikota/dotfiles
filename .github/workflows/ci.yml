@@ -160,7 +160,7 @@ jobs:
       - uses: actions/checkout@v4
       - id: set-matrix
         run: |
-          tools=$(grep -v '^\s*#' linux/tools.conf | grep -v '^\s*$' | awk -F'\t' '{print $2}' | jq -R . | jq -sc .)
+          tools=$(python3 linux/parse_tools.py json linux/tools.toml)
           echo "matrix={\"tool\":$tools}" >> "$GITHUB_OUTPUT"
 
   linux-tool:
@@ -178,10 +178,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          line=$(awk -F'\t' -v t="$TOOL" '$2 == t' linux/tools.conf)
-          type=$(echo "$line" | awk -F'\t' '{print $1}')
-          arg=$(echo "$line"  | awk -F'\t' '{print $3}')
-          extra=$(echo "$line" | awk -F'\t' '{print $4}')
+          # read config from tools.toml
+          eval "$(python3 linux/parse_tools.py get linux/tools.toml "$TOOL")"
 
           # prerequisites
           case "$type" in
@@ -196,22 +194,21 @@ jobs:
           echo "::group::Installing $TOOL ($type)"
           case "$type" in
             curl)
-              if [ -n "$extra" ]; then
+              if [ -n "${flags:-}" ]; then
                 # shellcheck disable=SC2086
-                curl -fsSL "$arg" | sh $extra
+                curl -fsSL "$url" | sh $flags
               else
-                curl -fsSL "$arg" | sh
+                curl -fsSL "$url" | sh
               fi
               ;;
             cargo)
-              crate="${arg:-$TOOL}"
-              cargo install "$crate" --locked
+              cargo install "${crate:-$TOOL}" --locked
               ;;
             go)
-              go install "$arg"
+              go install "$module"
               ;;
             script)
-              bash "$arg"
+              bash "$path"
               ;;
           esac
           echo "::endgroup::"

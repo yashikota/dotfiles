@@ -1,0 +1,57 @@
+# Centralized tool definitions for linux/setup.sh and CI.
+# Section name = binary to check on PATH.
+# Types: curl, cargo, go, script
+
+[starship]
+type = "curl"
+url = "https://starship.rs/install.sh"
+flags = "-s -- -y"
+
+[mise]
+type = "curl"
+url = "https://mise.run"
+
+[tailscale]
+type = "curl"
+url = "https://tailscale.com/install.sh"
+
+[zoxide]
+type = "curl"
+url = "https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
+
+[docker]
+type = "script"
+path = "linux/installers/docker.sh"
+
+[rustup]
+type = "script"
+path = "linux/installers/rust.sh"
+
+[gomi]
+type = "script"
+path = "linux/installers/gomi.sh"
+
+[btm]
+type = "cargo"
+crate = "bottom"
+
+[delta]
+type = "cargo"
+crate = "git-delta"
+
+[zellij]
+type = "cargo"
+
+[sheldon]
+type = "cargo"
+
+[shpool]
+type = "cargo"
+
+[lazygit]
+type = "go"
+module = "github.com/jesseduffield/lazygit@latest"
+
+[gibo]
+type = "go"
+module = "github.com/simonwhitaker/gibo@latest"

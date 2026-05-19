@@ -42,37 +42,40 @@ function install_dependencies() {
     done < "${SCRIPT_DIR}/apps.txt"
 }
 
-# install tools listed in tools.conf
+# install tools listed in tools.toml
 function install_tools() {
-    while IFS=$'\t' read -r type binary arg extra; do
-        # skip comments and empty lines
-        [[ -z "$type" || "$type" == \#* ]] && continue
+    local toml="${SCRIPT_DIR}/tools.toml"
+    local parser="${SCRIPT_DIR}/parse_tools.py"
 
+    for binary in $(python3 "$parser" names "$toml"); do
         check_already_installed "$binary" && continue
+
+        # read tool config into local variables
+        local type="" url="" flags="" crate="" module="" path=""
+        eval "$(python3 "$parser" get "$toml" "$binary")"
 
         echo "${YELLOW}Installing $binary ($type)...${RESET}"
         case "$type" in
             curl)
-                if [ -n "${extra:-}" ]; then
+                if [ -n "$flags" ]; then
                     # shellcheck disable=SC2086
-                    curl -fsSL "$arg" | sh $extra
+                    curl -fsSL "$url" | sh $flags
                 else
-                    curl -fsSL "$arg" | sh
+                    curl -fsSL "$url" | sh
                 fi
                 ;;
             cargo)
-                local crate="${arg:-$binary}"
-                cargo install "$crate" --locked
+                cargo install "${crate:-$binary}" --locked
                 ;;
             go)
-                go install "$arg"
+                go install "$module"
                 ;;
             script)
-                bash "$REPO_DIR/$arg"
+                bash "$REPO_DIR/$path"
                 ;;
         esac
         echo "${GREEN}$binary installed.${RESET}"
-    done < "${SCRIPT_DIR}/tools.conf"
+    done
 }
 
 # generate EN_US.UTF-8 locale
