@@ -58,3 +58,89 @@ jobs:
             echo "checking $f"
             fish -n "$f"
           done
+
+  linux-install:
+    name: linux package install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install apt packages from apps.txt
+        run: |
+          set -e
+          sudo apt-get update -qq
+          failed=""
+          while IFS= read -r pkg; do
+            [ -z "$pkg" ] && continue
+            echo "::group::Installing $pkg"
+            if sudo apt-get install -y -qq "$pkg"; then
+              echo "OK: $pkg"
+            else
+              echo "::error::FAILED: $pkg"
+              failed="$failed $pkg"
+            fi
+            echo "::endgroup::"
+          done < linux/apps.txt
+          if [ -n "$failed" ]; then
+            echo "::error::Failed packages:$failed"
+            exit 1
+          fi
+
+  link:
+    name: symlink
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run link.sh
+        run: bash link.sh
+      - name: Verify .config symlinks
+        run: |
+          set -e
+          for f in .config/*; do
+            name="$(basename "$f")"
+            target="$HOME/.config/$name"
+            if [ ! -L "$target" ]; then
+              echo "::error::Not a symlink: $target"
+              exit 1
+            fi
+            resolved="$(readlink "$target")"
+            expected="$(pwd)/$f"
+            if [ "$resolved" != "$expected" ]; then
+              echo "::error::Wrong target: $target -> $resolved (expected $expected)"
+              exit 1
+            fi
+            echo "OK: $target -> $resolved"
+          done
+      - name: Verify .claude symlink
+        run: |
+          set -e
+          if [ -d .claude ]; then
+            target="$HOME/.claude"
+            if [ ! -L "$target" ]; then
+              echo "::error::Not a symlink: $target"
+              exit 1
+            fi
+            echo "OK: $target -> $(readlink "$target")"
+          fi
+      - name: Verify .zshenv symlink
+        run: |
+          set -e
+          if [ -f .config/zsh/.zshenv ]; then
+            target="$HOME/.zshenv"
+            if [ ! -L "$target" ]; then
+              echo "::error::Not a symlink: $target"
+              exit 1
+            fi
+            echo "OK: $target -> $(readlink "$target")"
+          fi
+
+  macos-install:
+    name: macOS brew check
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Brewfile syntax
+        run: brew bundle check --file=mac/Brewfile 2>&1 || true
+      - name: Dry-run Brewfile (list missing)
+        run: |
+          set -e
+          brew bundle list --file=mac/Brewfile --all
