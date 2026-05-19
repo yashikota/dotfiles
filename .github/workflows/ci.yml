@@ -22,6 +22,9 @@ jobs:
             mac/setup.sh
             .claude/status-line.sh
           )
+          for f in linux/installers/*.sh; do
+            [ -e "$f" ] && files+=("$f")
+          done
           shellcheck --severity=warning -e SC1091 "${files[@]}"
 
   syntax:
@@ -36,7 +39,8 @@ jobs:
       - name: bash -n on shell scripts
         run: |
           set -e
-          for f in link.sh linux/setup.sh mac/setup.sh .claude/status-line.sh; do
+          for f in link.sh linux/setup.sh mac/setup.sh .claude/status-line.sh linux/installers/*.sh; do
+            [ -e "$f" ] || continue
             echo "checking $f"
             bash -n "$f"
           done
@@ -146,3 +150,76 @@ jobs:
         run: |
           set -e
           brew bundle list --file=mac/Brewfile --all
+
+  list-tools:
+    name: list tools
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set-matrix
+        run: |
+          tools=$(grep -v '^\s*#' linux/tools.conf | grep -v '^\s*$' | awk -F'\t' '{print $2}' | jq -R . | jq -sc .)
+          echo "matrix={\"tool\":$tools}" >> "$GITHUB_OUTPUT"
+
+  linux-tool:
+    needs: list-tools
+    name: tool (${{ matrix.tool }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.list-tools.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install & verify ${{ matrix.tool }}
+        env:
+          TOOL: ${{ matrix.tool }}
+        run: |
+          set -euo pipefail
+
+          line=$(awk -F'\t' -v t="$TOOL" '$2 == t' linux/tools.conf)
+          type=$(echo "$line" | awk -F'\t' '{print $1}')
+          arg=$(echo "$line"  | awk -F'\t' '{print $3}')
+          extra=$(echo "$line" | awk -F'\t' '{print $4}')
+
+          # prerequisites
+          case "$type" in
+            cargo)
+              curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --quiet
+              . "$HOME/.cargo/env"
+              ;;
+          esac
+          export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/bin:$PATH"
+
+          # install
+          echo "::group::Installing $TOOL ($type)"
+          case "$type" in
+            curl)
+              if [ -n "$extra" ]; then
+                # shellcheck disable=SC2086
+                curl -fsSL "$arg" | sh $extra
+              else
+                curl -fsSL "$arg" | sh
+              fi
+              ;;
+            cargo)
+              crate="${arg:-$TOOL}"
+              cargo install "$crate" --locked
+              ;;
+            go)
+              go install "$arg"
+              ;;
+            script)
+              bash "$arg"
+              ;;
+          esac
+          echo "::endgroup::"
+
+          # verify
+          export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/bin:$PATH"
+          case "$TOOL" in
+            rustup) command -v rustup && cargo --version ;;
+            *)      command -v "$TOOL" ;;
+          esac
+          echo "OK: $TOOL installed successfully"

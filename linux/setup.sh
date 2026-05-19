@@ -5,6 +5,7 @@ set -Eeuo pipefail
 
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 cd "$HOME"
 
@@ -30,7 +31,7 @@ function package_installed() {
     dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "install ok installed"
 }
 
-# install dependencies
+# install apt dependencies from apps.txt
 function install_dependencies() {
     sudo apt update -qq
     while IFS= read -r line; do
@@ -41,88 +42,42 @@ function install_dependencies() {
     done < "${SCRIPT_DIR}/apps.txt"
 }
 
+# install tools listed in tools.conf
+function install_tools() {
+    while IFS=$'\t' read -r type binary arg extra; do
+        # skip comments and empty lines
+        [[ -z "$type" || "$type" == \#* ]] && continue
+
+        check_already_installed "$binary" && continue
+
+        echo "${YELLOW}Installing $binary ($type)...${RESET}"
+        case "$type" in
+            curl)
+                if [ -n "${extra:-}" ]; then
+                    # shellcheck disable=SC2086
+                    curl -fsSL "$arg" | sh $extra
+                else
+                    curl -fsSL "$arg" | sh
+                fi
+                ;;
+            cargo)
+                local crate="${arg:-$binary}"
+                cargo install "$crate" --locked
+                ;;
+            go)
+                go install "$arg"
+                ;;
+            script)
+                bash "$REPO_DIR/$arg"
+                ;;
+        esac
+        echo "${GREEN}$binary installed.${RESET}"
+    done < "${SCRIPT_DIR}/tools.conf"
+}
+
 # generate EN_US.UTF-8 locale
 function generate_locale() {
     sudo locale-gen en_US.UTF-8
-}
-
-# install starship
-function install_starship() {
-    check_already_installed starship && return
-    curl -fsSL https://starship.rs/install.sh | sh -s -- -y
-}
-
-# install mise
-function install_mise() {
-    check_already_installed mise && return
-    curl https://mise.run | sh
-}
-
-# install tailscale
-function install_tailscale() {
-    check_already_installed tailscale && return
-    curl -fsSL https://tailscale.com/install.sh | sh
-}
-
-# install docker
-function install_docker() {
-    check_already_installed docker && return
-    # Add Docker's official GPG key:
-    sudo apt-get update
-    sudo install -m 0755 -d /etc/apt/keyrings
-    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-    sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-    # Add the repository to Apt sources:
-    echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-    $(. /etc/os-release && echo "${UBUNTU_CODENAME}") stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt-get -y update
-    sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-}
-
-# install rust
-function install_rust() {
-    check_already_installed rustup && return
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --quiet
-    . "$HOME/.cargo/env"
-}
-
-# install zoxide
-function install_zoxide() {
-    check_already_installed zoxide && return
-    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-}
-
-# install lazygit
-function install_lazygit() {
-    check_already_installed lazygit && return
-    go install github.com/jesseduffield/lazygit@latest
-}
-
-# install a cargo binary if it's not already on PATH
-function cargo_install_if_missing() {
-    local bin="$1"
-    local crate="${2:-$1}"
-    check_already_installed "$bin" && return
-    cargo install "$crate" --locked
-}
-
-# install other apps
-function install_other_apps() {
-    cargo_install_if_missing btm bottom
-    cargo_install_if_missing delta git-delta
-    cargo_install_if_missing zellij
-    cargo_install_if_missing sheldon
-    cargo_install_if_missing shpool
-    if ! check_already_installed gibo; then
-        go install github.com/simonwhitaker/gibo@latest
-    fi
-    if ! check_already_installed gomi; then
-        curl -fsSL https://gomi.dev/install | bash
-        sudo mv "$HOME/bin/gomi" /usr/local/bin/gomi
-    fi
 }
 
 # disable login message
@@ -133,14 +88,7 @@ function disable_login_message() {
 # main
 generate_locale
 install_dependencies
-install_starship
-install_mise
-install_tailscale
-install_docker
-install_rust
-install_zoxide
-install_lazygit
-install_other_apps
+install_tools
 disable_login_message
 
 # Done
