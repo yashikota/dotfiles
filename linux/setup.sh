@@ -45,14 +45,14 @@ function install_dependencies() {
 # install tools listed in tools.toml
 function install_tools() {
     local toml="${SCRIPT_DIR}/tools.toml"
-    local parser="${SCRIPT_DIR}/parse_tools.py"
+    local parser="${SCRIPT_DIR}/parse_tools.sh"
 
-    for binary in $(python3 "$parser" names "$toml"); do
+    for binary in $(bash "$parser" names "$toml"); do
         check_already_installed "$binary" && continue
 
         # read tool config into local variables
         local type="" url="" flags="" crate="" module="" path=""
-        eval "$(python3 "$parser" get "$toml" "$binary")"
+        eval "$(bash "$parser" get "$toml" "$binary")"
 
         echo "${YELLOW}Installing $binary ($type)...${RESET}"
         case "$type" in
