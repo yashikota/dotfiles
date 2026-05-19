@@ -39,9 +39,6 @@ crate = "bottom"
 type = "cargo"
 crate = "git-delta"
 
-[zellij]
-type = "cargo"
-
 [sheldon]
 type = "cargo"
 
