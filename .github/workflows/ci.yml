@@ -19,9 +19,13 @@ jobs:
           files=(
             link.sh
             linux/setup.sh
+            linux/parse_tools.sh
             mac/setup.sh
             .claude/status-line.sh
           )
+          for f in linux/installers/*.sh; do
+            [ -e "$f" ] && files+=("$f")
+          done
           shellcheck --severity=warning -e SC1091 "${files[@]}"
 
   syntax:
@@ -36,7 +40,8 @@ jobs:
       - name: bash -n on shell scripts
         run: |
           set -e
-          for f in link.sh linux/setup.sh mac/setup.sh .claude/status-line.sh; do
+          for f in link.sh linux/setup.sh linux/parse_tools.sh mac/setup.sh .claude/status-line.sh linux/installers/*.sh; do
+            [ -e "$f" ] || continue
             echo "checking $f"
             bash -n "$f"
           done
@@ -58,3 +63,161 @@ jobs:
             echo "checking $f"
             fish -n "$f"
           done
+
+  linux-install:
+    name: linux package install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install apt packages from apps.txt
+        run: |
+          set -e
+          sudo apt-get update -qq
+          failed=""
+          while IFS= read -r pkg; do
+            [ -z "$pkg" ] && continue
+            echo "::group::Installing $pkg"
+            if sudo apt-get install -y -qq "$pkg"; then
+              echo "OK: $pkg"
+            else
+              echo "::error::FAILED: $pkg"
+              failed="$failed $pkg"
+            fi
+            echo "::endgroup::"
+          done < linux/apps.txt
+          if [ -n "$failed" ]; then
+            echo "::error::Failed packages:$failed"
+            exit 1
+          fi
+
+  link:
+    name: symlink
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run link.sh
+        run: bash link.sh
+        env:
+          TERM: xterm-256color
+      - name: Verify .config symlinks
+        run: |
+          set -e
+          for f in .config/*; do
+            name="$(basename "$f")"
+            target="$HOME/.config/$name"
+            if [ ! -L "$target" ]; then
+              echo "::error::Not a symlink: $target"
+              exit 1
+            fi
+            resolved="$(readlink "$target")"
+            expected="$(pwd)/$f"
+            if [ "$resolved" != "$expected" ]; then
+              echo "::error::Wrong target: $target -> $resolved (expected $expected)"
+              exit 1
+            fi
+            echo "OK: $target -> $resolved"
+          done
+      - name: Verify .claude symlink
+        run: |
+          set -e
+          if [ -d .claude ]; then
+            target="$HOME/.claude"
+            if [ ! -L "$target" ]; then
+              echo "::error::Not a symlink: $target"
+              exit 1
+            fi
+            echo "OK: $target -> $(readlink "$target")"
+          fi
+      - name: Verify .zshenv symlink
+        run: |
+          set -e
+          if [ -f .config/zsh/.zshenv ]; then
+            target="$HOME/.zshenv"
+            if [ ! -L "$target" ]; then
+              echo "::error::Not a symlink: $target"
+              exit 1
+            fi
+            echo "OK: $target -> $(readlink "$target")"
+          fi
+
+  macos-install:
+    name: macOS brew check
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Brewfile syntax
+        run: brew bundle check --file=mac/Brewfile 2>&1 || true
+      - name: Dry-run Brewfile (list missing)
+        run: |
+          set -e
+          brew bundle list --file=mac/Brewfile --all
+
+  list-tools:
+    name: list tools
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set-matrix
+        run: |
+          tools=$(bash linux/parse_tools.sh json linux/tools.toml)
+          echo "matrix={\"tool\":$tools}" >> "$GITHUB_OUTPUT"
+
+  linux-tool:
+    needs: list-tools
+    name: tool (${{ matrix.tool }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.list-tools.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install & verify ${{ matrix.tool }}
+        env:
+          TOOL: ${{ matrix.tool }}
+        run: |
+          set -euo pipefail
+
+          # read config from tools.toml
+          eval "$(bash linux/parse_tools.sh get linux/tools.toml "$TOOL")"
+
+          # prerequisites
+          case "$type" in
+            cargo)
+              curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --quiet
+              . "$HOME/.cargo/env"
+              ;;
+          esac
+          export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/bin:$PATH"
+
+          # install
+          echo "::group::Installing $TOOL ($type)"
+          case "$type" in
+            curl)
+              if [ -n "${flags:-}" ]; then
+                # shellcheck disable=SC2086
+                curl -fsSL "$url" | sh $flags
+              else
+                curl -fsSL "$url" | sh
+              fi
+              ;;
+            cargo)
+              cargo install "${crate:-$TOOL}" --locked
+              ;;
+            go)
+              go install "$module"
+              ;;
+            script)
+              bash "$path"
+              ;;
+          esac
+          echo "::endgroup::"
+
+          # verify
+          export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/bin:$PATH"
+          case "$TOOL" in
+            rustup) command -v rustup && cargo --version ;;
+            *)      command -v "$TOOL" ;;
+          esac
+          echo "OK: $TOOL installed successfully"
