@@ -22,6 +22,7 @@ packages:
   - name: rust-lang/rustup@1.29.0
 
   # dev tools
+  - name: bytecodealliance/wasmtime@v45.0.0
   - name: astral-sh/uv@0.11.16
   - name: astral-sh/ruff@0.15.14
   - name: anthropics/claude-code@v2.1.148
@@ -33,6 +34,7 @@ packages:
   - name: suzuki-shunsuke/pinact@v3.10.1
 
   # cloud & infra
+  - name: kubernetes/kubectl@v1.36.1
   - name: aws/aws-cli@2.34.52
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.74.1
