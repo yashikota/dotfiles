@@ -159,29 +159,20 @@ jobs:
           AQUA_GLOBAL_CONFIG: ${{ github.workspace }}/.config/aquaproj-aqua/aqua.yaml
         run: |
           set -euo pipefail
+          aqua_bin="${HOME}/.local/share/aquaproj-aqua/bin"
           failed=""
-          check() {
-            local name="$1"
-            shift
+          skipped="aqua aqua-proxy"
+          for cmd in "$aqua_bin"/*; do
+            name="$(basename "$cmd")"
+            case " $skipped " in *" $name "*) continue ;; esac
             echo -n "$name: "
-            if output=$("$@" 2>&1); then
+            if output=$("$cmd" --version 2>&1); then
               echo "$output" | head -1
             else
               echo "FAILED (exit $?)"
               failed="$failed $name"
             fi
-          }
-          check node node --version
-          check pnpm pnpm --version
-          check uv uv --version
-          check ruff ruff --version
-          check claude claude --version
-          check bun bun --version
-          check task task --version
-          check codex codex --version
-          check aws aws --version
-          check gcloud gcloud --version
-          check terraform terraform --version
+          done
           if [ -n "$failed" ]; then
             echo "::error::Failed version checks:$failed"
             exit 1
