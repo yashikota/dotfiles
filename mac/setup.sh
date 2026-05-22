@@ -67,7 +67,7 @@ function cargo_install_if_missing() {
 
 # install aqua packages
 function install_aqua_packages() {
-    export AQUA_GLOBAL_CONFIG="$REPO_DIR/.config/aqua.yaml"
+    export AQUA_GLOBAL_CONFIG="$REPO_DIR/.config/aquaproj-aqua/aqua.yaml"
     aqua install -a
 }
 
