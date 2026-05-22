@@ -14,16 +14,13 @@ bash mac/setup.sh && bash link.sh
 
 # Linux (Ubuntu/Debian)
 bash linux/setup.sh && bash link.sh
-
-# Set ZDOTDIR (required after setup)
-ln -s ~/.config/zsh/.zshenv ~/.zshenv
 ```
 
 `link.sh` symlinks everything under `.config/` into `$HOME/.config/`, `.claude/` into `$HOME/.claude/`, and `~/.zshenv` from `.config/zsh/.zshenv` if present. It backs up existing targets before creating symlinks.
 
 ## Architecture
 
-All configuration lives under `.config/` following XDG conventions. Platform-specific install scripts are in `mac/` (Homebrew + Brewfile) and `linux/` (apt + cargo/go installs).
+All configuration lives under `.config/` following XDG conventions. Platform-specific install scripts are in `mac/` (Homebrew + Brewfile) and `linux/` (`tools.toml` defines all packages — apt, curl, cargo, go, and script installers).
 
 ### Shell (Zsh)
 
