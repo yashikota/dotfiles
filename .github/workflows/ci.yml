@@ -139,6 +139,53 @@ jobs:
             echo "OK: $target -> $(readlink "$target")"
           fi
 
+  aqua:
+    name: aqua tools version check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install aqua
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v3.2.0/aqua-installer | bash
+          echo "$HOME/.local/share/aquaproj-aqua/bin" >> "$GITHUB_PATH"
+      - name: Install aqua packages
+        run: aqua install
+        env:
+          AQUA_GLOBAL_CONFIG: ${{ github.workspace }}/.config/aquaproj-aqua/aqua.yaml
+      - name: Verify tool versions
+        env:
+          AQUA_GLOBAL_CONFIG: ${{ github.workspace }}/.config/aquaproj-aqua/aqua.yaml
+        run: |
+          set -euo pipefail
+          failed=""
+          check() {
+            local name="$1"
+            shift
+            echo -n "$name: "
+            if output=$("$@" 2>&1); then
+              echo "$output" | head -1
+            else
+              echo "FAILED (exit $?)"
+              failed="$failed $name"
+            fi
+          }
+          check node node --version
+          check pnpm pnpm --version
+          check uv uv --version
+          check ruff ruff --version
+          check claude claude --version
+          check bun bun --version
+          check task task --version
+          check codex codex --version
+          check aws aws --version
+          check gcloud gcloud --version
+          check terraform terraform --version
+          if [ -n "$failed" ]; then
+            echo "::error::Failed version checks:$failed"
+            exit 1
+          fi
+          echo "All aqua tools verified successfully"
+
   macos-install:
     name: macOS brew check
     runs-on: macos-latest
