@@ -10,4 +10,4 @@ export AQUA_ROOT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua"
 export PATH="$AQUA_ROOT_DIR/bin:$PATH"
 export AQUA_GLOBAL_CONFIG="$REPO_DIR/.config/aquaproj-aqua/aqua.yaml"
 
-aqua install -a
+aqua i -l -a

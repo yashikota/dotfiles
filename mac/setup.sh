@@ -39,8 +39,18 @@ function install_dependencies() {
     echo "${YELLOW}Brewfile dependencies installed.${RESET}"
 }
 
+# install aqua directly (not via Homebrew)
+function install_aqua() {
+    check_already_installed aqua && return
+    curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.0.4/aqua-installer | bash
+    export AQUA_ROOT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua"
+    export PATH="$AQUA_ROOT_DIR/bin:$PATH"
+}
+
 # install aqua packages (CLI tools managed declaratively)
 function install_aqua_packages() {
+    export AQUA_ROOT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua"
+    export PATH="$AQUA_ROOT_DIR/bin:$PATH"
     export AQUA_GLOBAL_CONFIG="$REPO_DIR/.config/aquaproj-aqua/aqua.yaml"
     aqua i -l -a
 }
@@ -48,6 +58,7 @@ function install_aqua_packages() {
 # main
 install_homebrew
 install_dependencies
+install_aqua
 install_aqua_packages
 
 # Done
