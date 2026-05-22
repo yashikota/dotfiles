@@ -1,4 +1,3 @@
-brew "aqua"
 brew "gnu-sed"
 brew "imagemagick"
 brew "libsixel"
