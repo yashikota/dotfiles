@@ -95,10 +95,16 @@ function disable_login_message() {
     sudo chmod -x /etc/update-motd.d/* 2>/dev/null || true
 }
 
+# remove unwanted packages
+function remove_packages() {
+    sudo apt remove -y lynx 2>/dev/null || true
+}
+
 # main
 generate_locale
 install_dependencies
 install_tools
+remove_packages
 disable_login_message
 
 # Done
