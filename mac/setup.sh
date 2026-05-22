@@ -5,6 +5,7 @@ set -Eeuo pipefail
 
 # Get the directory where the script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 cd "$HOME"
 
@@ -64,6 +65,12 @@ function cargo_install_if_missing() {
     cargo install "$crate" --locked
 }
 
+# install aqua packages
+function install_aqua_packages() {
+    export AQUA_GLOBAL_CONFIG="$REPO_DIR/.config/aqua.yaml"
+    aqua install -a
+}
+
 # install other apps
 function install_other_apps() {
     cargo_install_if_missing btm bottom
@@ -77,6 +84,7 @@ install_dependencies
 install_starship
 install_mise
 install_zoxide
+install_aqua_packages
 install_other_apps
 
 # Done
