@@ -60,7 +60,6 @@ packages:
   - name: XAMPPRocky/tokei@v14.0.0
   - name: simonwhitaker/gibo@v3.0.22
   - name: vi/websocat@v1.14.1
-  - name: Aloxaf/silicon@v0.5.3
   - name: k1LoW/deck@v1.23.1
 
   # git
