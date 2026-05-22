@@ -144,12 +144,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install aqua
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v3.2.0/aqua-installer | bash
-          echo "$HOME/.local/share/aquaproj-aqua/bin" >> "$GITHUB_PATH"
-      - name: Install aqua packages
-        run: aqua install
+      - uses: aquaproj/aqua-installer@v4.0.4
+        with:
+          aqua_version: v2.43.1
         env:
           AQUA_GLOBAL_CONFIG: ${{ github.workspace }}/.config/aquaproj-aqua/aqua.yaml
       - name: Verify tool versions
