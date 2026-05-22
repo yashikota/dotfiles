@@ -44,7 +44,7 @@ All configuration lives under `.config/` following XDG conventions. Platform-spe
 | EZA | `.config/eza/theme.yml` |
 | Fish (alt shell) | `.config/fish/config.fish` |
 
-Runtime/tool managers (`mise`, `aqua`) are installed by the platform setup scripts and have their PATH/env exports configured in `.zshrc` / `config.fish`. The aqua global config (`.config/aqua.yaml`) is managed in this repo and symlinked to `$HOME/.config/aqua.yaml` via `link.sh`. `AQUA_GLOBAL_CONFIG` points to this path in both zsh and fish.
+Runtime/tool managers (`mise`, `aqua`) are installed by the platform setup scripts and have their PATH/env exports configured in `.zshrc` / `config.fish`. The aqua global config (`.config/aquaproj-aqua/aqua.yaml`) is managed in this repo and symlinked to `$HOME/.config/aquaproj-aqua/` via `link.sh`. `AQUA_GLOBAL_CONFIG` points to this path in both zsh and fish.
 
 ### Conventions
 
