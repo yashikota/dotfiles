@@ -166,11 +166,14 @@ jobs:
             name="$(basename "$cmd")"
             case " $skipped " in *" $name "*) continue ;; esac
             echo -n "$name: "
-            if output=$("$cmd" --version 2>&1); then
+            output=$("$cmd" --version 2>&1) && rc=$? || rc=$?
+            if [ "$rc" -eq 127 ]; then
+              echo "NOT FOUND"
+              failed="$failed $name"
+            elif [ "$rc" -eq 0 ]; then
               echo "$output" | head -1
             else
-              echo "FAILED (exit $?)"
-              failed="$failed $name"
+              echo "ok (--version exited $rc)"
             fi
           done
           if [ -n "$failed" ]; then
