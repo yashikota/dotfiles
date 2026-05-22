@@ -71,5 +71,6 @@
   "alwaysThinkingEnabled": true,
   "effortLevel": "medium",
   "plansDirectory": "./plans",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark"
 }
