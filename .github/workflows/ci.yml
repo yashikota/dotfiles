@@ -149,17 +149,14 @@ jobs:
           aqua_version: v2.43.1
           enable_aqua_install: "false"
       - name: Install aqua packages
-        run: |
-          aqua -c .config/aquaproj-aqua/aqua.yaml install --all
+        run: aqua -c .config/aquaproj-aqua/aqua.yaml install --all
         env:
-          AQUA_LOG_LEVEL: debug
+          GH_TOKEN: ${{ github.token }}
       - name: Verify tool versions
         env:
           AQUA_GLOBAL_CONFIG: ${{ github.workspace }}/.config/aquaproj-aqua/aqua.yaml
         run: |
           set -euo pipefail
-          echo "PATH=$PATH"
-          ls "$HOME/.local/share/aquaproj-aqua/bin/" || true
           failed=""
           check() {
             local name="$1"
