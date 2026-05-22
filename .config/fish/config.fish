@@ -69,7 +69,12 @@ if status is-interactive
     set -gx AQUA_ROOT_DIR "$XDG_DATA_HOME/aquaproj-aqua"
     test -n "$XDG_DATA_HOME"; or set -gx AQUA_ROOT_DIR "$HOME/.local/share/aquaproj-aqua"
     set -gx PATH "$AQUA_ROOT_DIR/bin" $PATH
-    set -gx AQUA_GLOBAL_CONFIG "$AQUA_GLOBAL_CONFIG:"(set -q XDG_CONFIG_HOME; and echo $XDG_CONFIG_HOME; or echo "$HOME/.config")"/aquaproj-aqua/aqua.yaml"
+    set -l aqua_global_config (set -q XDG_CONFIG_HOME; and echo $XDG_CONFIG_HOME; or echo "$HOME/.config")"/aquaproj-aqua/aqua.yaml"
+    if test -n "$AQUA_GLOBAL_CONFIG"
+        set -gx AQUA_GLOBAL_CONFIG "$AQUA_GLOBAL_CONFIG:$aqua_global_config"
+    else
+        set -gx AQUA_GLOBAL_CONFIG "$aqua_global_config"
+    end
 
     # wasmtime
     set -gx WASMTIME_HOME "$HOME/.wasmtime"

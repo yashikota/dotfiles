@@ -56,7 +56,11 @@ fi
 # aqua
 export AQUA_ROOT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua"
 export PATH="$AQUA_ROOT_DIR/bin:$PATH"
-export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
+if [[ -n "${AQUA_GLOBAL_CONFIG:-}" ]]; then
+    export AQUA_GLOBAL_CONFIG="$AQUA_GLOBAL_CONFIG:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml"
+else
+    export AQUA_GLOBAL_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml"
+fi
 
 # wasmtime
 export WASMTIME_HOME="$HOME/.wasmtime"
