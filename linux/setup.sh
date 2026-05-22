@@ -31,15 +31,16 @@ function package_installed() {
     dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "install ok installed"
 }
 
-# install apt dependencies from apps.txt
+# install apt dependencies from tools.toml
 function install_dependencies() {
+    local toml="${SCRIPT_DIR}/tools.toml"
+    local parser="${SCRIPT_DIR}/parse_tools.sh"
     sudo apt update -qq
-    while IFS= read -r line; do
-        [ -z "$line" ] && continue
-        package_installed "$line" && { echo "${CYAN}$line is already installed${RESET}"; continue; }
-        sudo apt install -qq -y "$line"
-        echo "${YELLOW}$line installed.${RESET}"
-    done < "${SCRIPT_DIR}/apps.txt"
+    for pkg in $(bash "$parser" names "$toml" apt); do
+        package_installed "$pkg" && { echo "${CYAN}$pkg is already installed${RESET}"; continue; }
+        sudo apt install -qq -y "$pkg"
+        echo "${YELLOW}$pkg installed.${RESET}"
+    done
 }
 
 # install tools listed in tools.toml
@@ -48,11 +49,14 @@ function install_tools() {
     local parser="${SCRIPT_DIR}/parse_tools.sh"
 
     for binary in $(bash "$parser" names "$toml"); do
-        check_already_installed "$binary" && continue
-
         # read tool config into local variables
         local type="" url="" flags="" crate="" module="" path=""
         eval "$(bash "$parser" get "$toml" "$binary")"
+
+        # apt packages are handled by install_dependencies
+        [ "$type" = "apt" ] && continue
+
+        check_already_installed "$binary" && continue
 
         echo "${YELLOW}Installing $binary ($type)...${RESET}"
         case "$type" in
@@ -65,6 +69,8 @@ function install_tools() {
                 fi
                 ;;
             cargo)
+                # shellcheck source=/dev/null
+                [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
                 cargo install "${crate:-$binary}" --locked
                 ;;
             go)
@@ -83,9 +89,10 @@ function generate_locale() {
     sudo locale-gen en_US.UTF-8
 }
 
-# disable login message
+# disable login message (last-login line + Ubuntu MOTD)
 function disable_login_message() {
     touch ~/.hushlogin
+    sudo chmod -x /etc/update-motd.d/* 2>/dev/null || true
 }
 
 # main

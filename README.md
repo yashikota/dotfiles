@@ -28,14 +28,7 @@
    bash link.sh
    ```
 
-
-5. Set ZDOTDIR
-
-    ```sh
-    ln -s ~/.config/zsh/.zshenv ~/.zshenv
-    ```
-
-6. Change Shell
+5. Change Shell
 
     ```sh
     chsh -s /usr/bin/zsh
@@ -69,14 +62,7 @@
    bash link.sh
    ```
 
-
-5. Set ZDOTDIR
-
-    ```sh
-    ln -s ~/.config/zsh/.zshenv ~/.zshenv
-    ```
-
-6. Change Shell
+5. Change Shell
 
     ```sh
     chsh -s /bin/zsh

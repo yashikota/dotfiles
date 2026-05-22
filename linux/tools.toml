@@ -1,6 +1,91 @@
 # Centralized tool definitions for linux/setup.sh and CI.
-# Section name = binary to check on PATH.
-# Types: curl, cargo, go, script
+# Section name = package/binary name.
+# Types: apt, curl, cargo, go, script
+
+# --- apt packages ---
+
+[curl]
+type = "apt"
+
+[ca-certificates]
+type = "apt"
+
+[git]
+type = "apt"
+
+[zsh]
+type = "apt"
+
+[fish]
+type = "apt"
+
+[zip]
+type = "apt"
+
+[unzip]
+type = "apt"
+
+[neovim]
+type = "apt"
+
+[tmux]
+type = "apt"
+
+[build-essential]
+type = "apt"
+
+[pkg-config]
+type = "apt"
+
+[libssl-dev]
+type = "apt"
+
+[make]
+type = "apt"
+
+[cmake]
+type = "apt"
+
+[ffmpeg]
+type = "apt"
+
+[imagemagick]
+type = "apt"
+
+[xdg-utils]
+type = "apt"
+
+[locales]
+type = "apt"
+
+[libopencv-dev]
+type = "apt"
+
+[golang]
+type = "apt"
+
+[bat]
+type = "apt"
+
+[eza]
+type = "apt"
+
+[xsel]
+type = "apt"
+
+[duf]
+type = "apt"
+
+[fzf]
+type = "apt"
+
+[libsixel-bin]
+type = "apt"
+
+[fd-find]
+type = "apt"
+
+# --- curl installers ---
 
 [starship]
 type = "curl"
@@ -19,6 +104,8 @@ url = "https://tailscale.com/install.sh"
 type = "curl"
 url = "https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
 
+# --- script installers ---
+
 [docker]
 type = "script"
 path = "linux/installers/docker.sh"
@@ -30,6 +117,8 @@ path = "linux/installers/rust.sh"
 [gomi]
 type = "script"
 path = "linux/installers/gomi.sh"
+
+# --- cargo ---
 
 [btm]
 type = "cargo"
@@ -44,6 +133,8 @@ type = "cargo"
 
 [shpool]
 type = "cargo"
+
+# --- go ---
 
 [lazygit]
 type = "go"
