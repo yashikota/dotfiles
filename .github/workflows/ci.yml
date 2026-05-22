@@ -188,7 +188,7 @@ jobs:
               . "$HOME/.cargo/env"
               ;;
           esac
-          export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/bin:$PATH"
+          export PATH="$HOME/.local/share/aquaproj-aqua/bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/bin:$PATH"
 
           # install
           echo "::group::Installing $TOOL ($type)"
@@ -214,7 +214,7 @@ jobs:
           echo "::endgroup::"
 
           # verify
-          export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/bin:$PATH"
+          export PATH="$HOME/.local/share/aquaproj-aqua/bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/bin:$PATH"
           case "$TOOL" in
             rustup) command -v rustup && cargo --version ;;
             *)      command -v "$TOOL" ;;
