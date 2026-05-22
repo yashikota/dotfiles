@@ -42,7 +42,7 @@ function install_dependencies() {
 # install aqua packages (CLI tools managed declaratively)
 function install_aqua_packages() {
     export AQUA_GLOBAL_CONFIG="$REPO_DIR/.config/aquaproj-aqua/aqua.yaml"
-    aqua install -a
+    aqua i -l -a
 }
 
 # main

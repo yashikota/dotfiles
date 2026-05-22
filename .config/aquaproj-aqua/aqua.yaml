@@ -18,6 +18,7 @@ packages:
   - name: pnpm/pnpm@v11.2.2
   - name: oven-sh/bun@bun-v1.3.14
   - name: golang/go@go1.26.3
+  - name: denoland/deno@v2.8.0
   - name: rust-lang/rustup@1.29.0
 
   # dev tools
@@ -60,6 +61,7 @@ packages:
   - name: XAMPPRocky/tokei@v14.0.0
   - name: simonwhitaker/gibo@v3.0.22
   - name: vi/websocat@v1.14.1
+  - name: Tyrrrz/FFmpegBin@8.1
   - name: k1LoW/deck@v1.23.1
 
   # git

@@ -1,5 +1,4 @@
 brew "aqua"
-brew "ffmpeg"
 brew "ghostscript"
 brew "gnu-sed"
 brew "gnupg"
