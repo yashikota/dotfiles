@@ -101,6 +101,10 @@ autoload -Uz compinit && compinit
 # 部分一致
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}' 'r:|[-_]=* r:|=*' 'l:|=* r:|=*'
 
+# Ctrl+Arrow: 単語単位のカーソル移動
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
 # edit-command-line: 編集中コマンドを外部エディタで開く (Ctrl+o)
 autoload -Uz edit-command-line
 zle -N edit-command-line
