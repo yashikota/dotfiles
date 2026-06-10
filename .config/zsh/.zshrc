@@ -184,10 +184,6 @@ function __prompt_preexec() {
 preexec_functions+=(__prompt_preexec)
 precmd_functions+=(__prompt_precmd)
 
-# mise
-if command -v mise >/dev/null 2>&1; then
-    eval "$(mise activate zsh)"
-fi
 
 # zoxide
 if command -v zoxide >/dev/null 2>&1; then
