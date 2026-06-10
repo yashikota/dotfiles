@@ -122,6 +122,7 @@ if status is-interactive
     abbr --add k kubectl
     abbr --add lg lazygit
     abbr --add tf terraform
+    abbr --add cmd abbr --show
     abbr --add agi 'aqua g -g -i && aqua i -a -l'
     abbr --add aup 'aqua -c (string split : -- $AQUA_GLOBAL_CONFIG)[-1] update'
 
