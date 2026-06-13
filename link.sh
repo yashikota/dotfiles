@@ -57,6 +57,13 @@ if [ -f "$DOTFILES_DIR/.codex/config.toml" ]; then
     echo "'$target' <- '$DOTFILES_DIR/.codex/config.toml'"
 fi
 
+if [ -d "$DOTFILES_DIR/.codex/rules" ]; then
+    target="$HOME/.codex/rules"
+    mkdir -p "$target"
+    find "$DOTFILES_DIR/.codex/rules" -maxdepth 1 -type f -name '*.rules' -exec install -m 600 {} "$target" \;
+    echo "'$target' <- '$DOTFILES_DIR/.codex/rules'"
+fi
+
 # link ~/.zshenv to keep ZDOTDIR user-local
 if [ -f "$DOTFILES_DIR/.config/zsh/.zshenv" ]; then
     target="$HOME/.zshenv"

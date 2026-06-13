@@ -1,0 +1,14 @@
+prefix_rule(
+    pattern = ["git", "push", ["--force", "--force-with-lease", "-f"]],
+    decision = "forbidden",
+    justification = "Force pushing from Codex is denied. Push normally, or run force pushes yourself after review.",
+    match = [
+        "git push --force",
+        "git push --force-with-lease",
+        "git push -f",
+    ],
+    not_match = [
+        "git push",
+        "git push origin main",
+    ],
+)
