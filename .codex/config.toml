@@ -1,0 +1,7 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+service_tier = "default"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+default_permissions = ":danger-full-access"
+approvals_reviewer = "user"
