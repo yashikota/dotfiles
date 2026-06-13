@@ -44,6 +44,19 @@ if [ -d "$DOTFILES_DIR/.claude" ]; then
     ln -svfn "$DOTFILES_DIR/.claude" "$target"
 fi
 
+# install Codex defaults without linking mutable runtime state
+if [ -f "$DOTFILES_DIR/.codex/config.toml" ]; then
+    target="$HOME/.codex/config.toml"
+    mkdir -p "$(dirname "$target")"
+    if [ -L "$target" ] && [ "$(readlink "$target")" = "$DOTFILES_DIR/.codex/config.toml" ]; then
+        unlink "$target"
+    else
+        backup_target "$target" ".codex/config.toml"
+    fi
+    install -m 600 "$DOTFILES_DIR/.codex/config.toml" "$target"
+    echo "'$target' <- '$DOTFILES_DIR/.codex/config.toml'"
+fi
+
 # link ~/.zshenv to keep ZDOTDIR user-local
 if [ -f "$DOTFILES_DIR/.config/zsh/.zshenv" ]; then
     target="$HOME/.zshenv"

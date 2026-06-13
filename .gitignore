@@ -14,3 +14,7 @@ zsh-abbr/
 .claude/*
 !.claude/settings.json
 !.claude/status-line.sh
+
+# codex
+.codex/*
+!.codex/config.toml
