@@ -22,7 +22,9 @@ ghr() {
     fi
 
     local current_directory=$(basename "$PWD")
+    local repository="$organization/$current_directory"
     local source_directory=$(git rev-parse --show-toplevel)
 
-    gh repo create "$organization/$current_directory" "$visibility" --source "$source_directory" --remote=origin
+    gh repo create "$repository" "$visibility" --source "$source_directory" --remote=origin || return
+    gh repo edit "$repository" --enable-squash-merge --delete-branch-on-merge
 }
