@@ -19,7 +19,9 @@ function ghr
     end
 
     set -l current_directory (basename $PWD)
+    set -l repository "$organization/$current_directory"
     set -l source_directory (git rev-parse --show-toplevel)
 
-    gh repo create $organization/$current_directory $visibility --source $source_directory --remote=origin
+    gh repo create "$repository" $visibility --source "$source_directory" --remote=origin; or return
+    gh repo edit "$repository" --enable-squash-merge --delete-branch-on-merge
 end
