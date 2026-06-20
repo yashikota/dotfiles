@@ -1,6 +1,6 @@
 # fzf powered abbreviation search
 # Usage: cmd [query]
-# Select an abbreviation to insert its expansion into the command line
+# Select an abbreviation to execute its expansion
 cmd() {
     local selected
     selected=$(abbr list-commands | \
@@ -9,6 +9,7 @@ cmd() {
             --prompt="Abbr > ")
 
     if [[ -n "$selected" ]]; then
-        print -z "$selected"
+        print -s -- "$selected"
+        eval "$selected"
     fi
 }
