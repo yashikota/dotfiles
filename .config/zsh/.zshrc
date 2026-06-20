@@ -229,6 +229,8 @@ _setup_abbr() {
     abbr add -S --quieter cur='cursor .'
     abbr add -S --quieter k='kubectl'
     abbr add -S --quieter lg='lazygit'
+    abbr add -S --quieter n='nvim .'
+    abbr add -S --quieter v='nvim .'
     abbr add -S --quieter tf='terraform'
     abbr add -S --quieter agi='aqua g -g -i && aqua i -a -l'
     abbr add -S --quieter aup='aqua -c "${AQUA_GLOBAL_CONFIG##*:}" update'
