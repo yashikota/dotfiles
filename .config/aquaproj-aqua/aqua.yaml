@@ -14,15 +14,15 @@ registries:
 
 packages:
   # language runtimes & package managers
-  - name: nodejs/node@v26.2.0
-  - name: pnpm/pnpm@v11.2.2
+  - name: nodejs/node@v26.3.1
+  - name: pnpm/pnpm@v11.8.0
   - name: oven-sh/bun@bun-v1.3.14
-  - name: golang/go@go1.26.3
-  - name: denoland/deno@v2.8.0
+  - name: golang/go@go1.26.4
+  - name: denoland/deno@v2.8.3
   - name: rust-lang/rustup@1.29.0
 
   # dev tools
-  - name: bytecodealliance/wasmtime@v45.0.0
+  - name: bytecodealliance/wasmtime@v45.0.2
   - name: astral-sh/uv@0.11.16
   - name: astral-sh/ruff@0.15.14
   - name: anthropics/claude-code@v2.1.148
@@ -60,7 +60,7 @@ packages:
   - name: jesseduffield/lazygit@v0.61.1
   - name: muesli/duf@v0.9.1
   - name: fastfetch-cli/fastfetch@2.63.1
-  - name: XAMPPRocky/tokei@v14.0.0
+  - name: XAMPPRocky/tokei@14.0.0
   - name: simonwhitaker/gibo@v3.0.22
   - name: vi/websocat@v1.14.1
   - name: Tyrrrz/FFmpegBin@8.1
