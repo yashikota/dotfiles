@@ -38,7 +38,7 @@ packages:
   - name: aws/aws-cli@2.34.52
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.74.3
-  - name: caddyserver/caddy@v2.11.3
+  - name: caddyserver/caddy@v2.11.4
 
   # shell & terminal
   - name: fish-shell/fish-shell@4.7.1
