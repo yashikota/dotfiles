@@ -64,7 +64,7 @@ packages:
   - name: simonwhitaker/gibo@v3.0.22
   - name: vi/websocat@v1.14.1
   - name: Tyrrrz/FFmpegBin@8.1
-  - name: k1LoW/deck@v1.23.1
+  - name: k1LoW/deck@v1.24.0
 
   # git
   - name: git-lfs/git-lfs@v3.7.1
