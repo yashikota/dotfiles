@@ -64,6 +64,18 @@ if [ -d "$DOTFILES_DIR/.codex/rules" ]; then
     echo "'$target' <- '$DOTFILES_DIR/.codex/rules'"
 fi
 
+# share custom skills with Codex (symlink .claude/skills/* -> ~/.codex/skills/)
+if [ -d "$DOTFILES_DIR/.claude/skills" ]; then
+    mkdir -p "$HOME/.codex/skills"
+    for skill in "$DOTFILES_DIR"/.claude/skills/*/; do
+        name="$(basename "$skill")"
+        target="$HOME/.codex/skills/$name"
+        # skip if already managed by gh skill (plugin cache)
+        [ -d "$target" ] && [ ! -L "$target" ] && continue
+        ln -svfn "$skill" "$target"
+    done
+fi
+
 # link ~/.zshenv to keep ZDOTDIR user-local
 if [ -f "$DOTFILES_DIR/.config/zsh/.zshenv" ]; then
     target="$HOME/.zshenv"
