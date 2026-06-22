@@ -59,7 +59,7 @@ packages:
   - name: ClementTsang/bottom@0.12.3
   - name: jesseduffield/lazygit@v0.61.1
   - name: muesli/duf@v0.9.1
-  - name: fastfetch-cli/fastfetch@2.63.1
+  - name: fastfetch-cli/fastfetch@2.64.2
   - name: XAMPPRocky/tokei@14.0.0
   - name: simonwhitaker/gibo@v3.0.22
   - name: vi/websocat@v1.14.1
