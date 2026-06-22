@@ -51,3 +51,5 @@ Runtime/tool managers (`mise`, `aqua`) are installed by the platform setup scrip
 - Aliases that shadow system commands: `ls`/`ll`/`tree` -> eza, `gcc` -> gcc-14
 - Git abbreviations: `ga` (add), `gc` (commit), `gp` (push), `gpl` (pull), `gs` (status), `gsw` (switch), `gd` (diff), `lg` (lazygit)
 - Adding a new zsh utility: create a `.zsh` file in `.config/zsh/functions/` — it will be auto-sourced
+- Adding a new tool: use the `/add-tool` skill for the full workflow
+- Commit messages: imperative mood, lowercase, no period (e.g. `add ghostty config`, `update aqua packages`)

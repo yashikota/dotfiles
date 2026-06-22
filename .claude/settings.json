@@ -8,6 +8,20 @@
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-4-6",
     "AWS_PROFILE": "claude"
   },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "file=\"$CLAUDE_FILE_PATH\"; case \"$file\" in *.yaml|*.yml) yamllint -d relaxed \"$file\" 2>/dev/null || true ;; *.json) jq empty \"$file\" 2>/dev/null || echo \"Invalid JSON: $file\" >&2 ;; *.sh) shellcheck \"$file\" 2>/dev/null || true ;; esac",
+            "statusMessage": "Linting edited file..."
+          }
+        ]
+      }
+    ]
+  },
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [

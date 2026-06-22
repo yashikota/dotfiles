@@ -14,6 +14,9 @@ zsh-abbr/
 .claude/*
 !.claude/settings.json
 !.claude/status-line.sh
+!.claude/rules/
+!.claude/agents/
+!.claude/skills/
 
 # codex
 .codex/*
