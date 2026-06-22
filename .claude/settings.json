@@ -52,7 +52,8 @@
     ],
     "deny": [
       "Bash(git push -f:*)",
-      "Bash(git push --force:*)"
+      "Bash(git push --force:*)",
+      "Bash(git push --force-with-lease:*)"
     ],
     "ask": [
       "Bash(rm:*)"
