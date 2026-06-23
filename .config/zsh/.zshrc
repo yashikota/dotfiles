@@ -68,7 +68,7 @@ export PATH="$WASMTIME_HOME/bin:$PATH"
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$PNPM_HOME/bin:$PNPM_HOME:$PATH"
 
 # tfenv
 export PATH="$HOME/.tfenv/bin:$PATH"

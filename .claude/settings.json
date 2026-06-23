@@ -1,6 +1,7 @@
 {
   "awsAuthRefresh": "aws sso login --profile claude",
   "env": {
+    "CLAUDE_CODE_ENABLE_AUTO_MODE": "1",
     "ENABLE_TOOL_SEARCH": "true",
     "CLAUDE_CODE_USE_BEDROCK": "true",
     "AWS_REGION": "ap-northeast-1",
@@ -37,6 +38,66 @@
             "type": "command",
             "command": "file=\"$CLAUDE_FILE_PATH\"; case \"$file\" in *.yaml|*.yml) yamllint -d relaxed \"$file\" 2>/dev/null || true ;; *.json) jq empty \"$file\" 2>/dev/null || echo \"Invalid JSON: $file\" >&2 ;; *.sh) shellcheck \"$file\" 2>/dev/null || true ;; esac",
             "statusMessage": "Linting edited file..."
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude UserPromptSubmit",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Stop",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude StopFailure",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude SessionEnd",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Notification",
+            "timeout": 10
           }
         ]
       }

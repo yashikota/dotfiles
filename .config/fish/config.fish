@@ -82,8 +82,11 @@ if status is-interactive
 
     # pnpm
     set -gx PNPM_HOME "$HOME/.local/share/pnpm"
-    if not string match -q -- $PNPM_HOME $PATH
-    set -gx PATH "$PNPM_HOME" $PATH
+    if not contains -- "$PNPM_HOME/bin" $PATH
+        set -gx PATH "$PNPM_HOME/bin" $PATH
+    end
+    if not contains -- "$PNPM_HOME" $PATH
+        set -gx PATH "$PNPM_HOME" $PATH
     end
 
     # zoxide
