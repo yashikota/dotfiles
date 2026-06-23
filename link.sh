@@ -44,24 +44,11 @@ if [ -d "$DOTFILES_DIR/.claude" ]; then
     ln -svfn "$DOTFILES_DIR/.claude" "$target"
 fi
 
-# install Codex defaults without linking mutable runtime state
-if [ -f "$DOTFILES_DIR/.codex/config.toml" ]; then
-    target="$HOME/.codex/config.toml"
-    mkdir -p "$(dirname "$target")"
-    if [ -L "$target" ] && [ "$(readlink "$target")" = "$DOTFILES_DIR/.codex/config.toml" ]; then
-        unlink "$target"
-    else
-        backup_target "$target" ".codex/config.toml"
-    fi
-    install -m 600 "$DOTFILES_DIR/.codex/config.toml" "$target"
-    echo "'$target' <- '$DOTFILES_DIR/.codex/config.toml'"
-fi
-
-if [ -d "$DOTFILES_DIR/.codex/rules" ]; then
-    target="$HOME/.codex/rules"
-    mkdir -p "$target"
-    find "$DOTFILES_DIR/.codex/rules" -maxdepth 1 -type f -name '*.rules' -exec install -m 600 {} "$target" \;
-    echo "'$target' <- '$DOTFILES_DIR/.codex/rules'"
+# link .codex
+if [ -d "$DOTFILES_DIR/.codex" ]; then
+    target="$HOME/.codex"
+    backup_target "$target" ".codex"
+    ln -svfn "$DOTFILES_DIR/.codex" "$target"
 fi
 
 # share custom skills with Codex (symlink .claude/skills/* -> ~/.codex/skills/)

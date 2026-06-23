@@ -12,10 +12,14 @@ zsh-abbr/
 
 # claude
 .claude/*
+!.claude/CLAUDE.md
+!.claude/RTK.md
 !.claude/settings.json
 !.claude/status-line.sh
 !.claude/rules/
 !.claude/agents/
+!.claude/hooks/
+!.claude/hooks/*.sh
 !.claude/skills/
 .claude/skills/agents-sdk/
 .claude/skills/cloudflare/
@@ -29,6 +33,9 @@ zsh-abbr/
 
 # codex
 .codex/*
+!.codex/AGENTS.md
+!.codex/RTK.md
 !.codex/config.toml
 !.codex/rules/
 !.codex/rules/*.rules
+.codex/rules/default.rules
