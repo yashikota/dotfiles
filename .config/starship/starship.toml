@@ -26,6 +26,12 @@ pipestatus = true
 format ="[$symbol$branch(:$remote_branch)]($style) "
 style = "bold #ff6fff"
 
+[custom.boo]
+command = "printf '%s' \"$BOO\""
+when = "[ -n \"${BOO:-}\" ]"
+format = "[🐷 $output]($style) "
+style = "bold cyan"
+
 [aws]
 disabled = true
 format = "[$symbol($profile)\\($region\\)]($style) "
