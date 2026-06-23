@@ -235,6 +235,12 @@ _setup_abbr() {
     abbr add -S --quieter agi='aqua g -g -i && aqua i -a -l'
     abbr add -S --quieter aup='aqua -c "${AQUA_GLOBAL_CONFIG##*:}" update'
 
+    # boo
+    abbr add -S --quieter b='boo'
+    abbr add -S --quieter bl='boo ls'
+    abbr add -S --quieter ba='boo at'
+    abbr add -S --quieter bn='boo new'
+
     # git
     abbr add -S --quieter ga='git add -A'
     abbr add -S --quieter gc='git commit -m "%"'
