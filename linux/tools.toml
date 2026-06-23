@@ -16,9 +16,6 @@ type = "apt"
 [zsh]
 type = "apt"
 
-[fish]
-type = "apt"
-
 [zip]
 type = "apt"
 
@@ -26,9 +23,6 @@ type = "apt"
 type = "apt"
 
 [neovim]
-type = "apt"
-
-[tmux]
 type = "apt"
 
 [build-essential]
@@ -43,12 +37,6 @@ type = "apt"
 [make]
 type = "apt"
 
-[cmake]
-type = "apt"
-
-[ffmpeg]
-type = "apt"
-
 [imagemagick]
 type = "apt"
 
@@ -61,48 +49,17 @@ type = "apt"
 [libopencv-dev]
 type = "apt"
 
-[golang]
-type = "apt"
-
-[bat]
-type = "apt"
-
-[eza]
-type = "apt"
-
 [xsel]
-type = "apt"
-
-[duf]
-type = "apt"
-
-[fzf]
 type = "apt"
 
 [libsixel-bin]
 type = "apt"
 
-[fd-find]
-type = "apt"
-
 # --- curl installers ---
-
-[starship]
-type = "curl"
-url = "https://starship.rs/install.sh"
-flags = "-s -- -y"
-
-[mise]
-type = "curl"
-url = "https://mise.run"
 
 [tailscale]
 type = "curl"
 url = "https://tailscale.com/install.sh"
-
-[zoxide]
-type = "curl"
-url = "https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh"
 
 # --- script installers ---
 
@@ -114,36 +71,11 @@ path = "linux/installers/aqua.sh"
 type = "script"
 path = "linux/installers/docker.sh"
 
-[rustup]
-type = "script"
-path = "linux/installers/rust.sh"
-
 [gomi]
 type = "script"
 path = "linux/installers/gomi.sh"
 
 # --- cargo ---
 
-[btm]
-type = "cargo"
-crate = "bottom"
-
-[delta]
-type = "cargo"
-crate = "git-delta"
-
-[sheldon]
-type = "cargo"
-
 [shpool]
 type = "cargo"
-
-# --- go ---
-
-[lazygit]
-type = "go"
-module = "github.com/jesseduffield/lazygit@latest"
-
-[gibo]
-type = "go"
-module = "github.com/simonwhitaker/gibo@latest"
