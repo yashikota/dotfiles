@@ -68,6 +68,6 @@ packages:
 
   # git
   - name: git-lfs/git-lfs@v3.7.1
-  - name: cargo-bins/cargo-binstall@v1.20.0
+  - name: cargo-bins/cargo-binstall@v1.20.1
   - name: coder/boo@v0.6.0
   - name: rtk-ai/rtk@v0.42.4
