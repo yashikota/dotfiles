@@ -1,7 +1,7 @@
 # giboを使って.gitignoreを生成
-# Usage: gi [output_file]
-# Example: gi .gitignore
-gi() {
+# Usage: ignore [output_file]
+# Example: ignore .gitignore
+ignore() {
     local input_file="$1"
 
     # デフォルトは .gitignore
