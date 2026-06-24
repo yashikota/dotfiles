@@ -84,6 +84,46 @@ function install_tools() {
     done
 }
 
+# register GitHub public keys for SSH login
+function register_github_keys() {
+    local github_user="yashikota"
+    local ssh_dir="$HOME/.ssh"
+    local authorized_keys="$ssh_dir/authorized_keys"
+    local tmp_keys
+    tmp_keys="$(mktemp)"
+
+    curl -fsSL "https://github.com/${github_user}.keys" \
+        | awk 'NF >= 2 && $1 !~ /^#/' > "$tmp_keys"
+
+    if [ ! -s "$tmp_keys" ]; then
+        rm -f "$tmp_keys"
+        echo "${MAGENTA}No GitHub SSH keys found for ${github_user}.${RESET}"
+        return 1
+    fi
+
+    if ! ssh-keygen -l -f "$tmp_keys" >/dev/null; then
+        rm -f "$tmp_keys"
+        echo "${MAGENTA}Invalid GitHub SSH keys for ${github_user}.${RESET}"
+        return 1
+    fi
+
+    mkdir -p "$ssh_dir"
+    chmod 700 "$ssh_dir"
+    touch "$authorized_keys"
+    chmod 600 "$authorized_keys"
+
+    sed -i '/^# github:yashikota begin$/,/^# github:yashikota end$/d' "$authorized_keys"
+    [ -s "$authorized_keys" ] && [ "$(tail -c 1 "$authorized_keys")" ] && echo >> "$authorized_keys"
+    {
+        echo "# github:yashikota begin"
+        cat "$tmp_keys"
+        echo "# github:yashikota end"
+    } >> "$authorized_keys"
+
+    rm -f "$tmp_keys"
+    echo "${GREEN}GitHub SSH keys registered.${RESET}"
+}
+
 # generate EN_US.UTF-8 locale
 function generate_locale() {
     sudo locale-gen en_US.UTF-8
@@ -104,6 +144,7 @@ function remove_packages() {
 generate_locale
 install_dependencies
 install_tools
+register_github_keys
 remove_packages
 disable_login_message
 
