@@ -22,7 +22,7 @@ packages:
   - name: rust-lang/rustup@1.29.0
 
   # dev tools
-  - name: bytecodealliance/wasmtime@v45.0.2
+  - name: bytecodealliance/wasmtime@v46.0.0
   - name: astral-sh/uv@0.11.23
   - name: astral-sh/ruff@0.15.18
   - name: anthropics/claude-code@v2.1.185
