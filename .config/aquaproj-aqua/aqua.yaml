@@ -15,7 +15,7 @@ registries:
 packages:
   # language runtimes & package managers
   - name: nodejs/node@v26.3.1
-  - name: pnpm/pnpm@v11.8.0
+  - name: pnpm/pnpm@v11.9.0
   - name: oven-sh/bun@bun-v1.3.14
   - name: golang/go@go1.26.4
   - name: denoland/deno@v2.8.3
