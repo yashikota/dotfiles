@@ -35,7 +35,7 @@ zsh-abbr/
 .codex/*
 !.codex/AGENTS.md
 !.codex/RTK.md
-!.codex/config.toml
+!.codex/config.example.toml
 !.codex/rules/
 !.codex/rules/*.rules
 .codex/rules/default.rules

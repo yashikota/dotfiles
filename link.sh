@@ -46,6 +46,11 @@ fi
 
 # link .codex
 if [ -d "$DOTFILES_DIR/.codex" ]; then
+    if [ ! -f "$DOTFILES_DIR/.codex/config.toml" ] && [ -f "$DOTFILES_DIR/.codex/config.example.toml" ]; then
+        cp "$DOTFILES_DIR/.codex/config.example.toml" "$DOTFILES_DIR/.codex/config.toml"
+        echo "${CYAN}Created $DOTFILES_DIR/.codex/config.toml from config.example.toml${RESET}"
+    fi
+
     target="$HOME/.codex"
     backup_target "$target" ".codex"
     ln -svfn "$DOTFILES_DIR/.codex" "$target"

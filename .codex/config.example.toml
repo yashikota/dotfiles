@@ -5,12 +5,3 @@ approval_policy = "never"
 sandbox_mode = "danger-full-access"
 default_permissions = ":danger-full-access"
 approvals_reviewer = "user"
-
-[projects."/home/kota"]
-trust_level = "trusted"
-
-[projects."/home/kota/prj/enbu"]
-trust_level = "trusted"
-
-[tui.model_availability_nux]
-"gpt-5.5" = 1
