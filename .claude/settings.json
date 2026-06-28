@@ -48,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude UserPromptSubmit",
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude UserPromptSubmit; fi",
             "timeout": 10
           }
         ]
@@ -60,7 +60,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Stop",
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Stop; fi",
             "timeout": 10
           }
         ]
@@ -72,7 +72,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude StopFailure",
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude StopFailure; fi",
             "timeout": 10
           }
         ]
@@ -84,7 +84,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude SessionEnd",
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude SessionEnd; fi",
             "timeout": 10
           }
         ]
@@ -96,7 +96,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ -n \"$PASEO_TERMINAL_ID\" ] && \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Notification",
+            "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude Notification; fi",
             "timeout": 10
           }
         ]
