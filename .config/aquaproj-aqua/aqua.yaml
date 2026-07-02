@@ -70,5 +70,5 @@ packages:
   - name: git-lfs/git-lfs@v3.7.1
   - name: cargo-bins/cargo-binstall@v1.20.1
   - name: coder/boo@v0.6.3
-  - name: rtk-ai/rtk@v0.42.4
+  - name: rtk-ai/rtk@v0.43.0
   - name: google-antigravity/antigravity-cli@1.0.13
