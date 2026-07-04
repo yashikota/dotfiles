@@ -227,6 +227,8 @@ _setup_abbr() {
     abbr add -S --quieter m='make'
     abbr add -S --quieter c='code .'
     abbr add -S --quieter cur='cursor .'
+    abbr add -S --quieter co='codex'
+    abbr add -S --quieter cl='claude'
     abbr add -S --quieter h='herdr'
     abbr add -S --quieter k='kubectl'
     abbr add -S --quieter lg='lazygit'
