@@ -35,7 +35,7 @@ packages:
 
   # cloud & infra
   - name: kubernetes/kubectl@v1.36.2
-  - name: aws/aws-cli@2.35.12
+  - name: aws/aws-cli@2.35.13
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.74.3
   - name: caddyserver/caddy@v2.11.4
