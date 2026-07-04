@@ -18,7 +18,7 @@ packages:
   - name: pnpm/pnpm@v11.9.0
   - name: oven-sh/bun@bun-v1.3.14
   - name: golang/go@go1.26.4
-  - name: denoland/deno@v2.9.0
+  - name: denoland/deno@v2.9.1
   - name: rust-lang/rustup@1.29.0
 
   # dev tools
