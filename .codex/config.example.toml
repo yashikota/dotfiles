@@ -5,3 +5,12 @@ approval_policy = "never"
 sandbox_mode = "danger-full-access"
 default_permissions = ":danger-full-access"
 approvals_reviewer = "user"
+
+[tui]
+status_line = [
+  "model-with-reasoning",
+  "context-used",
+  "five-hour-limit",
+  "weekly-limit",
+  "git-branch",
+]
