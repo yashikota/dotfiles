@@ -23,17 +23,7 @@ which rtk             # Verify correct binary
 
 ## Hook-Based Usage
 
-Shell commands are automatically rewritten by the Claude Code hook.
+All other commands are automatically rewritten by the Claude Code hook.
 Example: `git status` → `rtk git status` (transparent, 0 tokens overhead)
-
-Claude Code built-in file tools (`Read`, `Grep`, `Glob`) bypass Bash hooks and are blocked by a PreToolUse hook.
-Use Bash commands through RTK instead:
-
-```bash
-rtk read path/to/file
-rtk grep "pattern" path/to/dir
-rtk find path/to/dir -name "*.ts"
-rtk rg --files path/to/dir
-```
 
 Refer to CLAUDE.md for full command reference.
