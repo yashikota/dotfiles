@@ -13,15 +13,12 @@ registries:
     ref: v4.531.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-  # language runtimes & package managers
   - name: nodejs/node@v26.4.0
   - name: pnpm/pnpm@v11.10.0
   - name: oven-sh/bun@bun-v1.3.14
   - name: golang/go@go1.26.4
   - name: denoland/deno@v2.9.1
   - name: rust-lang/rustup@1.29.0
-
-  # dev tools
   - name: bytecodealliance/wasmtime@v46.0.1
   - name: astral-sh/uv@0.11.26
   - name: astral-sh/ruff@0.15.20
@@ -30,25 +27,15 @@ packages:
   - name: go-task/task@v3.52.0
   - name: hashicorp/terraform@v1.15.7
   - name: Kitware/CMake@v4.3.4
-  - name: jdx/mise@v2026.7.0
   - name: suzuki-shunsuke/pinact@v4.1.0
-
-  # cloud & infra
   - name: kubernetes/kubectl@v1.36.2
   - name: aws/aws-cli@2.35.15
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.74.3
-  - name: caddyserver/caddy@v2.11.4
-
-  # shell & terminal
   - name: fish-shell/fish-shell@4.8.0
   - name: starship/starship@v1.26.0
   - name: rossmacarthur/sheldon@0.8.5
-  - name: zellij-org/zellij@v0.44.3
-  - name: tmux/tmux-builds@v3.7b
   - name: ajeetdsouza/zoxide@v0.10.0
-
-  # CLI utilities
   - name: cli/cli@v2.96.0
   - name: sharkdp/bat@v0.26.1
   - name: sharkdp/fd@v10.4.2
@@ -62,15 +49,9 @@ packages:
   - name: fastfetch-cli/fastfetch@2.65.2
   - name: XAMPPRocky/tokei@14.0.0
   - name: simonwhitaker/gibo@v3.0.22
-  - name: vi/websocat@v1.14.1
   - name: Tyrrrz/FFmpegBin@8.1.2
   - name: k1LoW/deck@v1.24.0
-
-  # git
-  - name: git-lfs/git-lfs@v3.7.1
-  - name: cargo-bins/cargo-binstall@v1.20.1
-  - name: coder/boo@v0.6.3
   - name: rtk-ai/rtk@v0.43.0
   - name: google-antigravity/antigravity-cli@1.0.16
   - name: koalaman/shellcheck@v0.11.0
-  - name: wasilibs/go-yamllint@v1.38.0
+  - name: owenlamont/ryl@v0.21.0

@@ -37,7 +37,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "file=\"$CLAUDE_FILE_PATH\"; case \"$file\" in *.yaml|*.yml) yamllint -d relaxed \"$file\" 2>/dev/null || true ;; *.json) jq empty \"$file\" 2>/dev/null || echo \"Invalid JSON: $file\" >&2 ;; *.sh) shellcheck \"$file\" 2>/dev/null || true ;; esac",
+            "command": "file=\"$CLAUDE_FILE_PATH\"; case \"$file\" in *.yaml|*.yml) ryl -d \"extends: default\" \"$file\" 2>/dev/null ;; *.json) jq empty \"$file\" 2>/dev/null || echo \"Invalid JSON: $file\" >&2 ;; *.sh) shellcheck \"$file\" 2>/dev/null ;; esac",
             "statusMessage": "Linting edited file..."
           }
         ]
@@ -84,7 +84,7 @@
         "matcher": "",
         "hooks": [
           {
-            "type": "command",
+           "type": "command",
             "command": "if [ -n \"$PASEO_TERMINAL_ID\" ]; then \"${PASEO_HOOK_CLI:-paseo}\" hooks claude SessionEnd; fi",
             "timeout": 10
           }
