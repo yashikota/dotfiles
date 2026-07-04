@@ -74,8 +74,10 @@ func getVCSBuildVersion(info *debug.BuildInfo) (string, bool) {
 
 ## Release
 
-Create `.github/workflows/release.yaml` and run GoReleaser when a version tag is pushed.
-After creating the workflow, run `pinact run --update -min-age 3` to update to current packages.
+Create `.github/workflows/release.yaml` and run GoReleaser when a version tag is pushed.  
+Do not create `.goreleaser.yaml`. This project should rely on GoReleaser's default behavior and run only from the GitHub Actions workflow.  
+
+After creating the workflow, run `pinact run --update -min-age 3` to update to current packages.  
 
 ```yaml
 name: Release
