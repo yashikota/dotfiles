@@ -253,7 +253,8 @@ _setup_abbr() {
     abbr add -S --quieter gsw='git switch'
     abbr add -S --quieter gsm='git default'
     abbr add -S --quieter gd='git diff HEAD'
-    abbr add -S --quieter gr='git reset --hard HEAD~'
+    abbr add -S --quieter gr='git restore .'
+    abbr add -S --quieter greset='git reset --hard HEAD~'
     abbr add -S --quieter gsub='git submodule update --init --recursive'
     abbr add -S --quieter gl='git log --oneline --graph --decorate --all'
 
