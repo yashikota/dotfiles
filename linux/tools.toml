@@ -71,10 +71,6 @@ path = "linux/installers/aqua.sh"
 type = "script"
 path = "linux/installers/docker.sh"
 
-[gomi]
-type = "script"
-path = "linux/installers/gomi.sh"
-
 # --- cargo ---
 
 [shpool]
