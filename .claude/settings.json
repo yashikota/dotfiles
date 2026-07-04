@@ -167,7 +167,7 @@
   },
   "language": "コッテこての関西弁",
   "alwaysThinkingEnabled": true,
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "plansDirectory": "./plans",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark"
