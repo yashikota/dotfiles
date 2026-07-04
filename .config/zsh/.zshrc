@@ -251,6 +251,7 @@ _setup_abbr() {
     abbr add -S --quieter gb='git branch -a'
     abbr add -S --quieter gs='git status'
     abbr add -S --quieter gsw='git switch'
+    abbr add -S --quieter gsc='git switch -c %'
     abbr add -S --quieter gsm='git default'
     abbr add -S --quieter gd='git diff HEAD'
     abbr add -S --quieter gr='git restore .'
