@@ -63,7 +63,7 @@ packages:
   - name: XAMPPRocky/tokei@14.0.0
   - name: simonwhitaker/gibo@v3.0.22
   - name: vi/websocat@v1.14.1
-  - name: Tyrrrz/FFmpegBin@8.1.1
+  - name: Tyrrrz/FFmpegBin@8.1.2
   - name: k1LoW/deck@v1.24.0
 
   # git
