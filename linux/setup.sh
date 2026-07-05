@@ -129,6 +129,26 @@ function generate_locale() {
     sudo locale-gen en_US.UTF-8
 }
 
+# configure system timezone
+function configure_timezone() {
+    local timezone="Asia/Tokyo"
+    local current_timezone=""
+
+    if command -v timedatectl >/dev/null 2>&1; then
+        current_timezone="$(timedatectl show -p Timezone --value 2>/dev/null || true)"
+        if [ "$current_timezone" = "$timezone" ]; then
+            echo "${CYAN}Timezone is already $timezone${RESET}"
+            return
+        fi
+
+        sudo timedatectl set-timezone "$timezone"
+        echo "${GREEN}Timezone set to $timezone.${RESET}"
+        return
+    fi
+
+    echo "${MAGENTA}timedatectl not found; timezone setup skipped.${RESET}"
+}
+
 # disable login message (last-login line + Ubuntu MOTD)
 function disable_login_message() {
     touch ~/.hushlogin
@@ -142,6 +162,7 @@ function remove_packages() {
 
 # main
 generate_locale
+configure_timezone
 install_dependencies
 install_tools
 register_github_keys
