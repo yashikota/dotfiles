@@ -145,17 +145,6 @@ if command -v starship >/dev/null 2>&1; then
     eval "$(starship init zsh)"
 fi
 
-# OSC 2 - タブタイトルにgit root名を設定
-# OSC 7 - 作業ディレクトリをターミナルに通知
-function __osc2_7_cwd() {
-    printf '\033]7;file://%s%s\033\\' "${HOST}" "${PWD}"
-    local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
-    local title=${${git_root:t}:-${PWD:t}}
-    printf '\033]2;%s\033\\' "$title"
-}
-chpwd_functions+=(__osc2_7_cwd)
-__osc2_7_cwd  # 初回実行
-
 # OSC 133 - プロンプトをターミナルに通知
 # https://gitlab.freedesktop.org/Per_Bothner/specifications/-/blob/master/proposals/prompts-data/shell-integration.zsh
 _prompt_executing=""
@@ -239,12 +228,6 @@ _setup_abbr() {
     abbr add -S --quieter aup='aqua -c "${AQUA_GLOBAL_CONFIG##*:}" update'
     abbr add -S --quieter reload='source ~/.config/zsh/.zshrc'
 
-    # boo
-    abbr add -S --quieter b='boo ui'
-    abbr add -S --quieter bl='boo ls'
-    abbr add -S --quieter ba='boo at'
-    abbr add -S --quieter bn='boo new'
-
     # git
     abbr add -S --quieter ga='git add -A'
     abbr add -S --quieter gc='git commit -m "%"'
@@ -264,7 +247,6 @@ _setup_abbr() {
 
     # gh
     abbr add -S --quieter ghb='gh browse'
-    abbr add -S --quieter clone='gh repo clone $(koeda)'
 
     # docker
     abbr add -S --quieter dcu='docker compose up --build'
@@ -284,3 +266,9 @@ done
 #    Local Settings    #
 # ==================== #
 [[ -f "$ZDOTDIR/.zshrc.local" ]] && source "$ZDOTDIR/.zshrc.local"
+
+# Auto-launch herdr for interactive SSH sessions.
+if [[ -o interactive && "${HERDR_ENV:-}" != "1" && ( -n "${SSH_CONNECTION:-}" || -n "${SSH_TTY:-}" ) ]] \
+    && command -v herdr >/dev/null 2>&1; then
+    herdr
+fi
