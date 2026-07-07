@@ -27,31 +27,40 @@ Work through every unresolved review comment on a GitHub PR. For each comment:
 # Get the PR number (ask the user if unknown)
 gh pr view --json number,title,body,baseRefName,headRefName
 
-# Fetch all review threads (isResolved, thread IDs, comments) via GraphQL
-gh api graphql -f query='
-  query($owner: String!, $repo: String!, $number: Int!) {
-    repository(owner: $owner, name: $repo) {
-      pullRequest(number: $number) {
-        reviewThreads(first: 100) {
-          nodes {
-            id
-            isResolved
-            path
-            line
-            comments(first: 100) {
-              nodes {
-                id
-                databaseId
-                body
-                author { login }
+# Fetch all review threads via GraphQL, paginating until hasNextPage is false
+CURSOR=""
+while true; do
+  RESULT=$(gh api graphql -f query='
+    query($owner: String!, $repo: String!, $number: Int!, $cursor: String) {
+      repository(owner: $owner, name: $repo) {
+        pullRequest(number: $number) {
+          reviewThreads(first: 100, after: $cursor) {
+            pageInfo { hasNextPage endCursor }
+            nodes {
+              id
+              isResolved
+              path
+              line
+              comments(first: 100) {
+                nodes {
+                  id
+                  databaseId
+                  diffHunk
+                  body
+                  author { login }
+                }
               }
             }
           }
         }
       }
     }
-  }
-' -F owner="<OWNER>" -F repo="<REPO>" -F number=<PR_NUMBER>
+  ' -F owner="<OWNER>" -F repo="<REPO>" -F number=<PR_NUMBER> -F cursor="$CURSOR")
+  echo "$RESULT"
+  HAS_NEXT=$(echo "$RESULT" | jq -r '.data.repository.pullRequest.reviewThreads.pageInfo.hasNextPage')
+  [ "$HAS_NEXT" = "true" ] || break
+  CURSOR=$(echo "$RESULT" | jq -r '.data.repository.pullRequest.reviewThreads.pageInfo.endCursor')
+done
 ```
 
 Read the PR description and linked issue/ticket (if any) to understand the product intent — you will need this when judging comments.
@@ -99,6 +108,8 @@ Use `gh` to post the reply and resolve:
 
 ```bash
 # Post a reply to a specific thread
+# IMPORTANT: {comment_id} must be the integer databaseId of the *first* comment in the thread
+# (not the GraphQL node id string, and not a reply's id — replies to replies are unsupported)
 gh api \
   --method POST \
   -H "Accept: application/vnd.github+json" \
