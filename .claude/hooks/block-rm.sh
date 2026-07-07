@@ -2,7 +2,21 @@
 set -euo pipefail
 
 payload="$(cat)"
-command_text="$(jq -r '.tool_input.command // .tool_input.cmd // ""' <<<"$payload" 2>/dev/null || printf '')"
+command_text="$(
+    jq -r '
+        .tool_input.command //
+        .tool_input.cmd //
+        .input.command //
+        .input.cmd //
+        .arguments.command //
+        .arguments.cmd //
+        .params.command //
+        .params.cmd //
+        .command //
+        .cmd //
+        ""
+    ' <<<"$payload" 2>/dev/null || printf ''
+)"
 
 if [[ -z "$command_text" ]]; then
     exit 0
