@@ -27,8 +27,31 @@ Work through every unresolved review comment on a GitHub PR. For each comment:
 # Get the PR number (ask the user if unknown)
 gh pr view --json number,title,body,baseRefName,headRefName
 
-# Fetch all unresolved review threads
-gh pr view <PR_NUMBER> --json reviewThreads
+# Fetch all review threads (isResolved, thread IDs, comments) via GraphQL
+gh api graphql -f query='
+  query($owner: String!, $repo: String!, $number: Int!) {
+    repository(owner: $owner, name: $repo) {
+      pullRequest(number: $number) {
+        reviewThreads(first: 100) {
+          nodes {
+            id
+            isResolved
+            path
+            line
+            comments(first: 100) {
+              nodes {
+                id
+                databaseId
+                body
+                author { login }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+' -F owner="<OWNER>" -F repo="<REPO>" -F number=<PR_NUMBER>
 ```
 
 Read the PR description and linked issue/ticket (if any) to understand the product intent — you will need this when judging comments.
@@ -82,16 +105,7 @@ gh api \
   /repos/{owner}/{repo}/pulls/{pull_number}/comments/{comment_id}/replies \
   -f body="<your reply>"
 
-# Resolve the thread
-gh api \
-  --method PUT \
-  -H "Accept: application/vnd.github+json" \
-  /repos/{owner}/{repo}/pulls/comments/{comment_id}/resolve
-```
-
-If the `gh api` resolve endpoint isn't available, use the GraphQL mutation:
-
-```bash
+# Resolve the thread (GraphQL is the only way — no REST endpoint exists for this)
 gh api graphql -f query='
   mutation {
     resolveReviewThread(input: {threadId: "<THREAD_NODE_ID>"}) {
@@ -108,7 +122,7 @@ gh api graphql -f query='
 After all comments are processed:
 
 ```bash
-git add -p   # Stage only the review-driven changes; review the diff before staging
+git add <files>   # Stage only the review-driven files explicitly (avoid -p; it's interactive and blocks agents)
 git commit -m "address review comments"
 git push
 ```
