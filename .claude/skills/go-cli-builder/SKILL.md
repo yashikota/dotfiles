@@ -1,6 +1,6 @@
 ---
 name: go-cli-builder
-description: Use when building a Go CLI tool as a releasable command binary.
+description: Use when building a Go CLI tool as a releasable command binary. Invoke whenever the user wants to scaffold or extend a Go CLI project, set up CI/CD, add linting, testing, or release workflows to a Go binary project.
 license: MIT
 ---
 
@@ -15,12 +15,49 @@ Use this skill when building a Go CLI tool as a releasable command binary.
 - Put command behavior outside `main.go`, typically under packages such as `internal`.
 - Prefer standard Go project conventions before adding framework-specific structure.
 - Write tests for pure-function parts.
-- Use `aqua` as the package manager. Initialize it with `aqua init`, run `aqua g -i suzuki-shunsuke/pinact golangci/golangci-lint`, then run `aqua i`.
 
-## Test/Lint
+## Package Manager (aqua)
 
-- Run `go test ./...` after every code change.
-- Run `golangci-lint run ./...` and `golangci-lint fmt ./...` after every code change.
+Use `aqua` as the package manager. Initialize and install tools:
+
+```sh
+aqua init
+aqua g -i suzuki-shunsuke/pinact golangci/golangci-lint go-task/task jiro4989/richgo
+aqua i
+```
+
+## Task Runner (Taskfile)
+
+Create `Taskfile.yaml` at the repository root. Use `task` for all developer operations — both locally and in CI — so `task <name>` is the only command anyone needs to remember.
+
+Three tasks are required; everything else is added as the project needs it.
+
+```yaml
+version: "3"
+
+tasks:
+  default:
+    desc: "Display this help message"
+    cmds:
+      - task -l
+
+  lint:
+    desc: "Lint"
+    cmds:
+      - golangci-lint run --fix
+      - golangci-lint fmt
+
+  test:
+    desc: "Run all tests"
+    deps: [test:unit]
+
+  test:unit:
+    desc: "Unit test"
+    cmds:
+      - richgo test -v -shuffle=on -race ./...
+```
+
+`test` is the stable entry point CI calls. Add sub-tasks (`test:scenario`, `test:integration`, etc.) as deps of `test` when the project needs them — no CI changes required.
 
 ## Version Information
 
@@ -72,12 +109,118 @@ func getVCSBuildVersion(info *debug.BuildInfo) (string, bool) {
 }
 ```
 
-## Release
+## CI Workflows
+
+### check.yaml
+
+Create `.github/workflows/check.yaml` for lint, format, and test runs triggered on every push to `main` and every PR. The workflow uses aqua to install tools and calls `task` directly — matching the local developer workflow exactly.
+
+```yaml
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@HASH # vX.Y.Z
+
+      - uses: actions/setup-go@HASH # vX.Y.Z
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - uses: actions/cache@HASH # vX.Y.Z
+        with:
+          path: ~/.local/share/aquaproj-aqua
+          key: v2-aqua-installer-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('aqua.yaml') }}
+          restore-keys: |
+            v2-aqua-installer-${{ runner.os }}-${{ runner.arch }}-
+
+      - uses: aquaproj/aqua-installer@HASH # vX.Y.Z
+        with:
+          aqua_version: v2.60.1
+
+      - name: Check
+        run: task check
+
+      - name: Verify no diff
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            git diff --exit-code || true
+            echo "::error::CI checks produced file changes. Run 'task check' locally and commit the result."
+            exit 1
+          fi
+
+  test:
+    name: Unit test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@HASH # vX.Y.Z
+
+      - uses: actions/setup-go@HASH # vX.Y.Z
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - uses: actions/cache@HASH # vX.Y.Z
+        with:
+          path: ~/.local/share/aquaproj-aqua
+          key: v2-aqua-installer-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('aqua.yaml') }}
+          restore-keys: |
+            v2-aqua-installer-${{ runner.os }}-${{ runner.arch }}-
+
+      - uses: aquaproj/aqua-installer@HASH # vX.Y.Z
+        with:
+          aqua_version: v2.60.1
+
+      - name: Unit test
+        run: task test
+
+  scenario:
+    name: Scenario tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@HASH # vX.Y.Z
+
+      - uses: actions/setup-go@HASH # vX.Y.Z
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - uses: actions/cache@HASH # vX.Y.Z
+        with:
+          path: ~/.local/share/aquaproj-aqua
+          key: v2-aqua-installer-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('aqua.yaml') }}
+          restore-keys: |
+            v2-aqua-installer-${{ runner.os }}-${{ runner.arch }}-
+
+      - uses: aquaproj/aqua-installer@HASH # vX.Y.Z
+        with:
+          aqua_version: v2.60.1
+
+      - name: Scenario tests
+        run: task test:scenario
+```
+
+After writing the workflow file, replace all `HASH # vX.Y.Z` placeholders by running:
+
+```sh
+pinact run --update --min-age 3 .github/workflows/check.yaml
+```
+
+### release.yaml
 
 Create `.github/workflows/release.yaml` and run GoReleaser when a version tag is pushed.  
-Do not create `.goreleaser.yaml`. This project should rely on GoReleaser's default behavior and run only from the GitHub Actions workflow.  
+Do not create `.goreleaser.yaml`. This project should rely on GoReleaser's default behavior and run only from the GitHub Actions workflow.
 
-After creating the workflow, run `pinact run --update -min-age 3` to update to current packages.  
+After creating the workflow, run `pinact run --update --min-age 3 .github/workflows/release.yaml` to pin all action hashes.
 
 ```yaml
 name: Release
@@ -94,17 +237,17 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/checkout@HASH # vX.Y.Z
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+      - uses: actions/setup-go@HASH # vX.Y.Z
         with:
           go-version-file: go.mod
           cache: true
 
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a # v6.4.0
+        uses: goreleaser/goreleaser-action@HASH # vX.Y.Z
         with:
           distribution: goreleaser
           version: '~> v2'
