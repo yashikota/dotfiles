@@ -43,9 +43,7 @@
       "Bash(git push --force:*)",
       "Bash(git push --force-with-lease:*)"
     ],
-    "ask": [
-      "Bash(rm:*)"
-    ],
+    "ask": [],
     "defaultMode": "bypassPermissions",
     "skipDangerousModePermissionPrompt": true
   },
@@ -55,6 +53,10 @@
       {
         "matcher": "Bash",
         "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/block-rm.sh"
+          },
           {
             "type": "command",
             "command": "rtk hook claude"
