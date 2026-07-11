@@ -56,4 +56,4 @@ packages:
   - name: koalaman/shellcheck@v0.11.0
   - name: owenlamont/ryl@v0.21.0
   - name: babarot/gomi@v1.6.4
-  - name: ogulcancelik/herdr@v0.7.1
+  - name: ogulcancelik/herdr@v0.7.3
