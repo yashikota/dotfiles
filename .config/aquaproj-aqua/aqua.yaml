@@ -29,7 +29,7 @@ packages:
   - name: Kitware/CMake@v4.3.4
   - name: suzuki-shunsuke/pinact@v4.1.0
   - name: kubernetes/kubectl@v1.36.2
-  - name: aws/aws-cli@2.35.16
+  - name: aws/aws-cli@2.35.17
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.74.3
   - name: fish-shell/fish-shell@4.8.0
