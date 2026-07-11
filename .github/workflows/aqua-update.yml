@@ -1,0 +1,52 @@
+name: aqua-update
+
+on:
+  schedule:
+    # Run once a day at 00:00 UTC (09:00 JST)
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  aqua-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup aqua
+        uses: aquaproj/aqua-installer@v3.1.1
+        with:
+          aqua_version: v2.60.1
+          enable_aqua_install: "false"
+
+      - name: Update aqua packages
+        run: aqua -c .config/aquaproj-aqua/aqua.yaml update
+        env:
+          AQUA_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update aqua checksums
+        run: |
+          if [ -f .config/aquaproj-aqua/aqua-checksums.json ]; then
+            aqua -c .config/aquaproj-aqua/aqua.yaml update-checksum
+          fi
+        env:
+          AQUA_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .config/aquaproj-aqua/aqua.yaml
+          if [ -f .config/aquaproj-aqua/aqua-checksums.json ]; then
+            git add .config/aquaproj-aqua/aqua-checksums.json
+          fi
+          
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(aqua): update aqua packages"
+            git push origin master
+          else
+            echo "No changes to commit"
+          fi
