@@ -16,7 +16,7 @@ packages:
   - name: nodejs/node@v26.4.0
   - name: pnpm/pnpm@v11.10.0
   - name: oven-sh/bun@bun-v1.3.14
-  - name: golang/go@go1.26.4
+  - name: golang/go@go1.26.5
   - name: denoland/deno@v2.9.1
   - name: rust-lang/rustup@1.29.0
   - name: bytecodealliance/wasmtime@v46.0.1
