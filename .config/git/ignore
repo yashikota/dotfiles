@@ -22,4 +22,5 @@
 **/plans
 
 ## Misc
+**/.playwright-mcp/
 **/.playwright-cli/
