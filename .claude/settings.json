@@ -167,7 +167,8 @@
     "superpowers@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
     "codex@openai-codex": true,
-    "example-skills@anthropic-agent-skills": true
+    "example-skills@anthropic-agent-skills": true,
+    "gauntlet@lestrrat-ai": true
   },
   "extraKnownMarketplaces": {
     "openai-codex": {
@@ -180,6 +181,12 @@
       "source": {
         "source": "github",
         "repo": "anthropics/skills"
+      }
+    },
+    "lestrrat-ai": {
+      "source": {
+        "source": "github",
+        "repo": "lestrrat-ai/claude-code-plugins"
       }
     }
   },
