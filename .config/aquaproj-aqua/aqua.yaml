@@ -57,3 +57,4 @@ packages:
   - name: owenlamont/ryl@v0.21.0
   - name: babarot/gomi@v1.6.4
   - name: ogulcancelik/herdr@v0.7.3
+  - name: F1bonacc1/process-compose@v1.120.0
