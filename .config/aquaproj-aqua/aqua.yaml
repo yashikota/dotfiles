@@ -10,11 +10,11 @@
 
 registries:
   - type: standard
-    ref: v4.538.1 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.539.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
   - name: nodejs/node@v26.5.0
-  - name: pnpm/pnpm@v11.13.1
+  - name: pnpm/pnpm@v11.14.0
   - name: oven-sh/bun@bun-v1.3.14
   - name: golang/go@go1.26.5
   - name: denoland/deno@v2.9.3
@@ -22,14 +22,14 @@ packages:
   - name: bytecodealliance/wasmtime@v46.0.1
   - name: astral-sh/uv@0.11.29
   - name: astral-sh/ruff@0.15.22
-  - name: anthropics/claude-code@v2.1.212
+  - name: anthropics/claude-code@v2.1.214
   - name: openai/codex@rust-v0.144.5
   - name: go-task/task@v3.52.0
   - name: hashicorp/terraform@v1.15.8
   - name: Kitware/CMake@v4.4.0
   - name: suzuki-shunsuke/pinact@v4.1.0
   - name: kubernetes/kubectl@v1.36.2
-  - name: aws/aws-cli@2.36.1
+  - name: aws/aws-cli@2.36.2
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.74.4
   - name: fish-shell/fish-shell@4.8.1
@@ -52,7 +52,7 @@ packages:
   - name: Tyrrrz/FFmpegBin@8.1.2
   - name: k1LoW/deck@v1.24.1
   - name: rtk-ai/rtk@v0.43.0
-  - name: google-antigravity/antigravity-cli@1.1.3
+  - name: google-antigravity/antigravity-cli@1.1.4
   - name: koalaman/shellcheck@v0.11.0
   - name: owenlamont/ryl@v0.21.0
   - name: babarot/gomi@v1.6.4
