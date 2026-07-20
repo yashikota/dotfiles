@@ -1,14 +1,6 @@
 ---
 name: wiki
 description: "Maintain the personal Obsidian wiki at ~/obsidian. Ingest sources (raw files, diary, dev notes, etc.), answer queries, and keep wiki/contents/ up to date."
-metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "📚",
-        "requires": { "bins": ["git"] },
-      },
-  }
 ---
 
 # wiki — Personal Obsidian knowledge base
