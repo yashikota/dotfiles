@@ -21,7 +21,7 @@ packages:
   - name: rust-lang/rustup@1.29.0
   - name: bytecodealliance/wasmtime@v47.0.2
   - name: astral-sh/uv@0.12.0
-  - name: astral-sh/ruff@0.16.0
+  - name: astral-sh/ruff@0.16.1
   - name: anthropics/claude-code@v2.1.220
   - name: openai/codex@rust-v0.146.0
   - name: go-task/task@v3.52.0
@@ -29,7 +29,7 @@ packages:
   - name: Kitware/CMake@v4.4.1
   - name: suzuki-shunsuke/pinact@v4.1.1
   - name: kubernetes/kubectl@v1.36.3
-  - name: aws/aws-cli@2.36.11
+  - name: aws/aws-cli@2.36.12
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.74.4
   - name: fish-shell/fish-shell@4.8.1
