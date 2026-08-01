@@ -5,6 +5,17 @@ local M = {}
 
 function M.setup(config)
     config.keys = {
+        -- WezTerm tab navigation. Ctrl+Tab is reserved for Herdr.
+        {
+            key = "[",
+            mods = "CTRL",
+            action = act.ActivateTabRelative(-1),
+        },
+        {
+            key = "]",
+            mods = "CTRL",
+            action = act.ActivateTabRelative(1),
+        },
         -- Shift+↑: 前のプロンプトへ
         { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
         -- Shift+↓: 次のプロンプトへ
