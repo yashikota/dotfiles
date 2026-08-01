@@ -1,0 +1,15 @@
+onboarding = false
+
+[ui]
+agent_panel_sort = "priority"
+
+[keys]
+prefix = "ctrl+x"
+new_tab = "prefix+t"
+close_tab = "prefix+w"
+split_vertical = "prefix+r"
+split_horizontal = "prefix+d"
+cycle_pane_next = "prefix+p"
+zoom = "prefix+f"
+rename_pane = "prefix+c"
+resize_mode = "prefix+n"

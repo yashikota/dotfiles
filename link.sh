@@ -31,11 +31,22 @@ backup_target() {
 # link
 for f in "$DOTFILES_DIR"/.config/*; do
     name="$(basename "$f")"
+    # Herdr creates runtime files in its config directory. Manage only its
+    # declarative config so those files stay machine-local.
+    [ "$name" = "herdr" ] && continue
     target="$HOME/.config/$name"
     backup_target "$target" ".config/$name"
     mkdir -p "$(dirname "$target")"
     ln -svfn "$f" "$target"
 done
+
+# Herdr writes runtime state next to config.toml, so link only that file.
+if [ -f "$DOTFILES_DIR/.config/herdr/config.toml" ]; then
+    target="$HOME/.config/herdr/config.toml"
+    mkdir -p "$(dirname "$target")"
+    backup_target "$target" ".config/herdr/config.toml"
+    ln -svfn "$DOTFILES_DIR/.config/herdr/config.toml" "$target"
+fi
 
 # link .claude
 if [ -d "$DOTFILES_DIR/.claude" ]; then

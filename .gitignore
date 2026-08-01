@@ -3,6 +3,8 @@
 .zcompdump*
 .zsh_sessions/
 .config/zsh/.zshrc.local
+.config/herdr/*
+!.config/herdr/config.toml
 
 # zsh-abbr
 zsh-abbr/

@@ -5,51 +5,42 @@ local M = {}
 
 function M.setup(config)
     config.keys = {
-        -- WezTerm tab navigation. Ctrl+Tab is reserved for Herdr.
+        -- WezTerm tab navigation.
         {
-            key = "[",
-            mods = "CTRL",
-            action = act.ActivateTabRelative(-1),
-        },
-        {
-            key = "]",
+            key = "Tab",
             mods = "CTRL",
             action = act.ActivateTabRelative(1),
+        },
+        {
+            key = "Tab",
+            mods = "CTRL|SHIFT",
+            action = act.ActivateTabRelative(-1),
+        },
+        -- Do not let WezTerm's default pane navigation consume arrow keys.
+        {
+            key = "LeftArrow",
+            mods = "CTRL|SHIFT",
+            action = act.DisableDefaultAssignment,
+        },
+        {
+            key = "RightArrow",
+            mods = "CTRL|SHIFT",
+            action = act.DisableDefaultAssignment,
+        },
+        {
+            key = "UpArrow",
+            mods = "CTRL|SHIFT",
+            action = act.DisableDefaultAssignment,
+        },
+        {
+            key = "DownArrow",
+            mods = "CTRL|SHIFT",
+            action = act.DisableDefaultAssignment,
         },
         -- Shift+↑: 前のプロンプトへ
         { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollToPrompt(-1) },
         -- Shift+↓: 次のプロンプトへ
         { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollToPrompt(1) },
-        -- Cmd+W: ペインを閉じる（常に確認）
-        {
-            key = "w",
-            mods = "CMD",
-            action = wezterm.action_callback(function(window, pane)
-                window:perform_action(
-                    act.PromptInputLine({
-                        description = "Close this pane? (Enter/y to close, n to cancel)",
-                        action = wezterm.action_callback(function(window, pane, line)
-                            if line == "" or line == "y" or line == "Y" then
-                                window:perform_action(act.CloseCurrentPane({ confirm = false }), pane)
-                            end
-                        end),
-                    }),
-                    pane
-                )
-            end),
-        },
-        -- Cmd+P: 横にペイン分割
-        {
-            key = "p",
-            mods = "CMD",
-            action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-        },
-        -- Cmd+Shift+P: 縦にペイン分割
-        {
-            key = "p",
-            mods = "CMD|SHIFT",
-            action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
-        },
         -- Cmd+←: 前の単語へ
         {
             key = "LeftArrow",
