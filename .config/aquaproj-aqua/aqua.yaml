@@ -10,7 +10,7 @@
 
 registries:
   - type: standard
-    ref: v4.545.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.546.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
   - name: nodejs/node@v26.5.1
@@ -51,7 +51,7 @@ packages:
   - name: simonwhitaker/gibo@v3.0.22
   - name: Tyrrrz/FFmpegBin@8.1.2
   - name: k1LoW/deck@v1.24.1
-  - name: rtk-ai/rtk@v0.44.1
+  - name: rtk-ai/rtk@v0.44.2
   - name: google-antigravity/antigravity-cli@1.1.9
   - name: koalaman/shellcheck@v0.11.0
   - name: owenlamont/ryl@v0.21.0
