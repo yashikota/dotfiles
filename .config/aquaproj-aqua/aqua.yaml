@@ -22,14 +22,14 @@ packages:
   - name: bytecodealliance/wasmtime@v47.0.3
   - name: astral-sh/uv@0.12.1
   - name: astral-sh/ruff@0.16.1
-  - name: anthropics/claude-code@v2.1.221
+  - name: anthropics/claude-code@v2.1.222
   - name: openai/codex@rust-v0.146.0
   - name: go-task/task@v3.52.0
   - name: hashicorp/terraform@v1.15.8
   - name: Kitware/CMake@v4.4.2
   - name: suzuki-shunsuke/pinact@v4.1.1
   - name: kubernetes/kubectl@v1.36.3
-  - name: aws/aws-cli@2.36.15
+  - name: aws/aws-cli@2.36.16
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.75.0
   - name: fish-shell/fish-shell@4.8.1
@@ -44,7 +44,7 @@ packages:
   - name: eza-community/eza@v0.23.5
   - name: dandavison/delta@0.19.2
   - name: ClementTsang/bottom@0.14.7
-  - name: jesseduffield/lazygit@v0.63.1
+  - name: jesseduffield/lazygit@v0.64.0
   - name: muesli/duf@v0.9.1
   - name: fastfetch-cli/fastfetch@2.66.0
   - name: XAMPPRocky/tokei@14.0.0
