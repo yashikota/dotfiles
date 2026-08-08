@@ -271,7 +271,12 @@ done
 [[ -f "$ZDOTDIR/.zshrc.local" ]] && source "$ZDOTDIR/.zshrc.local"
 
 # Auto-launch herdr for interactive SSH sessions.
+# Skip if ~/.herdr-skip exists (useful during herdr server stop/update).
 if [[ -o interactive && "${HERDR_ENV:-}" != "1" && ( -n "${SSH_CONNECTION:-}" || -n "${SSH_TTY:-}" ) ]] \
-    && command -v herdr >/dev/null 2>&1; then
-    herdr
+    && command -v herdr >/dev/null 2>&1 \
+    && [[ ! -f "${HOME}/.herdr-skip" ]]; then
+    if herdr status server 2>/dev/null | grep -q "compatible: no"; then
+        herdr server stop 2>/dev/null
+    fi
+    timeout 10 herdr || true
 fi
