@@ -24,6 +24,7 @@ packages:
   - name: astral-sh/ruff@0.16.2
   - name: anthropics/claude-code@v2.1.224
   - name: openai/codex@rust-v0.147.0
+  - name: anomalyco/opencode@v1.18.15
   - name: go-task/task@v3.52.0
   - name: hashicorp/terraform@v1.15.8
   - name: Kitware/CMake@v4.4.2
