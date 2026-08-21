@@ -58,3 +58,4 @@ packages:
   - name: babarot/gomi@v1.6.4
   - name: ogulcancelik/herdr@v0.8.0
   - name: F1bonacc1/process-compose@v1.120.0
+  - name: Aloxaf/silicon@v0.5.3
