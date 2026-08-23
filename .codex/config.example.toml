@@ -5,6 +5,7 @@ approval_policy = "never"
 sandbox_mode = "danger-full-access"
 default_permissions = ":danger-full-access"
 approvals_reviewer = "user"
+default_mode_request_user_input = true
 
 [tui]
 status_line = [
