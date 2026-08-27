@@ -13,3 +13,9 @@ cycle_pane_next = "prefix+p"
 zoom = "prefix+f"
 rename_pane = "prefix+c"
 resize_mode = "prefix+n"
+
+[[keys.command]]
+key = "prefix+y"
+type = "plugin_action"
+command = "copy-last.copy-last"
+description = "copy last prompt and output"
