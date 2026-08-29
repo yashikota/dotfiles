@@ -103,6 +103,9 @@ jobs:
           set -e
           for f in .config/*; do
             name="$(basename "$f")"
+            # Herdr writes runtime files next to config.toml, so link.sh
+            # links only that file. Skip the directory itself.
+            [ "$name" = "herdr" ] && continue
             target="$HOME/.config/$name"
             if [ ! -L "$target" ]; then
               echo "::error::Not a symlink: $target"
@@ -116,6 +119,20 @@ jobs:
             fi
             echo "OK: $target -> $resolved"
           done
+          if [ -f .config/herdr/config.toml ]; then
+            target="$HOME/.config/herdr/config.toml"
+            expected="$(pwd)/.config/herdr/config.toml"
+            if [ ! -L "$target" ]; then
+              echo "::error::Not a symlink: $target"
+              exit 1
+            fi
+            resolved="$(readlink "$target")"
+            if [ "$resolved" != "$expected" ]; then
+              echo "::error::Wrong target: $target -> $resolved (expected $expected)"
+              exit 1
+            fi
+            echo "OK: $target -> $resolved"
+          fi
       - name: Verify .claude symlink
         run: |
           set -e
