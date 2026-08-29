@@ -48,6 +48,14 @@ if [ -f "$DOTFILES_DIR/.config/herdr/config.toml" ]; then
     ln -svfn "$DOTFILES_DIR/.config/herdr/config.toml" "$target"
 fi
 
+# Keep .agents runtime files machine-local and manage only portable skills.
+if [ -d "$DOTFILES_DIR/.agents/skills" ]; then
+    target="$HOME/.agents/skills"
+    mkdir -p "$(dirname "$target")"
+    backup_target "$target" ".agents/skills"
+    ln -svfn "$DOTFILES_DIR/.agents/skills" "$target"
+fi
+
 # link .claude
 if [ -d "$DOTFILES_DIR/.claude" ]; then
     target="$HOME/.claude"
@@ -67,17 +75,22 @@ if [ -d "$DOTFILES_DIR/.codex" ]; then
     ln -svfn "$DOTFILES_DIR/.codex" "$target"
 fi
 
-# share custom skills with Codex (symlink .claude/skills/* -> ~/.codex/skills/)
-if [ -d "$DOTFILES_DIR/.claude/skills" ]; then
+# Share custom skills with Codex. Skills in .agents are the portable source of
+# truth and take precedence over Claude-specific skills with the same name.
+for skills_dir in "$DOTFILES_DIR/.claude/skills" "$DOTFILES_DIR/.agents/skills"; do
+    [ -d "$skills_dir" ] || continue
     mkdir -p "$HOME/.codex/skills"
-    for skill in "$DOTFILES_DIR"/.claude/skills/*/; do
+    for skill in "$skills_dir"/*/; do
         name="$(basename "$skill")"
+        if [ "$skills_dir" = "$DOTFILES_DIR/.claude/skills" ] && [ -d "$DOTFILES_DIR/.agents/skills/$name" ]; then
+            continue
+        fi
         target="$HOME/.codex/skills/$name"
         # skip if already managed by gh skill (plugin cache)
         [ -d "$target" ] && [ ! -L "$target" ] && continue
         ln -svfn "$skill" "$target"
     done
-fi
+done
 
 # link ~/.zshenv to keep ZDOTDIR user-local
 if [ -f "$DOTFILES_DIR/.config/zsh/.zshenv" ]; then

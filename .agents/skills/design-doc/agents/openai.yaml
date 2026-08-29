@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Doc"
+  short_description: "代替案・懸念点・未決定事項を明示する設計文書を作成"
+  default_prompt: "$design-doc を使って、この変更の実装前 Design Doc を作成してください。"
