@@ -43,6 +43,7 @@ All configuration lives under `.config/` following XDG conventions. Platform-spe
 | Tmux | `.config/tmux/tmux.conf` |
 | EZA | `.config/eza/theme.yml` |
 | Fish (alt shell) | `.config/fish/config.fish` |
+| Cursor CLI | `.config/cursor/cli-config.json` (merged into `~/.config/cursor/cli-config.json`; auth/cache stay machine-local) |
 
 Runtime/tool managers (`mise`, `aqua`) are installed by the platform setup scripts and have their PATH/env exports configured in `.zshrc` / `config.fish`. The aqua global config (`.config/aquaproj-aqua/aqua.yaml`) is managed in this repo and symlinked to `$HOME/.config/aquaproj-aqua/` via `link.sh`. `AQUA_GLOBAL_CONFIG` points to this path in both zsh and fish.
 

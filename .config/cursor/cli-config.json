@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "editor": {
+    "vimMode": false
+  },
+  "permissions": {
+    "allow": [
+      "Shell(ls)",
+      "Mcp(plugin-context7-context7:resolve-library-id)",
+      "WebFetch(github.com)",
+      "Shell(head)",
+      "Shell(echo)",
+      "Shell(true)",
+      "WebFetch(raw.githubusercontent.com)",
+      "WebFetch(api.github.com)",
+      "WebFetch(openchamber.dev)"
+    ],
+    "deny": []
+  },
+  "display": {
+    "showLineNumbers": false,
+    "showThinkingBlocks": false,
+    "showStatusIndicators": false,
+    "showStatusLineRunningTime": false,
+    "mode": "zen"
+  },
+  "notifications": true,
+  "hints": true,
+  "modelSlashCommands": true,
+  "rewind": true,
+  "model": {
+    "modelId": "composer-2.5",
+    "displayModelId": "composer-2.5",
+    "displayName": "Composer 2.5 Fast",
+    "displayNameShort": "Composer 2.5 Fast",
+    "aliases": [],
+    "maxMode": false
+  },
+  "hasChangedDefaultModel": true,
+  "modelParameters": {
+    "auto-smart": [
+      {
+        "id": "optimize_for",
+        "value": "cost"
+      }
+    ],
+    "composer-2.5": [
+      {
+        "id": "fast",
+        "value": "true"
+      }
+    ],
+    "grok-4.6": [
+      {
+        "id": "effort",
+        "value": "high"
+      },
+      {
+        "id": "fast",
+        "value": "false"
+      }
+    ]
+  },
+  "selectedModel": {
+    "modelId": "composer-2.5",
+    "parameters": [
+      {
+        "id": "fast",
+        "value": "true"
+      }
+    ]
+  },
+  "modelSelectionHistory": [
+    "composer-2.5",
+    "grok-4.6",
+    "auto-smart"
+  ],
+  "exploreSubagentModel": "default",
+  "network": {
+    "useHttp1ForAgent": false
+  },
+  "approvalMode": "unrestricted",
+  "autoAcceptWebSearch": false,
+  "sandbox": {
+    "mode": "disabled",
+    "networkAccess": "user_config_with_defaults"
+  },
+  "attribution": {
+    "attributeCommitsToAgent": false,
+    "attributePRsToAgent": false
+  }
+}

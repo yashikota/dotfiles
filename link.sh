@@ -34,11 +34,41 @@ for f in "$DOTFILES_DIR"/.config/*; do
     # Herdr creates runtime files in its config directory. Manage only its
     # declarative config so those files stay machine-local.
     [ "$name" = "herdr" ] && continue
+    # Cursor CLI stores auth/cache in ~/.config/cursor. Manage only portable
+    # cli-config.json and merge it into the live file on each link.
+    [ "$name" = "cursor" ] && continue
     target="$HOME/.config/$name"
     backup_target "$target" ".config/$name"
     mkdir -p "$(dirname "$target")"
     ln -svfn "$f" "$target"
 done
+
+merge_cursor_cli_config() {
+    local portable="$1"
+    local live="$2"
+
+    mkdir -p "$(dirname "$live")"
+    if [ ! -f "$live" ]; then
+        cp "$portable" "$live"
+        echo "${CYAN}Created $live from dotfiles cursor cli-config${RESET}"
+        return 0
+    fi
+    if ! command -v jq >/dev/null 2>&1; then
+        echo "${YELLOW}jq not found; skipping cursor cli-config merge${RESET}" >&2
+        return 0
+    fi
+    jq -s '.[0] * .[1]' "$live" "$portable" > "${live}.tmp"
+    mv "${live}.tmp" "$live"
+    echo "${CYAN}Merged dotfiles cursor cli-config into $live${RESET}"
+}
+
+# Cursor CLI writes auth/cache into cli-config.json, so merge portable settings
+# from dotfiles instead of symlinking the live file.
+if [ -f "$DOTFILES_DIR/.config/cursor/cli-config.json" ]; then
+    merge_cursor_cli_config \
+        "$DOTFILES_DIR/.config/cursor/cli-config.json" \
+        "$HOME/.config/cursor/cli-config.json"
+fi
 
 # Herdr writes runtime state next to config.toml, so link only that file.
 if [ -f "$DOTFILES_DIR/.config/herdr/config.toml" ]; then
