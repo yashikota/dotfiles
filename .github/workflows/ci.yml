@@ -106,6 +106,9 @@ jobs:
             # Herdr writes runtime files next to config.toml, so link.sh
             # links only that file. Skip the directory itself.
             [ "$name" = "herdr" ] && continue
+            # Cursor CLI stores auth/cache in ~/.config/cursor. link.sh merges
+            # only cli-config.json into the live file. Skip the directory itself.
+            [ "$name" = "cursor" ] && continue
             target="$HOME/.config/$name"
             if [ ! -L "$target" ]; then
               echo "::error::Not a symlink: $target"
@@ -132,6 +135,24 @@ jobs:
               exit 1
             fi
             echo "OK: $target -> $resolved"
+          fi
+          if [ -f .config/cursor/cli-config.json ]; then
+            target="$HOME/.config/cursor/cli-config.json"
+            expected="$(pwd)/.config/cursor/cli-config.json"
+            if [ ! -f "$target" ]; then
+              echo "::error::Missing cursor cli-config: $target"
+              exit 1
+            fi
+            if [ -L "$target" ]; then
+              echo "::error::Should not be a symlink: $target"
+              exit 1
+            fi
+            if ! diff -q "$expected" "$target" >/dev/null 2>&1; then
+              echo "::error::cursor cli-config mismatch: $target"
+              diff "$expected" "$target" || true
+              exit 1
+            fi
+            echo "OK: $target (merged from dotfiles)"
           fi
       - name: Verify .claude symlink
         run: |
