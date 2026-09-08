@@ -56,7 +56,7 @@ packages:
   - name: koalaman/shellcheck@v0.11.0
   - name: owenlamont/ryl@v0.22.0
   - name: babarot/gomi@v1.6.4
-  - name: ogulcancelik/herdr@v0.8.2
+  - name: ogulcancelik/herdr@v0.9.0
   - name: F1bonacc1/process-compose@v1.122.0
   - name: Aloxaf/silicon
     version: v0.5.2 # v0.5.3 GitHub release has no assets
