@@ -52,7 +52,6 @@ packages:
   - name: Tyrrrz/FFmpegBin@9.0.2
   - name: k1LoW/deck@v1.24.1
   - name: rtk-ai/rtk@v0.50.0
-  - name: google-antigravity/antigravity-cli@1.2.12
   - name: koalaman/shellcheck@v0.11.0
   - name: owenlamont/ryl@v0.22.0
   - name: babarot/gomi@v1.6.4
