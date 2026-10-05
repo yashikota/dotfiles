@@ -42,7 +42,7 @@ packages:
   - name: BurntSushi/ripgrep@15.2.0
   - name: junegunn/fzf@v0.74.4
   - name: eza-community/eza@v0.23.5
-  - name: dandavison/delta@0.19.2
+  - name: dandavison/delta@0.20.1
   - name: ClementTsang/bottom@0.14.9
   - name: jesseduffield/lazygit@v0.65.1
   - name: muesli/duf@v0.9.1
@@ -53,7 +53,7 @@ packages:
   - name: k1LoW/deck@v1.24.2
   - name: rtk-ai/rtk@v0.51.0
   - name: koalaman/shellcheck@v0.11.0
-  - name: owenlamont/ryl@v0.22.0
+  - name: owenlamont/ryl@v0.24.0
   - name: babarot/gomi@v1.6.5
   - name: ogulcancelik/herdr@v0.9.3
   - name: F1bonacc1/process-compose@v1.122.0
