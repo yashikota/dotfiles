@@ -1,12 +1,7 @@
 {
   "env": {
     "CLAUDE_CODE_ENABLE_AUTO_MODE": "1",
-    "ENABLE_TOOL_SEARCH": "true",
-    "CLAUDE_CODE_USE_BEDROCK": "true",
-    "AWS_REGION": "ap-northeast-1",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-6-v1",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-4-6",
-    "AWS_PROFILE": "bedrock-local"
+    "ENABLE_TOOL_SEARCH": "true"
   },
   "includeCoAuthoredBy": false,
   "permissions": {
@@ -43,7 +38,7 @@
       "Bash(git push --force-with-lease:*)"
     ],
     "ask": [],
-    "defaultMode": "bypassPermissions",
+    "defaultMode": "auto",
     "skipDangerousModePermissionPrompt": true
   },
   "model": "opusplan",
