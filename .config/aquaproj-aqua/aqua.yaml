@@ -59,3 +59,5 @@ packages:
   - name: F1bonacc1/process-compose@v1.122.0
   - name: Aloxaf/silicon
     version: v0.5.2 # v0.5.3 GitHub release has no assets
+  - name: k1LoW/mo@v1.6.9
+  - name: anomalyco/opencode@v1.18.34
