@@ -10,10 +10,10 @@
 
 registries:
   - type: standard
-    ref: v4.572.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.573.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-  - name: nodejs/node@v26.10.0
+  - name: nodejs/node@v26.11.1
   - name: pnpm/pnpm@v12.10.1
   - name: oven-sh/bun@bun-v1.4.2
   - name: golang/go@go1.27.1
@@ -22,8 +22,8 @@ packages:
   - name: bytecodealliance/wasmtime@v49.0.2
   - name: astral-sh/uv@0.12.23
   - name: astral-sh/ruff@0.16.10
-  - name: anthropics/claude-code@v2.1.292
-  - name: openai/codex@rust-v0.160.1
+  - name: anthropics/claude-code@v2.1.293
+  - name: openai/codex@rust-v0.161.0
   - name: go-task/task@v3.54.0
   - name: hashicorp/terraform@v1.16.5
   - name: Kitware/CMake@v4.4.4
