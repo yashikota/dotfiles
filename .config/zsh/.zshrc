@@ -215,6 +215,7 @@ _setup_abbr() {
     abbr add -S --quieter -- -='cd -'
     if [[ "$OS_NAME" == "Linux" ]]; then
         abbr add -S --quieter inst='sudo apt install -y'
+        abbr add -S --quieter ipa='ip -br -c a'
     fi
     abbr add -S --quieter m='make'
     abbr add -S --quieter c='code .'

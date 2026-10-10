@@ -118,6 +118,7 @@ if status is-interactive
     abbr --add - cd -
     if test (uname) = Linux
         abbr --add inst sudo apt install -y
+        abbr --add ipa ip -br -c a
     end
     abbr --add m make
     abbr --add c code .
