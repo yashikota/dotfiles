@@ -61,3 +61,4 @@ packages:
     version: v0.5.2 # v0.5.3 GitHub release has no assets
   - name: k1LoW/mo@v1.7.0
   - name: anomalyco/opencode@v1.19.4
+  - name: rhysd/actionlint@v1.7.12
