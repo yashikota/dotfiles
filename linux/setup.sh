@@ -1,5 +1,5 @@
 #!/bin/bash
-
+/
 export TERM=xterm-256color
 set -Eeuo pipefail
 
@@ -132,21 +132,13 @@ function generate_locale() {
 # configure system timezone
 function configure_timezone() {
     local timezone="Asia/Tokyo"
-    local current_timezone=""
 
-    if command -v timedatectl >/dev/null 2>&1; then
-        current_timezone="$(timedatectl show -p Timezone --value 2>/dev/null || true)"
-        if [ "$current_timezone" = "$timezone" ]; then
-            echo "${CYAN}Timezone is already $timezone${RESET}"
-            return
-        fi
-
+    if [ "$(cat /proc/1/comm)" = "systemd" ]; then
         sudo timedatectl set-timezone "$timezone"
-        echo "${GREEN}Timezone set to $timezone.${RESET}"
-        return
+    else
+        sudo ln -snf "/usr/share/zoneinfo/$timezone" /etc/localtime
+        echo "$timezone" | sudo tee /etc/timezone >/dev/null
     fi
-
-    echo "${MAGENTA}timedatectl not found; timezone setup skipped.${RESET}"
 }
 
 # disable login message (last-login line + Ubuntu MOTD)
