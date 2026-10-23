@@ -3,7 +3,11 @@
     "CLAUDE_CODE_ENABLE_AUTO_MODE": "1",
     "ENABLE_TOOL_SEARCH": "true"
   },
-  "includeCoAuthoredBy": false,
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "permissions": {
     "allow": [
       "Bash(ls:*)",
@@ -41,7 +45,6 @@
     "defaultMode": "auto",
     "skipDangerousModePermissionPrompt": true
   },
-  "model": "opusplan",
   "hooks": {
     "PreToolUse": [
       {
