@@ -54,12 +54,12 @@ packages:
   - name: rtk-ai/rtk@v1.0.1
   - name: koalaman/shellcheck@v0.11.0
   - name: owenlamont/ryl@v0.26.0
-  - name: babarot/gomi@v1.6.5
+  - name: babarot/gomi@v1.7.0
   - name: ogulcancelik/herdr@v0.9.5
   - name: F1bonacc1/process-compose@v1.122.0
   - name: Aloxaf/silicon
     version: v0.5.2 # v0.5.3 GitHub release has no assets
   - name: k1LoW/mo@v1.7.0
-  - name: anomalyco/opencode@v1.19.4
+  - name: anomalyco/opencode@v2.1.4
   - name: rhysd/actionlint@v1.7.12
-  - name: dotenvx/dotenvx@v2.38.0
+  - name: dotenvx/dotenvx@v2.38.2
