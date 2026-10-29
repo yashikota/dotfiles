@@ -63,3 +63,5 @@ packages:
   - name: anomalyco/opencode@v2.2.0
   - name: rhysd/actionlint@v1.7.12
   - name: dotenvx/dotenvx@v2.38.2
+  - name: google-antigravity/antigravity-cli@1.4.10
+
