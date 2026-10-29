@@ -13,7 +13,7 @@ registries:
     ref: v4.579.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-  - name: nodejs/node@v26.12.1
+  - name: nodejs/node@v26.13.0
   - name: pnpm/pnpm@v12.16.1
   - name: oven-sh/bun@bun-v1.4.4
   - name: golang/go@go1.27.3
@@ -25,11 +25,11 @@ packages:
   - name: anthropics/claude-code@v2.1.312
   - name: openai/codex@rust-v0.165.0
   - name: go-task/task@v3.54.0
-  - name: hashicorp/terraform@v1.17.0
+  - name: hashicorp/terraform@v1.17.1
   - name: Kitware/CMake@v4.4.5
   - name: suzuki-shunsuke/pinact@v5.0.2
-  - name: kubernetes/kubectl@v1.37.1
-  - name: aws/aws-cli@2.39.0
+  - name: kubernetes/kubectl@v1.37.2
+  - name: aws/aws-cli@2.39.1
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.75.2
   - name: fish-shell/fish-shell@4.9.3
