@@ -43,7 +43,7 @@ packages:
   - name: junegunn/fzf@v0.74.5
   - name: eza-community/eza@v0.23.5
   - name: dandavison/delta@0.20.1
-  - name: ClementTsang/bottom@0.14.9
+  - name: ClementTsang/bottom@0.15.0
   - name: jesseduffield/lazygit@v0.66.2
   - name: muesli/duf@v0.9.1
   - name: fastfetch-cli/fastfetch@2.70.0
