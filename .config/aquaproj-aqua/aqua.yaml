@@ -51,7 +51,7 @@ packages:
   - name: simonwhitaker/gibo@v3.0.23
   - name: Tyrrrz/FFmpegBin@9.0.2
   - name: k1LoW/deck@v1.24.4
-  - name: rtk-ai/rtk@v1.1.0
+  - name: rtk-ai/rtk@v1.2.0
   - name: koalaman/shellcheck@v0.11.0
   - name: owenlamont/ryl@v0.29.0
   - name: babarot/gomi@v1.10.1
