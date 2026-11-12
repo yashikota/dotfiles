@@ -15,3 +15,6 @@ status_line = [
   "weekly-limit",
   "git-branch",
 ]
+
+[sandbox_workspace_write]
+network_access = true
