@@ -10,7 +10,7 @@
 
 registries:
   - type: standard
-    ref: v4.593.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.594.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
   - name: nodejs/node@v26.13.1
@@ -28,15 +28,15 @@ packages:
   - name: hashicorp/terraform@v1.17.2
   - name: Kitware/CMake@v4.5.1
   - name: suzuki-shunsuke/pinact@v5.0.2
-  - name: kubernetes/kubectl@v1.37.2
-  - name: aws/aws-cli@2.42.3
+  - name: kubernetes/kubectl@v1.37.3
+  - name: aws/aws-cli@2.42.4
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.76.0
   - name: fish-shell/fish-shell@4.9.3
   - name: starship/starship@v1.27.0
   - name: rossmacarthur/sheldon@0.8.5
   - name: ajeetdsouza/zoxide@v0.10.0
-  - name: cli/cli@v2.105.0
+  - name: cli/cli@v2.106.0
   - name: sharkdp/bat@v0.26.1
   - name: sharkdp/fd@v10.5.2
   - name: BurntSushi/ripgrep@16.0.0
@@ -60,7 +60,7 @@ packages:
   - name: Aloxaf/silicon
     version: v0.5.2 # v0.5.3 GitHub release has no assets
   - name: k1LoW/mo@v1.8.2
-  - name: anomalyco/opencode@v2.4.1
+  - name: anomalyco/opencode@v2.4.2
   - name: rhysd/actionlint@v1.7.12
   - name: dotenvx/dotenvx@v2.38.2
-  - name: google-antigravity/antigravity-cli@1.5.16
+  - name: google-antigravity/antigravity-cli@1.5.18
