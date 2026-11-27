@@ -14,7 +14,7 @@ registries:
 
 packages:
   - name: nodejs/node@v26.13.1
-  - name: pnpm/pnpm@v12.23.0
+  - name: pnpm/pnpm@v12.24.0
   - name: oven-sh/bun@bun-v1.4.5
   - name: golang/go@go1.27.4
   - name: denoland/deno@v2.9.8
