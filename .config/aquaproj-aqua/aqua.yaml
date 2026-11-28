@@ -10,7 +10,7 @@
 
 registries:
   - type: standard
-    ref: v4.594.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.595.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
   - name: nodejs/node@v26.13.1
@@ -29,7 +29,7 @@ packages:
   - name: Kitware/CMake@v4.5.1
   - name: suzuki-shunsuke/pinact@v5.0.2
   - name: kubernetes/kubectl@v1.37.3
-  - name: aws/aws-cli@2.42.4
+  - name: aws/aws-cli@2.42.5
   - name: twistedpair/google-cloud-sdk@562.0.0
   - name: rclone/rclone@v1.76.0
   - name: fish-shell/fish-shell@4.9.3
